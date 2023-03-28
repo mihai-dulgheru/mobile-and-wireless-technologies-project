@@ -1,4 +1,4 @@
-﻿namespace MWTProject
+﻿namespace MWTProject.Utility
 {
     public static class Constants
     {
