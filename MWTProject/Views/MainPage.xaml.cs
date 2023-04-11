@@ -13,7 +13,8 @@ public partial class MainPage : ContentPage
 
     private async void OnCounterClicked(object sender, EventArgs e)
     {
-        List<Data.Movie> movies = await new RestService().RefreshDataAsync();
+        IList<Data.Movie> movies = await new RestService().RefreshDataAsync();
+        IList<Data.Product> products = await new RestService().SearchGroceryProductsAsync("burger");
 
         count++;
 

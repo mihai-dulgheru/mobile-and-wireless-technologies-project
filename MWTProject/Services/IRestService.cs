@@ -4,8 +4,9 @@ namespace MWTProject.Services
 {
     public interface IRestService
     {
-        List<Movie> Movies { get; }
+        IList<Movie> Movies { get; }
 
-        Task<List<Movie>> RefreshDataAsync();
+        Task<IList<Movie>> RefreshDataAsync();
+        Task<IList<Product>> SearchGroceryProductsAsync(string query);
     }
 }
