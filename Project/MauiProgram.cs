@@ -7,7 +7,7 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
-        var builder = MauiApp.CreateBuilder();
+        MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
@@ -20,8 +20,7 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
         builder.Services.AddSingleton<Configuration.IConfiguration, Configuration.Configuration>();
-        string dbPath = Path.Combine(FileSystem.AppDataDirectory, Constants.DatabaseName);
-        builder.Services.AddSingleton<PersonRepository>(s => ActivatorUtilities.CreateInstance<PersonRepository>(s, dbPath));
+        builder.Services.AddSingleton<PersonRepository>(provider => ActivatorUtilities.CreateInstance<PersonRepository>(provider, Constants.DatabasePath));
 
         return builder.Build();
     }
