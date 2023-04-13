@@ -11,7 +11,7 @@
         ContentTemplate="{DataTemplate views:ClockPage}"
         Route="MainPage" />-->
 
-    <TabBar>
+    <!--<TabBar>
         <ShellContent
             Title="Notes"
             ContentTemplate="{DataTemplate views:AllNotesPage}" />
@@ -19,6 +19,11 @@
         <ShellContent
             Title="About"
             ContentTemplate="{DataTemplate views:AboutPage}" />
-    </TabBar>
+    </TabBar>-->
+
+    <ShellContent
+        Title="People"
+        ContentTemplate="{DataTemplate views:MainPage}"
+        Route="MainPage" />
 
 </Shell>
