@@ -1,10 +1,12 @@
-﻿namespace Project;
+﻿using Project.Data;
+
+namespace Project;
 
 public partial class App : Application
 {
-    public static PersonRepository PersonRepo { get; private set; }
+    public static IPersonRepository PersonRepo { get; private set; }
 
-    public App(PersonRepository repo)
+    public App(IPersonRepository repo)
     {
         InitializeComponent();
 

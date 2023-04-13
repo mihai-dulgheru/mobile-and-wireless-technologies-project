@@ -6,15 +6,10 @@
     xmlns:views="clr-namespace:Project.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:ClockPage}"
-        Route="MainPage" />-->
-
     <!--<TabBar>
         <ShellContent
-            Title="Notes"
-            ContentTemplate="{DataTemplate views:AllNotesPage}" />
+            Title="Clock"
+            ContentTemplate="{DataTemplate views:ClockPage}" />
 
         <ShellContent
             Title="About"

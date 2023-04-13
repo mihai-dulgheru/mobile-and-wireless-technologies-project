@@ -1,9 +1,9 @@
 ﻿using Project.Models;
 using SQLite;
 
-namespace Project
+namespace Project.Data
 {
-    public class PersonRepository
+    public class PersonRepository : IPersonRepository
     {
         private readonly string _dbPath;
         private SQLiteAsyncConnection conn;

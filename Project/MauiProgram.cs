@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Project.Data;
 using Project.Utilities;
 
 namespace Project;
@@ -20,7 +21,7 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
         builder.Services.AddSingleton<Configuration.IConfiguration, Configuration.Configuration>();
-        builder.Services.AddSingleton<PersonRepository>(provider => ActivatorUtilities.CreateInstance<PersonRepository>(provider, Constants.DatabasePath));
+        builder.Services.AddSingleton<IPersonRepository, PersonRepository>(provider => ActivatorUtilities.CreateInstance<PersonRepository>(provider, Constants.DatabasePath));
 
         return builder.Build();
     }

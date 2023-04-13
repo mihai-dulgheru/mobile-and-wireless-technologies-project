@@ -1,4 +1,4 @@
-﻿namespace Project.Data
+﻿namespace Project.Models
 {
     public class Product
     {
