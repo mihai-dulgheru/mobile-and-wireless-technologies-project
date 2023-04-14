@@ -12,13 +12,13 @@
         <SearchBar x:Name="searchBar"
                    SearchCommand="{Binding PerformSearch}"
                    SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-        <ListView ItemsSource="{Binding Products}">
+        <ListView ItemsSource="{Binding Products}"
+                  ItemSelected="ListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid 
-                            ColumnSpacing="10"
-                            Padding="10">
+                        <Grid ColumnSpacing="10"
+                              Padding="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
@@ -26,18 +26,16 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Image 
-                                Aspect="AspectFill"
-                                Grid.Column="0"
-                                HeightRequest="60"
-                                Source="{Binding Image}"
-                                WidthRequest="60" />
-                            <Label 
-                                FontAttributes="Bold"
-                                Grid.Column="1"
-                                HorizontalTextAlignment="Start"
-                                Text="{Binding Title}"
-                                VerticalTextAlignment="Center" />
+                            <Image Aspect="AspectFill"
+                                   Grid.Column="0"
+                                   HeightRequest="60"
+                                   Source="{Binding Image}"
+                                   WidthRequest="60" />
+                            <Label FontAttributes="Bold"
+                                   Grid.Column="1"
+                                   HorizontalTextAlignment="Start"
+                                   Text="{Binding Title}"
+                                   VerticalTextAlignment="Center" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
