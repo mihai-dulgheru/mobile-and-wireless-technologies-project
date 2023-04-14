@@ -25,8 +25,9 @@
             <CollectionView ItemsSource="{Binding Products}"
                             EmptyView="No items to display"
                             SelectionMode="Single"
-                            SelectionChangedCommand="{Binding SelectProductCommand}"
-                            SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}">
+                            SelectionChanged="CollectionView_SelectionChanged">
+                            <!--SelectionChangedCommand="{Binding SelectProductCommand}"-->
+                            <!--SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}"-->
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid ColumnSpacing="10"
