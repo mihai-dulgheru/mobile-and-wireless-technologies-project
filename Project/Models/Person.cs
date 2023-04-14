@@ -2,8 +2,8 @@
 
 namespace Project.Models
 {
-    [Table("people")]
-    public class Person
+    [Table("Person")]
+    public class Person : IPerson
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }

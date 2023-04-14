@@ -16,9 +16,14 @@
             ContentTemplate="{DataTemplate views:AboutPage}" />
     </TabBar>-->
 
-    <ShellContent
+    <!--<ShellContent
         Title="People"
         ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />
+        Route="MainPage" />-->
+
+    <ShellContent
+        Title="ProductPage"
+        ContentTemplate="{DataTemplate views:ProductPage}"
+        Route="ProductPage" />
 
 </Shell>

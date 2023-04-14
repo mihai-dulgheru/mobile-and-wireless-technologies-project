@@ -20,7 +20,7 @@ namespace Project.Services
         {
             IList<Product> products = new List<Product>();
 
-            string RequestUri = string.Format(Constants.BaseUrl, $"food/products/search?query={query}&apiKey={_configuration.GetValue("API-Key")}");
+            string RequestUri = string.Format(Constants.BaseUrl, $"food/products/search?query={query}&number=10&apiKey={_configuration.GetValue("API-Key")}");
             HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
             HttpResponseMessage response = await _client.SendAsync(request);
             _ = response.EnsureSuccessStatusCode();

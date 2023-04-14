@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Project.ViewModels
 {
-    public class ClockViewModel : INotifyPropertyChanged
+    public class ClockViewModel : IClockViewModel, INotifyPropertyChanged
     {
         private DateTime _dateTime;
         private readonly Timer _timer;

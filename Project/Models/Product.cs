@@ -1,11 +1,26 @@
-﻿namespace Project.Models
+﻿using SQLite;
+
+namespace Project.Models
 {
-    public class Product
+    [Table("Product")]
+    public class Product : IProduct
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
+        [MaxLength(250)]
         public string Title { get; set; }
+
+        [MaxLength(250)]
         public string Image { get; set; }
+
+        [MaxLength(250)]
         public string ImageType { get; set; }
+
+        public Product()
+        {
+
+        }
 
         public Product(int id, string title, string image, string imageType)
         {
