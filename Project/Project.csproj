@@ -62,8 +62,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="MVVM\Models\" />
-	  <Folder Include="MVVM\ViewModels\" />
 	  <Folder Include="Postman\" />
 	</ItemGroup>
 
@@ -72,22 +70,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MVVM\Views\FirstPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\SecondPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\ThirdPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ClockPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ProductPage.xaml">
+	  <MauiXaml Update="Views\SearchProductPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

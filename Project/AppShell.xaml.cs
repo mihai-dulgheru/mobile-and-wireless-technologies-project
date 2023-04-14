@@ -1,4 +1,6 @@
-﻿namespace Project;
+﻿using Project.Views;
+
+namespace Project;
 
 public partial class AppShell : Shell
 {
@@ -6,6 +8,6 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        Routing.RegisterRoute(nameof(MVVM.Views.FirstPage), typeof(MVVM.Views.FirstPage));
+        Routing.RegisterRoute(nameof(SearchProductPage), typeof(SearchProductPage));
     }
 }

@@ -1,5 +1,4 @@
-﻿using Project.Data;
-using Project.Models;
+﻿using Project.Models;
 using Project.Services;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -7,13 +6,13 @@ using System.Windows.Input;
 
 namespace Project.ViewModels
 {
-    public class ProductViewModel : IProductViewModel
+    internal class SearchProductViewModel : ISearchProductViewModel
     {
         private List<Product> _products = new();
         private readonly IRestService _restService;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ProductViewModel()
+        public SearchProductViewModel()
         {
             _restService = new RestService();
         }

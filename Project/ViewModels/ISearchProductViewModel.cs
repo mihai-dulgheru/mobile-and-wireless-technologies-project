@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Project.ViewModels
 {
-    public interface IProductViewModel : INotifyPropertyChanged
+    internal interface ISearchProductViewModel : INotifyPropertyChanged
     {
         ICommand PerformSearch { get; }
         IList<Product> Products { get; set; }
