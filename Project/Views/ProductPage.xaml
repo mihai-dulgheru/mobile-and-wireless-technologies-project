@@ -8,14 +8,40 @@
         <viewModels:ProductViewModel />
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout>
-        <Button
-            Text="Click Me!"
-            Clicked="Button_Clicked" />
-
-        <Label 
-            Text="{Binding Text}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout>
+        <SearchBar x:Name="searchBar"
+                   SearchCommand="{Binding PerformSearch}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+        <ListView ItemsSource="{Binding Products}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid 
+                            ColumnSpacing="10"
+                            Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image 
+                                Aspect="AspectFill"
+                                Grid.Column="0"
+                                HeightRequest="60"
+                                Source="{Binding Image}"
+                                WidthRequest="60" />
+                            <Label 
+                                FontAttributes="Bold"
+                                Grid.Column="1"
+                                HorizontalTextAlignment="Start"
+                                Text="{Binding Title}"
+                                VerticalTextAlignment="Center" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
