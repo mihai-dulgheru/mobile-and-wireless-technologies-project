@@ -7,7 +7,9 @@ namespace Project.ViewModels
 {
     internal interface ISearchProductViewModel : INotifyPropertyChanged
     {
+        ICommand GoToHomePageCommand { get; }
         ICommand PerformSearch { get; }
+        ICommand SelectProductCommand { get; }
         IList<Product> Products { get; set; }
 
         void OnPropertyChanged([CallerMemberName] string name = "");

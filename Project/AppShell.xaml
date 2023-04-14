@@ -6,24 +6,16 @@
     xmlns:views="clr-namespace:Project.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <!--<TabBar>
-        <ShellContent
-            Title="Clock"
-            ContentTemplate="{DataTemplate views:ClockPage}" />
+    <ShellContent Title="SearchProductPage"
+                  ContentTemplate="{DataTemplate views:SearchProductPage}"
+                  Route="SearchProductPage" />
 
-        <ShellContent
-            Title="About"
-            ContentTemplate="{DataTemplate views:AboutPage}" />
-    </TabBar>-->
+    <ShellContent Title="ProductPage"
+                  ContentTemplate="{DataTemplate views:ProductPage}"
+                  Route="ProductPage" />
 
-    <!--<ShellContent
-        Title="MainPage"
-        ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />-->
-
-    <ShellContent
-        Title="SearchProductPage"
-        ContentTemplate="{DataTemplate views:SearchProductPage}"
-        Route="SearchProductPage" />
+    <ShellContent Title="HomePage"
+                  ContentTemplate="{DataTemplate views:HomePage}"
+                  Route="HomePage" />
 
 </Shell>

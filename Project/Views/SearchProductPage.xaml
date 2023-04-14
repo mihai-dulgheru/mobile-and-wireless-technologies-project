@@ -8,15 +8,32 @@
         <viewModels:SearchProductViewModel />
     </ContentPage.BindingContext>
 
-    <StackLayout>
-        <SearchBar x:Name="searchBar"
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Home"
+                     Command="{Binding GoToHomePageCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <SearchBar Grid.Row="0"
+                   x:Name="searchBar"
                    SearchCommand="{Binding PerformSearch}"
-                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-        <ListView ItemsSource="{Binding Products}"
-                  ItemSelected="ListView_ItemSelected">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
+                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
+        <Grid Grid.Row="1">
+            <CollectionView ItemsSource="{Binding Products}"
+                            EmptyView="No items to display"
+                            SelectionMode="Single"
+                            SelectionChangedCommand="{Binding SelectProductCommand}"
+                            SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
                         <Grid ColumnSpacing="10"
                               Padding="10">
                             <Grid.RowDefinitions>
@@ -37,9 +54,9 @@
                                    Text="{Binding Title}"
                                    VerticalTextAlignment="Center" />
                         </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
 </ContentPage>
