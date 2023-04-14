@@ -9,7 +9,7 @@ namespace Project.ViewModels
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            ProductId = query["productId"] as string;
+            ProductId = query["ProductId"] as string;
             OnPropertyChanged("ProductId");
         }
     }

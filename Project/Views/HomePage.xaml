@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Project.ViewModels"
              x:Class="Project.Views.HomePage"
              Title="HomePage">
+    <ContentPage.BindingContext>
+        <viewModels:HomeViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Search"
+                     Command="{Binding GoToSearchProductPageCommand}"
+                     IconImageSource="magnifying_glass.png" />
+    </ContentPage.ToolbarItems>
+    
     <VerticalStackLayout>
         <Label 
             Text="Welcome to .NET MAUI!"

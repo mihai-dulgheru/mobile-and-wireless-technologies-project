@@ -8,11 +8,6 @@
         <viewModels:SearchProductViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Home"
-                     Command="{Binding GoToHomePageCommand}" />
-    </ContentPage.ToolbarItems>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
