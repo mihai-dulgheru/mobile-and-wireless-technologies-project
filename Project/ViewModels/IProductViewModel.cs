@@ -1,7 +1,9 @@
-﻿namespace Project.ViewModels
+﻿using Project.Models;
+
+namespace Project.ViewModels
 {
     internal interface IProductViewModel : IQueryAttributable
     {
-        string ProductId { get; set; }
+        ProductInformation ProductInformation { get; set; }
     }
 }

@@ -6,8 +6,7 @@ namespace Project.ViewModels
 {
     internal class ProductViewModel : ObservableObject, IProductViewModel
     {
-        public string ProductId { get; set; }
-        public string Text { get; set; } = string.Empty;
+        private ProductInformation _productInformation;
         private readonly IRestService _restService;
 
         public ProductViewModel()
@@ -17,13 +16,24 @@ namespace Project.ViewModels
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            ProductId = query["ProductId"] as string;
-            OnPropertyChanged("ProductId");
-            ProductInformation productInformation = await _restService.GetProductInformationAsync(ProductId);
+            string productId = query["ProductId"] as string;
+            ProductInformation productInformation = await _restService.GetProductInformationAsync(productId);
             if (productInformation != null)
             {
-                Text = "Succes";
-                OnPropertyChanged("Text");
+                ProductInformation = productInformation;
+            }
+        }
+
+        public ProductInformation ProductInformation
+        {
+            get => _productInformation;
+            set
+            {
+                if (_productInformation != value)
+                {
+                    _productInformation = value;
+                    OnPropertyChanged();
+                }
             }
         }
     }
