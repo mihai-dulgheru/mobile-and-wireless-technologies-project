@@ -23,6 +23,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Image Grid.Row="0"
@@ -74,6 +75,10 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
+            <Button Grid.Row="12"
+                    Text="Add Product"
+                    Command="{Binding AddProductCommand}" />
         </Grid>
     </ScrollView>
 </ContentPage>
