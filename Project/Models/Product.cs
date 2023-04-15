@@ -3,7 +3,7 @@
 namespace Project.Models
 {
     [Table("Product")]
-    public class Product : IProduct
+    public class Product
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
