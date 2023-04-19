@@ -3,8 +3,9 @@
     x:Class="Project.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Project"
     xmlns:views="clr-namespace:Project.Views"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Flyout">
 
     <FlyoutItem Title="Home"
                 Icon="house.png">
@@ -16,12 +17,6 @@
                 Icon="magnifying_glass.png">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:SearchProductPage}" />
-        </Tab>
-    </FlyoutItem>
-    <FlyoutItem Title="Product"
-                Icon="bowl_food.png">
-        <Tab>
-            <ShellContent ContentTemplate="{DataTemplate views:ProductPage}" />
         </Tab>
     </FlyoutItem>
 
