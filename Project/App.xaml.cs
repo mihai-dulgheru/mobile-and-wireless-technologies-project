@@ -1,18 +1,12 @@
-﻿using Project.Data;
-
-namespace Project;
+﻿namespace Project;
 
 public partial class App : Application
 {
-    public static IPersonRepository PersonRepo { get; private set; }
-
-    public App(IPersonRepository repo)
+    public App()
     {
         InitializeComponent();
 
         MainPage = new AppShell();
         //MainPage = new NavigationPage(new Views.HomePage());
-
-        PersonRepo = repo;
     }
 }

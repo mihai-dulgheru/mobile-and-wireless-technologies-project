@@ -18,8 +18,6 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-        builder.Services.AddSingleton<Configuration.IConfiguration, Configuration.Configuration>();
-        builder.Services.AddSingleton<Data.IPersonRepository, Data.PersonRepository>(provider => ActivatorUtilities.CreateInstance<Data.PersonRepository>(provider, Utilities.Constants.DatabasePath));
         builder.Services.AddSingleton<Data.IProductDatabase, Data.ProductDatabase>();
         builder.Services.AddSingleton<Services.IRestService, Services.RestService>();
 

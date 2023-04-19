@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json.Linq;
-using Project.Configuration;
 using Project.Models;
 using Project.Utilities;
 using System.Diagnostics;
@@ -9,12 +8,10 @@ namespace Project.Services
     public class RestService : IRestService
     {
         private readonly HttpClient _client;
-        private readonly IConfiguration _configuration;
 
         public RestService()
         {
             _client = new HttpClient();
-            _configuration = ConfigurationBuilder.Instance.Configuration;
         }
 
         public async Task<IList<Product>> SearchGroceryProductsAsync(string query)
@@ -23,7 +20,7 @@ namespace Project.Services
             {
                 IList<Product> products = new List<Product>();
 
-                string RequestUri = string.Format(Constants.BaseUrl, $"food/products/search?query={query}&number=10&apiKey={_configuration.GetValue("API-Key")}");
+                string RequestUri = string.Format(Constants.BaseUrl, $"food/products/search?query={query}&number=10&apiKey={Constants.APIKey}");
                 HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
                 HttpResponseMessage response = await _client.SendAsync(request);
                 _ = response.EnsureSuccessStatusCode();
@@ -51,7 +48,7 @@ namespace Project.Services
         {
             try
             {
-                string RequestUri = string.Format(Constants.BaseUrl, $"food/products/{id}?apiKey={_configuration.GetValue("API-Key")}");
+                string RequestUri = string.Format(Constants.BaseUrl, $"food/products/{id}?apiKey={Constants.APIKey}");
                 HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
                 HttpResponseMessage response = await _client.SendAsync(request);
                 _ = response.EnsureSuccessStatusCode();
