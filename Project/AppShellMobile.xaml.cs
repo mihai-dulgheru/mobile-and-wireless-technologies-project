@@ -1,10 +1,10 @@
-﻿using Project.Views;
+using Project.Views;
 
 namespace Project;
 
-public partial class AppShell : Shell
+public partial class AppShellMobile : Shell
 {
-    public AppShell()
+    public AppShellMobile()
     {
         InitializeComponent();
 

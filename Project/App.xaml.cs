@@ -6,7 +6,10 @@ public partial class App : Application
     {
         InitializeComponent();
 
+#if ANDROID || IOS
+        MainPage = new AppShellMobile();
+#else
         MainPage = new AppShell();
-        //MainPage = new NavigationPage(new Views.HomePage());
+#endif
     }
 }

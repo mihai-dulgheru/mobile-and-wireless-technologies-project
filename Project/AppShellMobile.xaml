@@ -1,33 +1,27 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Shell 
-    x:Class="Project.AppShell"
+    x:Class="Project.AppShellMobile"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:Project.Views">
 
-    <FlyoutItem Title="Home"
-                Icon="house.png">
-        <Tab>
+    <TabBar>
+        <Tab Title="Home"
+             Icon="house.png">
             <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
         </Tab>
-    </FlyoutItem>
-    <FlyoutItem Title="Search Ingredients"
-                Icon="magnifying_glass.png">
-        <Tab>
+        <Tab Title="Search"
+             Icon="magnifying_glass.png">
             <ShellContent ContentTemplate="{DataTemplate views:IngredientsPage}" />
         </Tab>
-    </FlyoutItem>
-    <FlyoutItem Title="Favorite Recipes"
-                Icon="heart.png">
-        <Tab>
+        <Tab Title="Favorite"
+             Icon="heart.png">
             <ShellContent ContentTemplate="{DataTemplate views:FavoriteRecipesPage}" />
         </Tab>
-    </FlyoutItem>
-    <FlyoutItem Title="Statistics"
-                Icon="chart_line.png">
-        <Tab>
+        <Tab Title="Statistics"
+             Icon="chart_line.png">
             <ShellContent ContentTemplate="{DataTemplate views:StatisticsPage}" />
         </Tab>
-    </FlyoutItem>
+    </TabBar>
 
 </Shell>
