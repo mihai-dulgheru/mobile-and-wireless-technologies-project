@@ -15,7 +15,7 @@
         public string[] ImportantBadges { get; set; }
         public int IngredientCount { get; set; }
         public string IngredientList { get; set; }
-        public Ingredient[] Ingredients { get; set; }
+        //public Ingredient[] Ingredients { get; set; }
         public int Likes { get; set; }
         public Nutrition Nutrition { get; set; }
         public int Price { get; set; }
@@ -41,7 +41,7 @@
             ImportantBadges = importantBadges ?? throw new ArgumentNullException(nameof(importantBadges));
             IngredientCount = ingredientCount;
             IngredientList = ingredientList ?? throw new ArgumentNullException(nameof(ingredientList));
-            Ingredients = ingredients ?? throw new ArgumentNullException(nameof(ingredients));
+            //Ingredients = ingredients ?? throw new ArgumentNullException(nameof(ingredients));
             Likes = likes;
             Nutrition = nutrition ?? throw new ArgumentNullException(nameof(nutrition));
             Price = price;
