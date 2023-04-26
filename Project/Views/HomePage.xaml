@@ -16,8 +16,24 @@
     
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="WELCOME!"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"
+            TextColor="#F55951"
+            Margin="0, 40, 0, 0"
+            FontSize="Large"/>
+        <Image Source="home_page.png"
+            HeightRequest="400"
+            WidthRequest="400"></Image>
+        <Label 
+            Text="What do you call a cow in an earthquake? &#10;A milkshake." 
+            HorizontalTextAlignment="Center"
+            FontSize="Small"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"></Label>
+        <Button Text="FIND YOUR RECIPE"
+                Command="{Binding GoToSearchProductPageCommand}"
+                Margin="40"
+                WidthRequest="300"></Button>
     </VerticalStackLayout>
 </ContentPage>
