@@ -67,7 +67,7 @@
                                 <Label Grid.Column="0"
                                     Grid.Row="2"
                                     HorizontalTextAlignment="Start"
-                                    Text="{Binding Likes, StringFormat='Likes: {0}'}"
+                                    Text="{Binding ReadyInMinutes, StringFormat='Total time: {0} min'}"
                                     VerticalTextAlignment="End" />
                                 <Border Grid.Column="1"
                                     Grid.Row="0"
