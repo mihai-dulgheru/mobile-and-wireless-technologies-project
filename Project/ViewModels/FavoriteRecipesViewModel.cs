@@ -140,7 +140,8 @@ namespace Project.ViewModels
                         }
                     },
                     UnusedIngredients = new List<Ingredient>(),
-                    Likes = 4
+                    Likes = 4,
+                    ReadyInMinutes = 40
                 });
                 _recipes.Add(new Recipe
                 {
@@ -269,7 +270,8 @@ namespace Project.ViewModels
                         }
                     },
                     UnusedIngredients = new List<Ingredient>(),
-                    Likes = 4
+                    Likes = 4,
+                    ReadyInMinutes = 40
                 });
                 return _recipes;
             }
