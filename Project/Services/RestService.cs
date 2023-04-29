@@ -62,5 +62,25 @@ namespace Project.Services
                 return null;
             }
         }
+
+        public async Task<string> RandomFoodTriviaAsync()
+        {
+            try
+            {
+                string RequestUri = string.Format(Constants.BaseUrl, $"food/trivia/random?apiKey={Constants.APIKey}");
+                HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
+                HttpResponseMessage response = await _client.SendAsync(request);
+                _ = response.EnsureSuccessStatusCode();
+                string content = await response.Content.ReadAsStringAsync();
+                dynamic body = JObject.Parse(content);
+
+                return body?.text ?? string.Empty;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return null;
+            }
+        }
     }
 }
