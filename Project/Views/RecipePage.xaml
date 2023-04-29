@@ -8,10 +8,68 @@
         <viewModels:RecipeViewModel />
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Image Source="{Binding Image}" Aspect="AspectFit" HeightRequest="200" />
+
+                <Label Text="{Binding Title}" Grid.Row="1" FontSize="26" Margin="10" HorizontalOptions="Center" TextColor="#f55951"/>
+
+                <Grid Grid.Row="2" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0" Spacing="5">
+                        <Label Text="Ingredients" FontAttributes="Bold" FontSize="20"/>
+                        <CollectionView ItemsSource="{Binding UsedIngredients}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding Name}" FontSize="16" TextColor="{DynamicResource Gray}" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Spacing="5">
+                        <Label Text=" " FontAttributes="Bold" FontSize="20"/>
+                        <CollectionView ItemsSource="{Binding UsedIngredients}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label FontSize="16" FontAttributes="Italic" TextColor="{DynamicResource Gray}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Amount}" />
+                                                <Span Text=" " />
+                                                <Span Text="{Binding Unit}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Grid>
+
+                <StackLayout Grid.Row="3" Margin="10">
+                    <Label Text="Instructions" FontAttributes="Bold" FontSize="20"/>
+                    <Label Text="{Binding Instructions}" TextColor="{DynamicResource Gray}"/>
+                </StackLayout>
+
+                <Button Grid.Row="4"
+                    Text="Add Receipe"
+                    Margin="20"
+                     />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
