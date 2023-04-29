@@ -3,7 +3,7 @@ using Project.Models;
 
 namespace Project.ViewModels
 {
-    internal class AllRecipesViewModel : ObservableObject, IFavoriteRecipesViewModel
+    internal class AllRecipesViewModel : ObservableObject, IAllRecipesViewModel
     {
         public string Label { get; } = "Recommended recipes";
         private List<Recipe> _recipes = new();
