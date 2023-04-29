@@ -8,10 +8,82 @@
         <viewModels:FavoriteRecipesViewModel />
     </ContentPage.BindingContext>
 
-    <Grid>
-        <Label 
-            Text="Welcome to Favorite Recipes Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </Grid>
+    <VerticalStackLayout Margin="20">
+        <Label FontAttributes="Bold"
+            FontSize="Title"
+            HorizontalOptions="CenterAndExpand"
+            Text="{Binding Label}"
+            TextColor="{DynamicResource Primary}"
+            VerticalOptions="StartAndExpand" />
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <CollectionView EmptyView="No items to display"
+                        ItemsSource="{Binding Recipes}"
+                        SelectionChanged="CollectionView_SelectionChanged"
+                        SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="{DynamicResource White}"
+                            Margin="0,20,0,0"
+                            Opacity="0.8"
+                            Stroke="{DynamicResource Black}"
+                            StrokeShape="RoundRectangle 15"
+                            StrokeThickness="1">
+                            <Grid ColumnSpacing="10"
+                                Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <Label FontAttributes="Bold"
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    HorizontalTextAlignment="Start"
+                                    LineBreakMode="WordWrap"
+                                    MaxLines="2"
+                                    Text="{Binding Title}"
+                                    TextColor="{DynamicResource Primary}"
+                                    VerticalTextAlignment="Start" />
+                                <Label Grid.Column="0"
+                                    Grid.Row="1"
+                                    HorizontalTextAlignment="Start"
+                                    LineBreakMode="WordWrap"
+                                    MaxLines="2"
+                                    Text="{Binding Ingredients, StringFormat='Ingredients: {0}'}"
+                                    VerticalTextAlignment="Start" />
+                                <Label Grid.Column="0"
+                                    Grid.Row="2"
+                                    HorizontalTextAlignment="Start"
+                                    Text="{Binding Likes, StringFormat='Likes: {0}'}"
+                                    VerticalTextAlignment="End" />
+                                <Border Grid.Column="1"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="3"
+                                    Stroke="{DynamicResource White}"
+                                    StrokeShape="RoundRectangle 7.5">
+                                    <Image Aspect="AspectFill"
+                                        HeightRequest="100"
+                                        WidthRequest="100"
+                                        Source="{Binding Image}" />
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </VerticalStackLayout>
 </ContentPage>

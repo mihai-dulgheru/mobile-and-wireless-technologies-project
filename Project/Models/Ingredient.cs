@@ -3,7 +3,7 @@
     public class Ingredient
     {
         public int Id { get; set; }
-        public float Amount { get; set; }
+        public double Amount { get; set; }
         public string Unit { get; set; }
         public string UnitLong { get; set; }
         public string UnitShort { get; set; }
@@ -16,7 +16,7 @@
 
         public Ingredient() { }
 
-        public Ingredient(int id, float amount, string unit, string unitLong, string unitShort, string aisle, string name, string original, string originalName, string[] meta, string image)
+        public Ingredient(int id, double amount, string unit, string unitLong, string unitShort, string aisle, string name, string original, string originalName, string[] meta, string image)
         {
             Id = id;
             Amount = amount;

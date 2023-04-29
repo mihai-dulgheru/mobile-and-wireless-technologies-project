@@ -12,7 +12,24 @@
         public IList<Ingredient> UsedIngredients { get; set; } = new List<Ingredient>();
         public IList<Ingredient> UnusedIngredients { get; set; } = new List<Ingredient>();
         public int Likes { get; set; }
+        public string Ingredients => UsedIngredientCount + MissedIngredientCount > 0
+                    ? string.Join(", ", MissedIngredients.Concat(UsedIngredients).Select(ingredient => ingredient.Name))
+                    : string.Empty;
 
-        public Recipe() {}
+        public Recipe() { }
+
+        public Recipe(int id, string title, string image, string imageType, int usedIngredientCount, int missedIngredientCount, IList<Ingredient> missedIngredients, IList<Ingredient> usedIngredients, IList<Ingredient> unusedIngredients, int likes)
+        {
+            Id = id;
+            Title = title ?? throw new ArgumentNullException(nameof(title));
+            Image = image ?? throw new ArgumentNullException(nameof(image));
+            ImageType = imageType ?? throw new ArgumentNullException(nameof(imageType));
+            UsedIngredientCount = usedIngredientCount;
+            MissedIngredientCount = missedIngredientCount;
+            MissedIngredients = missedIngredients ?? throw new ArgumentNullException(nameof(missedIngredients));
+            UsedIngredients = usedIngredients ?? throw new ArgumentNullException(nameof(usedIngredients));
+            UnusedIngredients = unusedIngredients ?? throw new ArgumentNullException(nameof(unusedIngredients));
+            Likes = likes;
+        }
     }
 }
