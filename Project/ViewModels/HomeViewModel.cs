@@ -15,7 +15,7 @@ namespace Project.ViewModels
 
         private async Task GoToSearchProductPageAsync()
         {
-            await Shell.Current.GoToAsync(nameof(SearchProductPage));
+            await Shell.Current.GoToAsync(nameof(IngredientsPage));
         }
     }
 }

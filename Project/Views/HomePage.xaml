@@ -8,11 +8,11 @@
         <viewModels:HomeViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Text="Search"
                      Command="{Binding GoToSearchProductPageCommand}"
                      IconImageSource="magnifying_glass.png" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     
     <VerticalStackLayout>
         <Label 
