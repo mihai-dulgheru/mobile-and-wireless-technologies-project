@@ -15,10 +15,11 @@
         public string Ingredients => UsedIngredientCount + MissedIngredientCount > 0
                     ? string.Join(", ", MissedIngredients.Concat(UsedIngredients).Select(ingredient => ingredient.Name))
                     : string.Empty;
+        public string Instructions { get; set; }
 
         public Recipe() { }
 
-        public Recipe(int id, string title, string image, string imageType, int usedIngredientCount, int missedIngredientCount, IList<Ingredient> missedIngredients, IList<Ingredient> usedIngredients, IList<Ingredient> unusedIngredients, int likes)
+        public Recipe(int id, string title, string image, string imageType, int usedIngredientCount, int missedIngredientCount, IList<Ingredient> missedIngredients, IList<Ingredient> usedIngredients, IList<Ingredient> unusedIngredients, int likes, string instructions)
         {
             Id = id;
             Title = title ?? throw new ArgumentNullException(nameof(title));
@@ -30,6 +31,7 @@
             UsedIngredients = usedIngredients ?? throw new ArgumentNullException(nameof(usedIngredients));
             UnusedIngredients = unusedIngredients ?? throw new ArgumentNullException(nameof(unusedIngredients));
             Likes = likes;
+            Instructions = instructions ?? throw new ArgumentNullException(nameof(title));
         }
     }
 }
