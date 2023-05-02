@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Project.ViewModels"
+             x:Class="Project.Views.FavoriteRecipesPageMobile"
+             Title="FavoriteRecipesPageMobile">
+    <ContentPage.BindingContext>
+        <viewModels:FavoriteRecipesViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <Label FontAttributes="Bold"
+            FontSize="Title"
+            HorizontalOptions="CenterAndExpand"
+            Margin="0,20"
+            Text="{Binding Label}"
+            TextColor="{DynamicResource Primary}"
+            VerticalOptions="StartAndExpand" />
+        
+        <Grid>
+            <CollectionView EmptyView="No items to display"
+                        ItemsSource="{Binding Recipes}"
+                        SelectionChanged="CollectionView_SelectionChanged"
+                        SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="20,0,20,20"
+                            Stroke="{DynamicResource White}"
+                            StrokeShape="RoundRectangle 16"
+                            StrokeThickness="0">
+                            <Border.Shadow>
+                                <Shadow Brush="{DynamicResource Black}"
+                                    Offset="0,5"
+                                    Opacity="0.8"
+                                    Radius="10" />
+                            </Border.Shadow>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                
+                                <Image Grid.Column="0"
+                                    Grid.Row="0"
+                                    Aspect="AspectFill"
+                                    HeightRequest="136"
+                                    Source="{Binding Image}"
+                                    WidthRequest="136" />
+                                
+                                <Grid Grid.Column="1"
+                                    Grid.Row="0"
+                                    Padding="15,10,10,10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Label FontAttributes="Bold"
+                                        FontSize="Subtitle"
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        HorizontalTextAlignment="Start"
+                                        LineBreakMode="WordWrap"
+                                        MaxLines="2"
+                                        Text="{Binding Title}"
+                                        TextColor="{DynamicResource Primary}"
+                                        VerticalTextAlignment="Start" />
+                                    
+                                    <Label FontSize="Body"
+                                        Grid.Column="0"
+                                        Grid.Row="1"
+                                        HorizontalTextAlignment="Start"
+                                        LineBreakMode="WordWrap"
+                                        MaxLines="2"
+                                        Text="{Binding Ingredients, StringFormat='Ingredients: {0}'}"
+                                        VerticalTextAlignment="Start" />
+                                    
+                                    <Label FontSize="Body"
+                                        Grid.Column="0"
+                                        Grid.Row="3"
+                                        HorizontalTextAlignment="Start"
+                                        LineBreakMode="WordWrap"
+                                        MaxLines="2"
+                                        Text="{Binding ReadyInMinutes, StringFormat='Total time: {0} min'}"
+                                        VerticalTextAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
