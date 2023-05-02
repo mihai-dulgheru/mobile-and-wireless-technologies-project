@@ -16,7 +16,7 @@
         </Tab>
         <Tab Title="Favorite"
              Icon="heart.png">
-            <ShellContent ContentTemplate="{DataTemplate views:FavoriteRecipesPage}" />
+            <ShellContent ContentTemplate="{DataTemplate views:FavoriteRecipesPageMobile}" />
         </Tab>
         <Tab Title="Statistics"
              Icon="chart_line.png">

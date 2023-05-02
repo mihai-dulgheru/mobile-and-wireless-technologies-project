@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+.rounded-lg {
+    border-radius: 8px;
+}
+
+.rounded-2xl {
+    border-radius: 16px;
+}
