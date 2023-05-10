@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 
 namespace Project;
@@ -10,7 +11,7 @@ public static class MauiProgram
         MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-            .ConfigureSyncfusionCore()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -18,7 +19,8 @@ public static class MauiProgram
                 fonts.AddFont("GothamRound-Bold.otf", "GothamRoundBold");
                 fonts.AddFont("GothamRound-Light.otf", "GothamRoundLight");
                 fonts.AddFont("GothamRound-Medium.otf", "GothamRoundMedium");
-            });
+            })
+            .ConfigureSyncfusionCore();
 
 #if DEBUG
         builder.Logging.AddDebug();
