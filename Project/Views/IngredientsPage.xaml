@@ -72,7 +72,8 @@
             </CollectionView>
         </Grid>
         <Grid Grid.Row="2">
-            <CollectionView ItemsSource="{Binding Products}" <!--NU E OK-->
+            <!--NU E OK-->
+            <CollectionView ItemsSource="{Binding Products}" 
                             SelectionMode="Single"
                             SelectionChanged="CollectionView_SelectionChanged">
                 <CollectionView.ItemTemplate>
