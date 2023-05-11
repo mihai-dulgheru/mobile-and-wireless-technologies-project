@@ -2,13 +2,19 @@
 <Shell 
     x:Class="Project.AppShellMobile"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:Project.Views"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:Project.Views">
-
+    Shell.NavBarIsVisible="False">
+    
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{DynamicResource White}" StatusBarStyle="DarkContent" />
+    </Shell.Behaviors>
+    
     <TabBar>
         <Tab Title="Home"
              Icon="house.png">
-            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
+            <ShellContent ContentTemplate="{DataTemplate views:HomePageMobile}" />
         </Tab>
         <Tab Title="Search"
              Icon="magnifying_glass.png">

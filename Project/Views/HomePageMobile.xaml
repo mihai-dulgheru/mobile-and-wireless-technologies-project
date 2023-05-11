@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:viewModels="clr-namespace:Project.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project.Views.HomePageMobile"
+             Title="HomePageMobile">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="256" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label 
+            FontSize="Title"
+            Grid.Column="0"
+            Grid.Row="0"
+            HorizontalOptions="Center"
+            Margin="0, 40, 0, 0"
+            Text="WELCOME!"
+            TextColor="#F55951"
+            VerticalOptions="Center" />
+        <Image 
+            Grid.Column="0"
+            Grid.Row="1"
+            HeightRequest="256"
+            Source="home_page.png"
+            WidthRequest="256" />
+        <Label 
+            FontSize="Small"
+            Grid.Column="0"
+            Grid.Row="2"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center"
+            Margin="40,0"
+            Text="{Binding RandomFoodTrivia}"
+            VerticalOptions="Center" />
+        <Button 
+            Command="{Binding GoToSearchProductPageCommand}"
+            Grid.Column="0"
+            Grid.Row="3"
+            Margin="40"
+            Text="FIND YOUR RECIPE"
+            WidthRequest="304" />
+    </Grid>
+</ContentPage>
