@@ -10,9 +10,9 @@ public partial class AppShellMobile : Shell
 
         Routing.RegisterRoute(nameof(AllRecipesPage), typeof(AllRecipesPage));
         Routing.RegisterRoute(nameof(FavoriteRecipesPage), typeof(FavoriteRecipesPage));
-        Routing.RegisterRoute(nameof(FavoriteRecipesPageMobile), typeof(FavoriteRecipesPageMobile));
+        Routing.RegisterRoute(nameof(MobileFavoriteRecipesPage), typeof(MobileFavoriteRecipesPage));
         Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
-        Routing.RegisterRoute(nameof(HomePageMobile), typeof(HomePageMobile));
+        Routing.RegisterRoute(nameof(MobileHomePage), typeof(MobileHomePage));
         Routing.RegisterRoute(nameof(IngredientsPage), typeof(IngredientsPage));
         Routing.RegisterRoute(nameof(ProductPage), typeof(ProductPage));
         Routing.RegisterRoute(nameof(RecipePage), typeof(RecipePage));

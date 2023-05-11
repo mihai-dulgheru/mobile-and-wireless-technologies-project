@@ -66,19 +66,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Postman\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="AppShellMobile.xaml.cs">
-	    <DependentUpon>AppShellMobile.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="AppShellMobile.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\AllRecipesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -88,13 +75,13 @@
 	  <MauiXaml Update="Views\FavoriteRecipesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\FavoriteRecipesPageMobile.xaml">
+	  <MauiXaml Update="Views\MobileFavoriteRecipesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\HomePageMobile.xaml">
+	  <MauiXaml Update="Views\MobileHomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\IngredientsPage.xaml">
