@@ -14,7 +14,7 @@
     <TabBar>
         <Tab Title="Home"
              Icon="house.png">
-            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
+            <ShellContent ContentTemplate="{DataTemplate views:HomePageMobile}" />
         </Tab>
         <Tab Title="Search"
              Icon="magnifying_glass.png">
