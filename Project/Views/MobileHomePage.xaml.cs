@@ -2,10 +2,10 @@ using Project.ViewModels;
 
 namespace Project.Views;
 
-public partial class HomePageMobile : ContentPage
+public partial class MobileHomePage : ContentPage
 {
     private readonly HomeViewModel _homeViewModel;
-    public HomePageMobile()
+    public MobileHomePage()
     {
         InitializeComponent();
         _homeViewModel = new HomeViewModel();

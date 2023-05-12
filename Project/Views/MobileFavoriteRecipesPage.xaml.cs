@@ -1,8 +1,8 @@
 namespace Project.Views;
 
-public partial class FavoriteRecipesPageMobile : ContentPage
+public partial class MobileFavoriteRecipesPage : ContentPage
 {
-    public FavoriteRecipesPageMobile()
+    public MobileFavoriteRecipesPage()
     {
         InitializeComponent();
     }

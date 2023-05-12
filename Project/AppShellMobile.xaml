@@ -14,7 +14,7 @@
     <TabBar>
         <Tab Title="Home"
              Icon="house.png">
-            <ShellContent ContentTemplate="{DataTemplate views:HomePageMobile}" />
+            <ShellContent ContentTemplate="{DataTemplate views:MobileHomePage}" />
         </Tab>
         <Tab Title="Search"
              Icon="magnifying_glass.png">
@@ -22,7 +22,7 @@
         </Tab>
         <Tab Title="Favorite"
              Icon="heart.png">
-            <ShellContent ContentTemplate="{DataTemplate views:FavoriteRecipesPageMobile}" />
+            <ShellContent ContentTemplate="{DataTemplate views:MobileFavoriteRecipesPage}" />
         </Tab>
         <Tab Title="Statistics"
              Icon="chart_line.png">
