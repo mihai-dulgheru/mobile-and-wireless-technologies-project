@@ -7,107 +7,47 @@
     <ContentPage.BindingContext>
         <viewModels:IngredientsViewModel />
     </ContentPage.BindingContext>
-
-    <ContentPage.Resources>
-        <Style TargetType="Grid">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal" />
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor"
-                                        Value="{DynamicResource Primary}" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-    </ContentPage.Resources>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <SearchBar Grid.Row="0"
-                   x:Name="searchBar"
-                   Placeholder = "Search ingredient..."
-                   SearchCommand="{Binding PerformSearch}"
-                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
-        <Grid Grid.Row="1">
-            <CollectionView ItemsSource="{Binding Products}"
-                            EmptyView="Search for your ingredients"
-                            SelectionMode="Single"
-                            SelectionChanged="CollectionView_SelectionChanged">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid ColumnSpacing="10"
-                              Padding="10">
+    
+    <StackLayout>
+        <SearchBar Focused="searchBar_Focused"
+            Margin="16"
+            Placeholder="Search ingredient..."
+            TextChanged="searchBar_TextChanged"
+            Unfocused="searchBar_Unfocused"
+            x:Name="searchBar" />
+        <ListView ItemSelected="ingredientListView_ItemSelected"
+            x:Name="ingredientListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid ColumnSpacing="16"
+                            Padding="16,0,16,16">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Image Aspect="AspectFill"
-                                   Grid.Column="0"
-                                   HeightRequest="60"
-                                   Source="{Binding Image}"
-                                   WidthRequest="60" />
+                                HeightRequest="60"
+                                Source="{Binding Image}"
+                                WidthRequest="60" />
                             <Label FontAttributes="Bold"
-                                   Grid.Column="1"
-                                   HorizontalTextAlignment="Start"
-                                   Text="{Binding Title}"
-                                   VerticalTextAlignment="Center" />
+                                FontSize="Body"
+                                Grid.Column="1"
+                                HorizontalOptions="StartAndExpand"
+                                Text="{Binding Name}"
+                                VerticalOptions="CenterAndExpand" />
                         </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
-        <Grid Grid.Row="2">
-            <!--NU E OK-->
-            <CollectionView ItemsSource="{Binding Products}" 
-                            SelectionMode="Single"
-                            SelectionChanged="CollectionView_SelectionChanged">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid ColumnSpacing="10"
-                              Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Aspect="AspectFill"
-                                   Grid.Column="0"
-                                   HeightRequest="60"
-                                   Source="{Binding Image}"
-                                   WidthRequest="60" />
-                            <Label FontAttributes="Bold"
-                                   Grid.Column="1"
-                                   HorizontalTextAlignment="Start"
-                                   Text="{Binding Title}"
-                                   VerticalTextAlignment="Center" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
-        <Grid Grid.Row="3">
-            <Button Text="FIND RECIPE"
-                Command="{Binding GoToSearchRecipePageCommand}"
-                Margin="40"
-                WidthRequest="300"
-                HeightRequest="50"></Button>
-        </Grid>
-    </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Command="{Binding GoToSearchRecipePageCommand}"
+            Margin="16,0,16,32"
+            Text="FIND RECIPE"
+            WidthRequest="320"
+            x:Name="findRecipeButton" />
+    </StackLayout>
 </ContentPage>

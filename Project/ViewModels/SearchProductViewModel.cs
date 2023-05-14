@@ -50,6 +50,5 @@ namespace Project.ViewModels
                 }
             }
         }
-
     }
 }
