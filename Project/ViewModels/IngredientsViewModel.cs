@@ -28,6 +28,7 @@ namespace Project.ViewModels
             if (!string.IsNullOrWhiteSpace(ingredients))
             {
                 _cachedCollection = null;
+                Ingredients = null;
                 await Shell.Current.GoToAsync($"{nameof(AllRecipesPage)}?Ingredients={ingredients}");
             }
         }
@@ -51,7 +52,7 @@ namespace Project.ViewModels
                 storedIngredientsList.Add(ingredient);
                 _cachedCollection = storedIngredientsList;
             }
-            Ingredients = _cachedCollection;
+            IsSearchBarFocused = false;
         });
 
         public IEnumerable<Ingredient> Ingredients
@@ -61,7 +62,8 @@ namespace Project.ViewModels
             {
                 if (_ingredients != value)
                 {
-                    _ingredients = value; OnPropertyChanged();
+                    _ingredients = value;
+                    OnPropertyChanged();
                 }
             }
         }
@@ -75,10 +77,13 @@ namespace Project.ViewModels
                 {
                     _isSearchBarFocused = value;
                     OnPropertyChanged();
-                    _ = UpdateCollectionViewAsync();
                     if (!_isSearchBarFocused && !string.IsNullOrWhiteSpace(_searchText))
                     {
                         SearchText = string.Empty;
+                    }
+                    else
+                    {
+                        _ = UpdateCollectionViewAsync();
                     }
                 }
             }
@@ -91,7 +96,8 @@ namespace Project.ViewModels
             {
                 if (_searchText != value)
                 {
-                    _searchText = value; OnPropertyChanged();
+                    _searchText = value;
+                    OnPropertyChanged();
                     _ = UpdateCollectionViewAsync();
                 }
             }

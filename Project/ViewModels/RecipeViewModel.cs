@@ -1,6 +1,6 @@
 ﻿namespace Project.ViewModels
 {
-    internal class RecipeViewModel
+    internal class RecipeViewModel: IRecipeViewModel
     {
     }
 }

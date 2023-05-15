@@ -18,6 +18,10 @@ public partial class IngredientsPage : ContentPage
             {
                 ((IIngredientsViewModel)BindingContext).AddIngredientCommand.Execute(ingredient);
             }
+#if __MOBILE__
+            ingredientCollectionView.SelectedItem = null;
+            searchBar.Unfocus();
+#endif
         }
         else
         {

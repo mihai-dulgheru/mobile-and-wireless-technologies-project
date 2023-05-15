@@ -1,6 +1,6 @@
 ﻿namespace Project.ViewModels
 {
-    internal class StatisticsViewModel
+    internal class StatisticsViewModel : IStatisticsViewModel
     {
     }
 }
