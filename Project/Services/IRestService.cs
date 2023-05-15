@@ -6,6 +6,7 @@ namespace Project.Services
     {
         Task<IList<Product>> SearchGroceryProductsAsync(string query);
         Task<ProductInformation> GetProductInformationAsync(string id);
+        Task<Recipe> GetRecipeInformationAsync(string id);
         Task<string> RandomFoodTriviaAsync();
     }
 }
