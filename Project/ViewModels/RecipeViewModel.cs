@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Project.Data;
 using Project.Models;
 using Project.Services;
 using System.Windows.Input;
@@ -9,15 +10,15 @@ namespace Project.ViewModels
     internal class RecipeViewModel : ObservableObject, IRecipeViewModel
     {
         private Recipe _recipe;
-        //private readonly IRecipeDatabase _recipeDatabase;
+        private readonly IRecipeDatabase _recipeDatabase;
         private readonly IRestService _restService;
-        public ICommand AddProductCommand { get; }
+        public ICommand AddOrDeleteRecipeCommand { get; }
 
         public RecipeViewModel()
         {
-           // _recipeDatabase = new RecipeDatabase();
+            _recipeDatabase = new RecipeDatabase();
             _restService = new RestService();
-            AddProductCommand = new AsyncRelayCommand(AddProductAsync);
+            AddOrDeleteRecipeCommand = new AsyncRelayCommand(DeleteRecipeAsync);
         }
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -43,9 +44,12 @@ namespace Project.ViewModels
             }
         }
 
-        private async Task AddProductAsync()
+        private async Task DeleteRecipeAsync()
         {
-           // _ = await _recipeDatabase.DeleteRecipeAsync(_recipe.Id);
+            if (_recipe != null)
+            {
+                await _recipeDatabase.DeleteRecipeAsync(_recipe);
+            }
             await Shell.Current.GoToAsync("..");
         }
     }
