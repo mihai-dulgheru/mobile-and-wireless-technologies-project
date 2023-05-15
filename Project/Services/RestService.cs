@@ -115,6 +115,25 @@ namespace Project.Services
             }
         }
 
+        public async Task<Recipe> GetRecipeInformationAsync(string id)
+        {
+            try
+            {
+                string RequestUri = string.Format(Constants.BaseUrl, $"food/recipes/{id}/information?apiKey={Constants.APIKey}");
+                HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
+                HttpResponseMessage response = await _client.SendAsync(request);
+                _ = response.EnsureSuccessStatusCode();
+                string content = await response.Content.ReadAsStringAsync();
+
+                return JObject.Parse(content).ToObject<Recipe>();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return null;
+            }
+        }
+
         async Task<IList<Recipe>> IRestService.SearchRecipesAsync(string query)
         {
             try

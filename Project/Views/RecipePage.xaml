@@ -66,9 +66,10 @@
                 </StackLayout>
 
                 <Button Grid.Row="4"
-                    Text="Add Receipe"
+                    Text="Add Recipe"
                     Margin="20"
-                     />
+                    Command="{Binding AddOrDeleteRecipeCommand}"
+                    CommandParameter="{Binding SourcePage}" />
             </Grid>
         </ScrollView>
     </ContentPage.Content>
