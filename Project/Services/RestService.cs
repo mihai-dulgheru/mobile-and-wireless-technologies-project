@@ -114,5 +114,43 @@ namespace Project.Services
                 return new List<Ingredient>();
             }
         }
+
+        async Task<IList<Recipe>> IRestService.SearchRecipesAsync(string query)
+        {
+            try
+            {
+                IList<Recipe> recipes = new List<Recipe>();
+
+                string RequestUri = string.Format(Constants.BaseUrl, $"/recipes/findByIngredients?ingredients={query}&number=10&apiKey={Constants.APIKey}");
+                HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
+                HttpResponseMessage response = await _client.SendAsync(request);
+                _ = response.EnsureSuccessStatusCode();
+                string content = await response.Content.ReadAsStringAsync();
+                dynamic body = JObject.Parse(content);
+                foreach (dynamic recipe in body?.recipes)
+                {
+                    int id = recipe?.id ?? 0;
+                    string title = recipe?.title ?? string.Empty;
+                    string image = recipe?.image ?? string.Empty;
+                    string imageType = recipe?.imageType ?? string.Empty;
+                    int usedIngredientCount = recipe?.usedIngredientCount ?? string.Empty;
+                    int missedIngredientCount = recipe?.missedIngredientCount ?? string.Empty;
+                    IList<Ingredient> missedIngredients = recipe?.missedIngredients ?? string.Empty;
+                    IList<Ingredient> usedIngredients = recipe?.usedIngredients ?? string.Empty;
+                    IList<Ingredient> unusedIngredients = recipe?.unusedIngredients ?? string.Empty;
+                    int likes = recipe?.likes ?? string.Empty;
+                    string instructions = recipe?.instructions ?? string.Empty;
+                    int readyInMinutes = recipe?.readyInMinutes ?? string.Empty;
+                    recipes.Add(new Recipe(id, title, image, imageType, usedIngredientCount, missedIngredientCount, missedIngredients, usedIngredients, unusedIngredients, likes, instructions, readyInMinutes));
+                }
+
+                return recipes;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return new List<Recipe>();
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Project.Models;
+using System.Windows.Input;
 
 namespace Project.ViewModels
 {
@@ -6,5 +7,6 @@ namespace Project.ViewModels
     {
         string Label { get; }
         IList<Recipe> Recipes { get; set; }
+        ICommand PerformSearchRecipe { get; }
     }
 }
