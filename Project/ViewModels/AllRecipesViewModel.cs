@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Project.Models;
-using System.Windows.Input;
 using Project.Services;
+using System.Windows.Input;
 
 namespace Project.ViewModels
 {
@@ -39,21 +39,10 @@ namespace Project.ViewModels
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            string ingredients = "apples,bananas" as string;
-            System.Diagnostics.Debug.WriteLine(ingredients);
-            // TODO
-            PerformSearchRecipe2(ingredients);
-        }
-
-        public AllRecipesViewModel()
-        {
-        }
-
-        public void ApplyQueryAttributes(IDictionary<string, object> query)
-        {
             string ingredients = query["Ingredients"] as string;
             System.Diagnostics.Debug.WriteLine(ingredients);
             // TODO
+            PerformSearchRecipe2(ingredients);
         }
 
         public IList<Recipe> Recipes
@@ -326,7 +315,6 @@ namespace Project.ViewModels
             //    });
             //    return _recipes;
             //}
-
             set
             {
                 if (_recipes != value)
