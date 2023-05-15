@@ -7,7 +7,7 @@ public partial class App : Application
         InitializeComponent();
         Application.Current.UserAppTheme = AppTheme.Light;
 
-#if ANDROID || IOS
+#if __MOBILE__
         MainPage = new AppShellMobile();
 #else
         MainPage = new AppShell();

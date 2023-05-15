@@ -8,6 +8,17 @@ namespace Project.ViewModels
         public string Label { get; } = "Recommended recipes";
         private List<Recipe> _recipes = new();
 
+        public AllRecipesViewModel()
+        {
+        }
+
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            string ingredients = query["Ingredients"] as string;
+            System.Diagnostics.Debug.WriteLine(ingredients);
+            // TODO
+        }
+
         public IList<Recipe> Recipes
         {
             get
