@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace Project.ViewModels
 {
-    internal interface IAllRecipesViewModel
+    internal interface IAllRecipesViewModel : IQueryAttributable
     {
         string Label { get; }
         IList<Recipe> Recipes { get; set; }

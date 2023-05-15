@@ -3,60 +3,104 @@ using CommunityToolkit.Mvvm.Input;
 using Project.Models;
 using Project.Services;
 using Project.Views;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Project.ViewModels
 {
-    internal class IngredientsViewModel : ObservableObject, ISearchProductViewModel
+    internal class IngredientsViewModel : ObservableObject, IIngredientsViewModel
     {
-        public List<Product> _products = new();
-        public List<Product> _productsSelected = new();
+        private IEnumerable<Ingredient> _cachedCollection;
+        private IEnumerable<Ingredient> _ingredients;
+        private bool _isSearchBarFocused;
         private readonly IRestService _restService;
-        public ICommand SelectProductCommand { get; }
+        private string _searchText;
         public ICommand GoToSearchRecipePageCommand { get; }
 
         public IngredientsViewModel()
         {
-            _restService = new RestService();
-            SelectProductCommand = new AsyncRelayCommand<Product>(SelectProductAsync);
             GoToSearchRecipePageCommand = new AsyncRelayCommand(GoToSearchRecipePageAsync);
-        }
-        private async Task SelectProductAsync(Product product)
-        {
-            if (product != null)
-            {
-                await Shell.Current.GoToAsync($"{nameof(ProductPage)}?ProductId={product.Id}");
-            }
+            _restService = new RestService();
         }
 
-        public ICommand PerformSearch => new Command<string>(async (string query) =>
-        {
-            IList<Product> products = await _restService.SearchGroceryProductsAsync(query);
-            List<string> searchResults = new();
-            foreach (Product product in products)
-            {
-                searchResults.Add(product.Title);
-            }
-            Products = products;
-        });
-
-        public IList<Product> Products
-        {
-            get => _products;
-            set
-            {
-                if (_products != value)
-                {
-                    _products = (List<Product>)value;
-                    OnPropertyChanged();
-                }            
-            }
-
-        }   
         private async Task GoToSearchRecipePageAsync()
         {
-            await Shell.Current.GoToAsync(nameof(AllRecipesPage));
+            string ingredients = _cachedCollection?.Select(ingredient => ingredient.Name).Aggregate((i, j) => i + "," + j);
+            if (!string.IsNullOrWhiteSpace(ingredients))
+            {
+                _cachedCollection = null;
+                Ingredients = null;
+                await Shell.Current.GoToAsync($"{nameof(AllRecipesPage)}?Ingredients={ingredients}");
+            }
+        }
+
+        private async Task UpdateCollectionViewAsync()
+        {
+            Ingredients = IsSearchBarFocused
+                ? await _restService.AutocompleteIngredientSearchAsync(_searchText)
+                : _cachedCollection;
+        }
+
+        public ICommand AddIngredientCommand => new Command<Ingredient>((Ingredient ingredient) =>
+        {
+            if (_cachedCollection == null)
+            {
+                _cachedCollection = new List<Ingredient> { ingredient };
+            }
+            else
+            {
+                IList<Ingredient> storedIngredientsList = _cachedCollection.Cast<Ingredient>().ToList();
+                storedIngredientsList.Add(ingredient);
+                _cachedCollection = storedIngredientsList;
+            }
+            IsSearchBarFocused = false;
+        });
+
+        public IEnumerable<Ingredient> Ingredients
+        {
+            get => _ingredients;
+            set
+            {
+                if (_ingredients != value)
+                {
+                    _ingredients = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public bool IsSearchBarFocused
+        {
+            get => _isSearchBarFocused;
+            set
+            {
+                if (_isSearchBarFocused != value)
+                {
+                    _isSearchBarFocused = value;
+                    OnPropertyChanged();
+                    if (!_isSearchBarFocused && !string.IsNullOrWhiteSpace(_searchText))
+                    {
+                        SearchText = string.Empty;
+                    }
+                    else
+                    {
+                        _ = UpdateCollectionViewAsync();
+                    }
+                }
+            }
+        }
+
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged();
+                    _ = UpdateCollectionViewAsync();
+                }
+            }
         }
     }
 }

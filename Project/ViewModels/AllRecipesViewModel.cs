@@ -45,6 +45,17 @@ namespace Project.ViewModels
             PerformSearchRecipe2(ingredients);
         }
 
+        public AllRecipesViewModel()
+        {
+        }
+
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            string ingredients = query["Ingredients"] as string;
+            System.Diagnostics.Debug.WriteLine(ingredients);
+            // TODO
+        }
+
         public IList<Recipe> Recipes
         {
 

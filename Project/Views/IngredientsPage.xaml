@@ -17,7 +17,7 @@
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
                                 <Setter Property="BackgroundColor"
-                                        Value="{DynamicResource Primary}" />
+                                    Value="{DynamicResource Primary}" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -25,89 +25,65 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <SearchBar Grid.Row="0"
-                   x:Name="searchBar"
-                   Placeholder = "Search ingredient..."
-                   SearchCommand="{Binding PerformSearch}"
-                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
-        <Grid Grid.Row="1">
-            <CollectionView ItemsSource="{Binding Products}"
-                            EmptyView="Search for your ingredients"
-                            SelectionMode="Single"
-                            SelectionChanged="CollectionView_SelectionChanged">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid ColumnSpacing="10"
-                              Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Aspect="AspectFill"
-                                   Grid.Column="0"
-                                   HeightRequest="60"
-                                   Source="{Binding Image}"
-                                   WidthRequest="60" />
-                            <Label FontAttributes="Bold"
-                                   Grid.Column="1"
-                                   HorizontalTextAlignment="Start"
-                                   Text="{Binding Title}"
-                                   VerticalTextAlignment="Center" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
-        <Grid Grid.Row="2">
-            <!--NU E OK-->
-            <CollectionView ItemsSource="{Binding Products}" 
-                            SelectionMode="Single"
-                            SelectionChanged="CollectionView_SelectionChanged">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid ColumnSpacing="10"
-                              Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Aspect="AspectFill"
-                                   Grid.Column="0"
-                                   HeightRequest="60"
-                                   Source="{Binding Image}"
-                                   WidthRequest="60" />
-                            <Label FontAttributes="Bold"
-                                   Grid.Column="1"
-                                   HorizontalTextAlignment="Start"
-                                   Text="{Binding Title}"
-                                   VerticalTextAlignment="Center" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
-        <Grid Grid.Row="3">
-            <Button Text="FIND RECIPE"
-                Command="{Binding GoToSearchRecipePageCommand}"
-                Margin="40"
-                WidthRequest="300"
-                HeightRequest="50"></Button>
-        </Grid>
+    
+    <Grid Margin="16"
+        RowDefinitions="Auto,*,Auto">
+        <SearchBar x:Name="searchBar"
+            IsFocused="{Binding IsSearchBarFocused}"
+            Margin="0,0,0,16"
+            Placeholder="Search ingredient..."
+            PlaceholderColor="{DynamicResource Gray}"
+            Text="{Binding SearchText}" />
+        <ScrollView x:Name="scrollView"
+            Grid.Row="1"
+            Margin="0,0,0,16"
+            VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <CollectionView x:Name="ingredientCollectionView"
+                    ItemsLayout="VerticalGrid, 1"
+                    ItemsSource="{Binding Ingredients}"
+                    SelectionChanged="OnCollectionViewSelectionChanged"
+                    SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="Auto,*"
+                                ColumnSpacing="16"
+                                Padding="4"
+                                RowDefinitions="Auto">
+                                <Image Aspect="AspectFill"
+                                    HeightRequest="60"
+                                    Source="{Binding Image}"
+                                    WidthRequest="60" />
+                                <Label FontAttributes="Bold"
+                                    FontSize="Body"
+                                    Grid.Column="1"
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="{Binding Name}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <StackLayout HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand">
+                                <Label FontAttributes="Bold"
+                                    FontSize="Micro"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Margin="0,16,0,0"
+                                    Text="No items to display" />
+                            </StackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+        <Button x:Name="findRecipeButton"
+            Command="{Binding GoToSearchRecipePageCommand}"
+            Grid.Row="2"
+            Margin="0,0,0,16"
+            Text="FIND RECIPE"
+            WidthRequest="320" />
     </Grid>
 </ContentPage>

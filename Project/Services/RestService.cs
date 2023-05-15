@@ -83,6 +83,38 @@ namespace Project.Services
             }
         }
 
+        public async Task<IList<Ingredient>> AutocompleteIngredientSearchAsync(string query)
+        {
+            try
+            {
+                IList<Ingredient> ingredients = new List<Ingredient>();
+
+                string RequestUri = string.Format(Constants.BaseUrl, $"food/ingredients/autocomplete?query={query}&number=10&apiKey={Constants.APIKey}");
+                HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
+                HttpResponseMessage response = await _client.SendAsync(request);
+                _ = response.EnsureSuccessStatusCode();
+                string content = await response.Content.ReadAsStringAsync();
+                dynamic body = JArray.Parse(content);
+                foreach (dynamic ingredient in body)
+                {
+                    string name = ingredient?.name ?? string.Empty;
+                    string image = ingredient?.image ?? string.Empty;
+                    ingredients.Add(new Ingredient
+                    {
+                        Name = name,
+                        Image = $"https://spoonacular.com/cdn/ingredients_500x500/{image}",
+                    });
+                }
+
+                return ingredients;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return new List<Ingredient>();
+            }
+        }
+
         async Task<IList<Recipe>> IRestService.SearchRecipesAsync(string query)
         {
             try
