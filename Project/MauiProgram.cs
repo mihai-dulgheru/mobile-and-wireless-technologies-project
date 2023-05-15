@@ -26,6 +26,7 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
         builder.Services.AddSingleton<Data.IProductDatabase, Data.ProductDatabase>();
+        builder.Services.AddSingleton<Data.IRecipeDatabase, Data.RecipeDatabase>();
         builder.Services.AddSingleton<Services.IRestService, Services.RestService>();
 
         return builder.Build();
