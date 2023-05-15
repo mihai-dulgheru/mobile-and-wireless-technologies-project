@@ -29,24 +29,28 @@ namespace Project.Data
             _ = await Database.CreateTableAsync<Recipe>();
         }
 
-        Task<int> IRecipeDatabase.CreateRecipeAsync(Recipe Recipe)
+        public async Task<List<Recipe>> GetRecipessAsync()
         {
-            throw new NotImplementedException();
+            await InitAsync();
+            return await Database.Table<Recipe>().ToListAsync();
         }
 
-        Task<int> IRecipeDatabase.DeleteRecipeAsync(Recipe Recipe)
+        public async Task<Recipe> GetRecipeAsync(int id)
         {
-            throw new NotImplementedException();
+            await InitAsync();
+            return await Database.Table<Recipe>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        Task<Recipe> IRecipeDatabase.GetRecipeAsync(int id)
+        public async Task<int> CreateRecipeAsync(Recipe Recipe)
         {
-            throw new NotImplementedException();
+            await InitAsync();
+            return await Database.InsertAsync(Recipe);
         }
 
-        Task<List<Recipe>> IRecipeDatabase.GetRecipessAsync()
+        public async Task<int> DeleteRecipeAsync(Recipe Recipe)
         {
-            throw new NotImplementedException();
+            await InitAsync();
+            return await Database.DeleteAsync(Recipe);
         }
     }
 }

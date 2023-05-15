@@ -2,7 +2,7 @@
 {
     public static class Constants
     {
-        public static readonly string APIKey = "15d4af72fec143b98a29464de7e24447";
+        public static readonly string APIKey = "";
         public static readonly string DatabaseFilename = "Database.db3";
         public static readonly SQLite.SQLiteOpenFlags Flags =
         // open the database in read/write mode
