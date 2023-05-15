@@ -35,18 +35,19 @@
                 FontSize="Small"
                 Grid.Column="0"
                 Grid.Row="2"
-                HorizontalOptions="Center"
+                HorizontalOptions="CenterAndExpand"
                 HorizontalTextAlignment="Center"
                 Margin="40,0"
                 Text="{Binding RandomFoodTrivia}"
-                VerticalOptions="Center" />
+                VerticalOptions="Center"
+                WidthRequest="960" />
             <Button 
                 Command="{Binding GoToSearchProductPageCommand}"
                 Grid.Column="0"
                 Grid.Row="3"
                 Margin="40"
                 Text="FIND YOUR RECIPE"
-                WidthRequest="304" />
+                WidthRequest="320" />
         </Grid>
     </ScrollView>
 </ContentPage>
