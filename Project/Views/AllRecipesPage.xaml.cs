@@ -7,7 +7,7 @@ public partial class AllRecipesPage : ContentPage
         InitializeComponent();
     }
 
-    private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 
     }
