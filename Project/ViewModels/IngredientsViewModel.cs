@@ -102,5 +102,15 @@ namespace Project.ViewModels
                 }
             }
         }
+
+        public ICommand RemoveIngredientCommand => new Command<Ingredient>((Ingredient ingredient) =>
+        {
+            IList<Ingredient> storedIngredientsList = _cachedCollection.Cast<Ingredient>().ToList();
+            _ = storedIngredientsList.Remove(ingredient);
+            _cachedCollection = storedIngredientsList;
+            Ingredients = _cachedCollection;
+        });
+
+        public bool IsRemoveIngredientButtonVisible => _cachedCollection != null && _cachedCollection.Any() && !IsSearchBarFocused && string.IsNullOrWhiteSpace(_searchText);
     }
 }
