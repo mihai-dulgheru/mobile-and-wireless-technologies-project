@@ -24,9 +24,9 @@
              Icon="heart.png">
             <ShellContent ContentTemplate="{DataTemplate views:MobileFavoriteRecipesPage}" />
         </Tab>
-        <Tab Title="Statistics"
-             Icon="chart_line.png">
-            <ShellContent ContentTemplate="{DataTemplate views:StatisticsPage}" />
+        <Tab Title="About Us"
+             Icon="info.png">
+            <ShellContent ContentTemplate="{DataTemplate views:AboutUsPage}" />
         </Tab>
     </TabBar>
 
