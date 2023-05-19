@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project.Views.AboutUsPage"
+             Title="AboutUsPage">
+    <ScrollView>
+        <StackLayout Spacing="10" Padding="20">
+            <Image 
+                HeightRequest="280"
+                Source="team.png"
+                WidthRequest="320" />
+            <Label Text="About Us" FontSize="24" HorizontalOptions="Center" TextColor="#F55951"/>
+            <Label Text="Cooking Elevated. Ingredients Transformed!"
+               FontSize="15"
+               HorizontalOptions="Center" />
+            <Label Text="At KitchenGenie, we believe that cooking should be a delightful and hassle-free experience for every home chef. Our team of passionate food enthusiasts came together to create a revolutionary app that empowers you to transform everyday ingredients into delicious meals. With the combined expertise of our talented trio, we've developed a user-friendly platform that offers a vast collection of recipes tailored to your available ingredients.
+&#x0a;&#x0a;We understand the challenges of meal planning and the desire to make the most out of what's in your pantry. Our app simplifies the process by providing a seamless interface where you can effortlessly enter the ingredients you have on hand, and voila! Our innovative algorithm instantly curates a diverse range of mouthwatering recipes tailored to your selections.
+&#x0a;&#x0a;At KitchenGenie, we are committed to inspiring culinary exploration, expanding your cooking repertoire, and encouraging you to unleash your creative flair in the kitchen. Whether you're a seasoned cook or just starting your culinary journey, our app is designed to ignite your passion for cooking and transform your ingredients into extraordinary dishes.
+&#x0a;&#x0a;Join our ever-growing community of food enthusiasts and experience the joy of cooking with KitchenGenie. Let's embark on a culinary adventure together!"
+               LineBreakMode="WordWrap"
+               FontSize="14" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

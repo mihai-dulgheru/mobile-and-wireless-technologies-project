@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:Project.Views"
     Shell.NavBarIsVisible="False">
-    
+
     <FlyoutItem Title="Home"
                 Icon="house.png">
         <Tab>
@@ -24,10 +24,10 @@
             <ShellContent ContentTemplate="{DataTemplate views:FavoriteRecipesPage}" />
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Statistics"
-                Icon="chart_line.png">
+    <FlyoutItem Title="About Us"
+                Icon="info.png">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate views:StatisticsPage}" />
+            <ShellContent ContentTemplate="{DataTemplate views:AboutUsPage}" />
         </Tab>
     </FlyoutItem>
     
