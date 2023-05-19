@@ -2,22 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Project.ViewModels"
-             x:Class="Project.Views.AllRecipesPage"
-             Title="AllRecipesPage">
+             x:Class="Project.Views.MobileAllRecipesPage"
+             Title="MobileAllRecipesPage">
     <ContentPage.BindingContext>
         <viewModels:AllRecipesViewModel />
     </ContentPage.BindingContext>
-        <ContentPage.Resources>
-        <StyleSheet Source="/Resources/styles.css" />
-    </ContentPage.Resources>
-
-    <Grid Margin="20"
-        RowDefinitions="Auto,*">
+    
+    <Grid RowDefinitions="Auto,*">
         <Grid Grid.Column="0"
             Grid.Row="0">
             <Label FontAttributes="Bold"
                 FontSize="Title"
                 HorizontalOptions="CenterAndExpand"
+                Margin="0,30,0,20"
                 Text="{Binding Label}"
                 TextColor="{DynamicResource Primary}"
                 VerticalOptions="CenterAndExpand" />
@@ -33,31 +30,35 @@
                     SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid ColumnDefinitions="Auto,*"
-                                Margin="0,20,0,0">
-                                <Border Grid.Column="0"
-                                    Grid.Row="0"
-                                    StrokeShape="RoundRectangle 16,0,16,0"
+                            <Grid Padding="20,10">
+                                <Border Stroke="{DynamicResource White}"
+                                    StrokeShape="RoundRectangle 16"
                                     StrokeThickness="0">
-                                    <Image Aspect="AspectFill"
-                                        HeightRequest="136"
-                                        Source="{Binding Image}"
-                                        WidthRequest="136" />
-                                </Border>
-                                <Grid Grid.Column="1"
-                                    Grid.Row="0"
-                                    Padding="-2,1,0,0">
-                                    <Border Opacity="1"
-                                        Padding="10"
-                                        StrokeShape="RoundRectangle 0,16,0,16"
-                                        StrokeThickness="0">
-                                        <Grid RowDefinitions="*,*,Auto">
+                                    <Border.Shadow>
+                                        <Shadow Brush="{DynamicResource BlackBrush}"
+                                            Offset="0,5"
+                                            Opacity="0.8"
+                                            Radius="10" />
+                                    </Border.Shadow>
+                                    <Grid ColumnDefinitions="Auto,*">
+                                        <Image Grid.Column="0"
+                                            Grid.Row="0"
+                                            Aspect="AspectFill"
+                                            HeightRequest="128"
+                                            Source="{Binding Image}"
+                                            WidthRequest="128" />
+                                        <Grid BackgroundColor="{DynamicResource White}"
+                                            Grid.Column="1"
+                                            Grid.Row="0"
+                                            Padding="10"
+                                            RowDefinitions="*,*,*">
                                             <Label FontAttributes="Bold"
-                                                FontSize="Small"
+                                                FontSize="Subtitle"
                                                 Grid.Column="0"
                                                 Grid.Row="0"
                                                 HorizontalTextAlignment="Start"
-                                                LineBreakMode="TailTruncation"
+                                                LineBreakMode="WordWrap"
+                                                MaxLines="2"
                                                 Text="{Binding Title}"
                                                 TextColor="{DynamicResource Primary}"
                                                 VerticalTextAlignment="Start" />
@@ -67,27 +68,19 @@
                                                 HorizontalTextAlignment="Start"
                                                 LineBreakMode="WordWrap"
                                                 MaxLines="2"
-                                                Text="{Binding Ingredients, StringFormat='Ingredients: {0}'}"
+                                                Text="{Binding Ingredients}"
                                                 VerticalTextAlignment="Start" />
-                                            <Grid ColumnDefinitions="*,160"
+                                            <Label FontSize="Body"
                                                 Grid.Column="0"
-                                                Grid.Row="3">
-                                                <Label Grid.Column="0"
-                                                    HorizontalTextAlignment="Start"
-                                                    LineBreakMode="WordWrap"
-                                                    MaxLines="2"
-                                                    Text="{Binding Likes, StringFormat='Likes: {0}'}"
-                                                    VerticalTextAlignment="Center" />
-                                                <Button BackgroundColor="{DynamicResource Accent}"
-                                                    Grid.Column="1"
-                                                    StyleClass="rounded-lg"
-                                                    Text="View Recipe 🡪"
-                                                    TextColor="{DynamicResource White}"
-                                                    TextTransform="Uppercase" />
-                                            </Grid>
+                                                Grid.Row="3"
+                                                HorizontalTextAlignment="Start"
+                                                LineBreakMode="WordWrap"
+                                                MaxLines="2"
+                                                Text="{Binding Likes, StringFormat='Likes: {0}'}"
+                                                VerticalTextAlignment="Center" />
                                         </Grid>
-                                    </Border>
-                                </Grid>
+                                    </Grid>
+                                </Border>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

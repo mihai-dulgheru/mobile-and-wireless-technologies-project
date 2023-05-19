@@ -29,7 +29,11 @@ namespace Project.ViewModels
             {
                 _cachedCollection = null;
                 Ingredients = null;
+#if __MOBILE__
+                await Shell.Current.GoToAsync($"{nameof(MobileAllRecipesPage)}?Ingredients={ingredients}");
+#else
                 await Shell.Current.GoToAsync($"{nameof(AllRecipesPage)}?Ingredients={ingredients}");
+#endif
             }
         }
 
