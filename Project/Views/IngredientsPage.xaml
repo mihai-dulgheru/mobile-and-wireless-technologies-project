@@ -26,17 +26,17 @@
         </Style>
     </ContentPage.Resources>
     
-    <Grid Margin="16"
+    <Grid Margin="20"
         RowDefinitions="Auto,*,Auto">
         <SearchBar x:Name="searchBar"
             IsFocused="{Binding IsSearchBarFocused}"
-            Margin="0,0,0,16"
+            Margin="0,0,0,20"
             Placeholder="Search ingredient..."
             PlaceholderColor="{DynamicResource Gray}"
             Text="{Binding SearchText}" />
         <ScrollView x:Name="scrollView"
             Grid.Row="1"
-            Margin="0,0,0,16"
+            Margin="0,0,0,20"
             VerticalOptions="FillAndExpand">
             <StackLayout>
                 <CollectionView x:Name="ingredientCollectionView"
@@ -46,9 +46,8 @@
                     SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid ColumnDefinitions="Auto,*"
-                                ColumnSpacing="16"
-                                Padding="4"
+                            <Grid ColumnDefinitions="Auto,*,Auto"
+                                ColumnSpacing="20"
                                 RowDefinitions="Auto">
                                 <Image Aspect="AspectFill"
                                     HeightRequest="60"
@@ -60,6 +59,17 @@
                                     HorizontalOptions="StartAndExpand"
                                     Text="{Binding Name}"
                                     VerticalOptions="CenterAndExpand" />
+                                <ImageButton BackgroundColor="Transparent"
+                                    Command="{Binding BindingContext.RemoveIngredientCommand, Source={x:Reference ingredientCollectionView}}"
+                                    CommandParameter="{Binding .}"
+                                    Grid.Column="2"
+                                    HeightRequest="20"
+                                    HorizontalOptions="CenterAndExpand"
+                                    IsVisible="{Binding BindingContext.IsRemoveIngredientButtonVisible, Source={x:Reference ingredientCollectionView}}"
+                                    Padding="10"
+                                    Source="trash_can.png"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="20" />
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -71,7 +81,7 @@
                                     FontSize="Micro"
                                     HorizontalOptions="Fill"
                                     HorizontalTextAlignment="Center"
-                                    Margin="0,16,0,0"
+                                    Margin="0,20,0,0"
                                     Text="No items to display" />
                             </StackLayout>
                         </ContentView>
@@ -82,7 +92,7 @@
         <Button x:Name="findRecipeButton"
             Command="{Binding GoToSearchRecipePageCommand}"
             Grid.Row="2"
-            Margin="0,0,0,16"
+            Margin="0,0,0,20"
             Text="FIND RECIPE"
             WidthRequest="320" />
     </Grid>
