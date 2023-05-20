@@ -29,7 +29,7 @@
                 Grid.Column="0"
                 Grid.Row="1"
                 HeightRequest="320"
-                Source="home_page.png"
+                Source="{AppThemeBinding Light=home_page.png, Dark=home_page_dark.png}"
                 WidthRequest="320" />
             <Label 
                 FontSize="Small"
