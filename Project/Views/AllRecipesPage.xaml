@@ -33,7 +33,7 @@
                         <DataTemplate>
                             <Border Background="{DynamicResource White}"
                                 Margin="0,20,0,0"
-                                Opacity="0.8"
+                                Opacity="1"
                                 Stroke="{DynamicResource Black}"
                                 StrokeShape="RoundRectangle 15"
                                 StrokeThickness="1">
