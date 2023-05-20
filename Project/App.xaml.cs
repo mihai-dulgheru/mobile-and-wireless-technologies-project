@@ -5,8 +5,10 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
-   
-        Application.Current.UserAppTheme = Application.Current.RequestedTheme; ;
+
+        // TODO
+        Application.Current.UserAppTheme = AppTheme.Light;
+        //Application.Current.UserAppTheme = Application.Current.RequestedTheme;
 
 #if __MOBILE__
         MainPage = new AppShellMobile();
