@@ -59,17 +59,26 @@
                                     HorizontalOptions="StartAndExpand"
                                     Text="{Binding Name}"
                                     VerticalOptions="CenterAndExpand" />
-                                <ImageButton BackgroundColor="Transparent"
-                                    Command="{Binding BindingContext.RemoveIngredientCommand, Source={x:Reference ingredientCollectionView}}"
-                                    CommandParameter="{Binding .}"
-                                    Grid.Column="2"
-                                    HeightRequest="20"
-                                    HorizontalOptions="CenterAndExpand"
-                                    IsVisible="{Binding BindingContext.IsRemoveIngredientButtonVisible, Source={x:Reference ingredientCollectionView}}"
-                                    Padding="10"
-                                    Source="trash_can.png"
-                                    VerticalOptions="CenterAndExpand"
-                                    WidthRequest="20" />
+                                <Grid Grid.Column="2">
+                                    <Image BackgroundColor="Transparent"
+                                        HeightRequest="20"
+                                        HorizontalOptions="CenterAndExpand"
+                                        IsVisible="{Binding BindingContext.IsImageVisible, Source={x:Reference ingredientCollectionView}}"
+                                        Margin="10"
+                                        Source="trash_can.png"
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="20" />
+                                    <ImageButton BackgroundColor="Transparent"
+                                        Command="{Binding BindingContext.RemoveIngredientCommand, Source={x:Reference ingredientCollectionView}}"
+                                        CommandParameter="{Binding .}"
+                                        HeightRequest="20"
+                                        HorizontalOptions="CenterAndExpand"
+                                        IsVisible="{Binding BindingContext.IsRemoveIngredientButtonVisible, Source={x:Reference ingredientCollectionView}}"
+                                        Padding="10"
+                                        Source="trash_can.png"
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="20" />
+                                </Grid>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

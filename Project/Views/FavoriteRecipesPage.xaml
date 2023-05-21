@@ -18,23 +18,16 @@
             Text="{Binding Label}"
             TextColor="{DynamicResource Primary}"
             VerticalOptions="StartAndExpand" />
-        
         <Grid>
-            <CollectionView EmptyView="No items to display"
-                        ItemsSource="{Binding Recipes}"
+            <CollectionView ItemsSource="{Binding Recipes}"
                         SelectionChanged="CollectionView_SelectionChanged"
                         SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0,20,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-
+                        <Grid ColumnDefinitions="Auto,*"
+                            Margin="0,20,0,0">
                             <Border Grid.Column="0"
                                 Grid.Row="0"
-                                Stroke="{DynamicResource White}"
                                 StrokeShape="RoundRectangle 16,0,16,0"
                                 StrokeThickness="0">
                                 <Image Aspect="AspectFill"
@@ -45,18 +38,11 @@
                             <Grid Grid.Column="1"
                                 Grid.Row="0"
                                 Padding="-2,1,0,0">
-                                <Border Opacity="0.8"
+                                <Border Opacity="1"
                                     Padding="10"
-                                    Stroke="{DynamicResource Black}"
                                     StrokeShape="RoundRectangle 0,16,0,16"
-                                    StrokeThickness="1">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-
+                                    StrokeThickness="0">
+                                    <Grid RowDefinitions="*,*,Auto">
                                         <Label FontAttributes="Bold"
                                             FontSize="Small"
                                             Grid.Column="0"
@@ -69,7 +55,6 @@
                                         <Label FontSize="Body"
                                             Grid.Column="0"
                                             Grid.Row="1"
-                                            HeightRequest="36"
                                             HorizontalTextAlignment="Start"
                                             LineBreakMode="WordWrap"
                                             MaxLines="2"
@@ -97,6 +82,19 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <ContentView>
+                        <StackLayout HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand">
+                            <Label FontAttributes="Bold"
+                                FontSize="Micro"
+                                HorizontalOptions="Fill"
+                                HorizontalTextAlignment="Center"
+                                Margin="0,20,0,0"
+                                Text="No items to display" />
+                        </StackLayout>
+                    </ContentView>
+                </CollectionView.EmptyView>
             </CollectionView>
         </Grid>
     </VerticalStackLayout>

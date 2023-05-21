@@ -13,7 +13,7 @@ namespace Project.ViewModels
         private IEnumerable<Ingredient> _ingredients;
         private bool _isSearchBarFocused;
         private readonly IRestService _restService;
-        private string _searchText;
+        private string _searchText = string.Empty;
         public ICommand GoToSearchRecipePageCommand { get; }
 
         public IngredientsViewModel()
@@ -24,18 +24,25 @@ namespace Project.ViewModels
 
         private async Task GoToSearchRecipePageAsync()
         {
-            string ingredients = _cachedCollection?.Select(ingredient => ingredient.Name).Aggregate((i, j) => i + "," + j);
-            if (!string.IsNullOrWhiteSpace(ingredients))
+            if (_cachedCollection != null && _cachedCollection.Any())
             {
-                _cachedCollection = null;
-                Ingredients = null;
-                await Shell.Current.GoToAsync($"{nameof(AllRecipesPage)}?Ingredients={ingredients}");
+                string ingredients = _cachedCollection?.Select(ingredient => ingredient.Name).Aggregate((i, j) => i + "," + j);
+                if (!string.IsNullOrWhiteSpace(ingredients))
+                {
+                    _cachedCollection = null;
+                    Ingredients = null;
+#if __MOBILE__
+                    await Shell.Current.GoToAsync($"{nameof(MobileAllRecipesPage)}?Ingredients={ingredients}");
+#else
+                    await Shell.Current.GoToAsync($"{nameof(AllRecipesPage)}?Ingredients={ingredients}");
+#endif
+                }
             }
         }
 
         private async Task UpdateCollectionViewAsync()
         {
-            Ingredients = IsSearchBarFocused
+            Ingredients = IsSearchBarFocused && !string.IsNullOrWhiteSpace(_searchText)
                 ? await _restService.AutocompleteIngredientSearchAsync(_searchText)
                 : _cachedCollection;
         }
@@ -111,6 +118,14 @@ namespace Project.ViewModels
             Ingredients = _cachedCollection;
         });
 
-        public bool IsRemoveIngredientButtonVisible => _cachedCollection != null && _cachedCollection.Any() && !IsSearchBarFocused && string.IsNullOrWhiteSpace(_searchText);
+        public bool IsImageVisible =>
+#if __MOBILE__
+                IsRemoveIngredientButtonVisible;
+#else
+                false;
+#endif
+
+        public bool IsRemoveIngredientButtonVisible =>
+            _cachedCollection != null && _cachedCollection.Any() && !IsSearchBarFocused && string.IsNullOrWhiteSpace(_searchText);
     }
 }
