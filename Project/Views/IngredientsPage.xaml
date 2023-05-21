@@ -25,7 +25,7 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-    
+
     <Grid Margin="20"
         RowDefinitions="Auto,*,Auto">
         <SearchBar x:Name="searchBar"
@@ -34,6 +34,13 @@
             Placeholder="Search ingredient..."
             PlaceholderColor="{DynamicResource Gray}"
             Text="{Binding SearchText}" />
+        <AbsoluteLayout>
+            <BoxView BackgroundColor="Black" HeightRequest="1"
+             Margin="-20,50,0,0"
+             HorizontalOptions="FillAndExpand"
+             AbsoluteLayout.LayoutBounds="0,0,1.1,1"
+             AbsoluteLayout.LayoutFlags="All" />
+        </AbsoluteLayout>
         <ScrollView x:Name="scrollView"
             Grid.Row="1"
             Margin="0,0,0,20"
