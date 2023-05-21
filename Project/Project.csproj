@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>Project</ApplicationTitle>
+		<ApplicationTitle>Kitchen Genie</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.Project</ApplicationId>
