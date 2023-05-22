@@ -28,19 +28,16 @@
 
     <Grid Margin="20"
         RowDefinitions="Auto,*,Auto">
+        <Frame Margin="0,0,0,20"
+               BorderColor="{DynamicResource Gray900}"
+               Padding="0"
+               CornerRadius="9999">
         <SearchBar x:Name="searchBar"
             IsFocused="{Binding IsSearchBarFocused}"
-            Margin="0,0,0,20"
             Placeholder="Search ingredient..."
             PlaceholderColor="{DynamicResource Gray}"
             Text="{Binding SearchText}" />
-        <AbsoluteLayout>
-            <BoxView BackgroundColor="Black" HeightRequest="1"
-             Margin="-20,50,0,0"
-             HorizontalOptions="FillAndExpand"
-             AbsoluteLayout.LayoutBounds="0,0,1.1,1"
-             AbsoluteLayout.LayoutFlags="All" />
-        </AbsoluteLayout>
+        </Frame>
         <ScrollView x:Name="scrollView"
             Grid.Row="1"
             Margin="0,0,0,20"
