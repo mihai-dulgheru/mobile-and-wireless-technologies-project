@@ -67,7 +67,7 @@
                                                 HorizontalTextAlignment="Start"
                                                 LineBreakMode="WordWrap"
                                                 MaxLines="2"
-                                                Text="{Binding ReadyInMinutes, StringFormat='Total time: {0} min'}"
+                                                Text="{Binding Likes, StringFormat='Likes: {0}'}"
                                                 VerticalTextAlignment="Center" />
                                             <Button BackgroundColor="{DynamicResource Accent}"
                                                 Grid.Column="1"

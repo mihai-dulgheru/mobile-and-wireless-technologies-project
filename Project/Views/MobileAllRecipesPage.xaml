@@ -76,7 +76,7 @@
                                                 Grid.Column="0"
                                                 Grid.Row="3"
                                                 HorizontalTextAlignment="Start"
-                                                Text="{Binding ReadyInMinutes, StringFormat='Total time: {0} min'}"
+                                                Text="{Binding Likes, StringFormat='Likes: {0}'}"
                                                 VerticalTextAlignment="End" />
                                         </Grid>
                                     </Grid>
