@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Project.Models;
 using Project.Services;
+using Project.Views;
+using System.Windows.Input;
 
 namespace Project.ViewModels
 {
@@ -10,10 +13,12 @@ namespace Project.ViewModels
         private readonly IRestService _restService;
         private string _ingredients;
         public string Label { get; } = "Recommended recipes";
+        public ICommand SelectRecipeCommand { get; }
 
         public AllRecipesViewModel()
         {
             _restService = new RestService();
+            SelectRecipeCommand = new AsyncRelayCommand<Recipe>(SelectRecipeAsync);
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -32,7 +37,7 @@ namespace Project.ViewModels
             {
                 if (_recipes != value)
                 {
-                    _recipes = value;
+                    _recipes = (List<Recipe>)value;
                     OnPropertyChanged();
                 }
             }
@@ -55,6 +60,14 @@ namespace Project.ViewModels
         {
             IList<Recipe> recipes = await _restService.SearchRecipesAsync(ingredients);
             Recipes = recipes.OrderByDescending(r => r.Likes).ToList();
+        }
+
+        private async Task SelectRecipeAsync(Recipe recipe)
+        {
+            if (recipe != null)
+            {
+                await Shell.Current.GoToAsync($"{nameof(RecipePage)}?RecipeId={recipe.Id}");
+            }
         }
     }
 }

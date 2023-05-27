@@ -119,7 +119,7 @@ namespace Project.Services
         {
             try
             {
-                string RequestUri = string.Format(Constants.BaseUrl, $"food/recipes/{id}/information?apiKey={Constants.APIKey}");
+                string RequestUri = string.Format(Constants.BaseUrl, $"recipes/{id}/information?apiKey={Constants.APIKey}");
                 HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
                 HttpResponseMessage response = await _client.SendAsync(request);
                 _ = response.EnsureSuccessStatusCode();

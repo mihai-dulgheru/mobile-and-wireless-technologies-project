@@ -1,3 +1,5 @@
+using Project.Models;
+
 namespace Project.Views;
 
 public partial class MobileAllRecipesPage : ContentPage
@@ -7,8 +9,15 @@ public partial class MobileAllRecipesPage : ContentPage
         InitializeComponent();
     }
 
-    private void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        if (e.CurrentSelection.Count > 0)
+        {
+            if (e.CurrentSelection[0] is Recipe recipe)
+            {
+                await Shell.Current.GoToAsync($"{nameof(RecipePage)}?RecipeId={recipe.Id}");
+            }
+        }
 
     }
 }

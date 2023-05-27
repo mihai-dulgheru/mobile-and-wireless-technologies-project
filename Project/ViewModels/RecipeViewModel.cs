@@ -18,7 +18,7 @@ namespace Project.ViewModels
         {
             _recipeDatabase = new RecipeDatabase();
             _restService = new RestService();
-            AddOrDeleteRecipeCommand = new AsyncRelayCommand(DeleteRecipeAsync);
+            AddOrDeleteRecipeCommand = new AsyncRelayCommand(AddRecipeAsync);
         }
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -44,11 +44,17 @@ namespace Project.ViewModels
             }
         }
 
+        private async Task AddRecipeAsync()
+        {
+            _ = await _recipeDatabase.CreateRecipeAsync(new Recipe(_recipe.Id, _recipe.Title, _recipe.Image, _recipe.ExtendedIngredients, _recipe.Instructions));
+            await Shell.Current.GoToAsync("..");
+        }
+
         private async Task DeleteRecipeAsync()
         {
             if (_recipe != null)
             {
-                await _recipeDatabase.DeleteRecipeAsync(_recipe);
+                _ = await _recipeDatabase.DeleteRecipeAsync(_recipe);
             }
             await Shell.Current.GoToAsync("..");
         }

@@ -30,5 +30,12 @@
             Meta = meta;
             Image = image ?? throw new ArgumentNullException(nameof(image));
         }
+
+        public Ingredient(int id, double amount, string unit)
+        {
+            Id = id;
+            Amount = amount;
+            Unit = unit;
+        }
     }
 }

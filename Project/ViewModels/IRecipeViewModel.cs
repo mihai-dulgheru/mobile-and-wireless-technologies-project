@@ -1,14 +1,13 @@
 ﻿using Project.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Project.ViewModels
 {
-    internal interface IRecipeViewModel : IQueryAttributable
+    internal interface IRecipeViewModel
     {
+        ICommand AddOrDeleteRecipeCommand { get; }
         Recipe Recipe { get; set; }
+
+        void ApplyQueryAttributes(IDictionary<string, object> query);
     }
 }
