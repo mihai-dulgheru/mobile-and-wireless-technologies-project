@@ -36,5 +36,14 @@
             Instructions = instructions ?? throw new ArgumentNullException(nameof(title));
             ReadyInMinutes = readyInMinutes;
         }
+
+        public Recipe(int id, string title, string image, IList<Ingredient> usedIngredients, string instructions)
+        {
+            Id = id;
+            Title = title ?? throw new ArgumentNullException( nameof(title));
+            Image = image ?? throw new ArgumentNullException(nameof(image));
+            UsedIngredients = usedIngredients ?? throw new ArgumentNullException(nameof(usedIngredients));
+            Instructions = instructions ?? throw new ArgumentNullException(nameof(title));
+        }
     }
 }
