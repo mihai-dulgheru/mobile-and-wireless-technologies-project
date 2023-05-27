@@ -2,11 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Project.ViewModels"
+             xmlns:helpers="clr-namespace:Project.Resources.Helpers"
              x:Class="Project.Views.RecipePage"
              Title="RecipePage">
     <ContentPage.BindingContext>
         <viewModels:RecipeViewModel />
     </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <helpers:DecimalFormatConverter x:Key="DecimalFormatConverter" />
+    </ContentPage.Resources>
 
     <ContentPage.Content>
         <ScrollView>
@@ -31,7 +36,7 @@
 
                     <StackLayout Grid.Column="0" Spacing="5">
                         <Label Text="Ingredients" FontAttributes="Bold" FontSize="20"/>
-                        <CollectionView ItemsSource="{Binding Recipe.UsedIngredients}">
+                        <CollectionView ItemsSource="{Binding Recipe.ExtendedIngredients}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Label Text="{Binding Name}" FontSize="16" TextColor="{DynamicResource Gray}" />
@@ -42,13 +47,13 @@
 
                     <StackLayout Grid.Column="1" Spacing="5">
                         <Label Text=" " FontAttributes="Bold" FontSize="20"/>
-                        <CollectionView ItemsSource="{Binding Recipe.UsedIngredients}">
+                        <CollectionView ItemsSource="{Binding Recipe.ExtendedIngredients}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Label FontSize="16" FontAttributes="Italic" TextColor="{DynamicResource Gray}">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Amount}" />
+                                                <Span Text="{Binding Amount, Converter={StaticResource DecimalFormatConverter}}" />
                                                 <Span Text=" " />
                                                 <Span Text="{Binding Unit}" />
                                             </FormattedString>

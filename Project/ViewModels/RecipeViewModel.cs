@@ -46,7 +46,7 @@ namespace Project.ViewModels
 
         private async Task AddRecipeAsync()
         {
-            _ = await _recipeDatabase.CreateRecipeAsync(new Recipe(_recipe.Id, _recipe.Title, _recipe.Image, _recipe.UsedIngredients, _recipe.Instructions));
+            _ = await _recipeDatabase.CreateRecipeAsync(new Recipe(_recipe.Id, _recipe.Title, _recipe.Image, _recipe.ExtendedIngredients, _recipe.Instructions));
             await Shell.Current.GoToAsync("..");
         }
 
