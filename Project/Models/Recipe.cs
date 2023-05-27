@@ -29,6 +29,7 @@ namespace Project.Models
         public string Image { get; set; }
         [Ignore]
         public string ImageType { get; set; }
+        [Ignore]
         public string Ingredients => UsedIngredientCount + MissedIngredientCount > 0
                     ? string.Join(", ", MissedIngredients.Concat(UsedIngredients).Select(ingredient => ingredient.Name))
                     : string.Empty;
@@ -47,6 +48,9 @@ namespace Project.Models
         }
         [MaxLength(250)]
         public string Title { get; set; }
+        [MaxLength(250)]
+        [Column("Ingredients")]
+        public string StoredIngredients { get; set; }
 
         public Recipe() { }
 
@@ -74,6 +78,11 @@ namespace Project.Models
             Image = image ?? throw new ArgumentNullException(nameof(image));
             ExtendedIngredients = extendedIngredients ?? throw new ArgumentNullException(nameof(extendedIngredients));
             Instructions = instructions ?? throw new ArgumentNullException(nameof(title));
+        }
+
+        public void SetIngredients()
+        {
+            StoredIngredients = string.Join(", ", ExtendedIngredients.Select(ingredient => ingredient.Name));
         }
     }
 }

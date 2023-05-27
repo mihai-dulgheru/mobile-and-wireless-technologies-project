@@ -124,8 +124,10 @@ namespace Project.Services
                 HttpResponseMessage response = await _client.SendAsync(request);
                 _ = response.EnsureSuccessStatusCode();
                 string content = await response.Content.ReadAsStringAsync();
+                Recipe recipe = JObject.Parse(content).ToObject<Recipe>();
+                recipe.SetIngredients();
 
-                return JObject.Parse(content).ToObject<Recipe>();
+                return recipe;
             }
             catch (Exception ex)
             {
