@@ -28,15 +28,16 @@
 
     <Grid Margin="20"
         RowDefinitions="Auto,*,Auto">
-        <Frame Margin="0,0,0,20"
-               BorderColor="{DynamicResource Gray900}"
-               Padding="0"
-               CornerRadius="9999">
-        <SearchBar x:Name="searchBar"
-            IsFocused="{Binding IsSearchBarFocused}"
-            Placeholder="Search ingredient..."
-            PlaceholderColor="{DynamicResource Gray}"
-            Text="{Binding SearchText}" />
+        <Frame BorderColor="{DynamicResource Gray950}"
+            CornerRadius="9999"
+            Margin="0,0,0,20"
+            Padding="0">
+            <SearchBar x:Name="searchBar"
+                IsFocused="{Binding IsSearchBarFocused}"
+                IsTextPredictionEnabled="True"
+                Placeholder="Search ingredient..."
+                PlaceholderColor="{DynamicResource Gray}"
+                Text="{Binding SearchText}" />
         </Frame>
         <ScrollView x:Name="scrollView"
             Grid.Row="1"
@@ -89,7 +90,7 @@
                     <CollectionView.EmptyView>
                         <ContentView>
                             <StackLayout HorizontalOptions="CenterAndExpand"
-                                VerticalOptions="CenterAndExpand">
+                                VerticalOptions="StartAndExpand">
                                 <Label FontAttributes="Bold"
                                     FontSize="Micro"
                                     HorizontalOptions="Fill"

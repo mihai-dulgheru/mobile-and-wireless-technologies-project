@@ -16,9 +16,9 @@ namespace Project.ViewModels
 
         public RecipeViewModel()
         {
+            AddOrDeleteRecipeCommand = new AsyncRelayCommand(AddRecipeAsync);
             _recipeDatabase = new RecipeDatabase();
             _restService = new RestService();
-            AddOrDeleteRecipeCommand = new AsyncRelayCommand(AddRecipeAsync);
         }
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)

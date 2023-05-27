@@ -14,7 +14,7 @@ public partial class IngredientsPage : ContentPage
     {
         if (searchBar.IsFocused)
         {
-            if (e.CurrentSelection[0] is Ingredient ingredient)
+            if (e.CurrentSelection != null && e.CurrentSelection.Count > 0 && e.CurrentSelection[0] is Ingredient ingredient)
             {
                 ((IIngredientsViewModel)BindingContext).AddIngredientCommand.Execute(ingredient);
             }
