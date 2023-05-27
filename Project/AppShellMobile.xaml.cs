@@ -39,7 +39,6 @@ public partial class AppShellMobile : Shell
                 case nameof(AboutUsPage):
                     tabBar.CurrentItem = aboutUsItem;
                     break;
-
                 default:
                     break;
             }

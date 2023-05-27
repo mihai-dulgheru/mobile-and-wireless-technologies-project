@@ -17,4 +17,29 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(SearchProductPage), typeof(SearchProductPage));
         Routing.RegisterRoute(nameof(StatisticsPage), typeof(StatisticsPage));
     }
+
+    public void NavigateTo(string name)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            switch (name)
+            {
+                case nameof(HomePage):
+                    Current.CurrentItem = homeItem;
+                    break;
+                case nameof(IngredientsPage):
+                    Current.CurrentItem = ingredientsItem;
+                    break;
+                case nameof(FavoriteRecipesPage):
+                    Current.CurrentItem = favoriteRecipesItem;
+                    break;
+                case nameof(AboutUsPage):
+                    Current.CurrentItem = aboutUsItem;
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
+
 }

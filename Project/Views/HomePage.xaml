@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:viewModels="clr-namespace:Project.ViewModels"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Project.ViewModels"
              x:Class="Project.Views.HomePage"
              Title="HomePage">
     <ScrollView>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="320" />
-                <RowDefinition />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
-            <Label 
-                FontSize="Header"
+        <Grid RowDefinitions="Auto,320,*,Auto">
+            <Label FontSize="Header"
                 Grid.Column="0"
                 Grid.Row="0"
                 HorizontalOptions="Center"
@@ -25,14 +14,12 @@
                 Text="WELCOME!"
                 TextColor="#F55951"
                 VerticalOptions="Center" />
-            <Image 
-                Grid.Column="0"
+            <Image Grid.Column="0"
                 Grid.Row="1"
                 HeightRequest="320"
                 Source="{AppThemeBinding Light=home_page.png, Dark=home_page_dark.png}"
                 WidthRequest="320" />
-            <Label 
-                FontSize="Small"
+            <Label FontSize="Small"
                 Grid.Column="0"
                 Grid.Row="2"
                 HorizontalOptions="CenterAndExpand"
@@ -41,8 +28,7 @@
                 Text="{Binding RandomFoodTrivia}"
                 VerticalOptions="Center"
                 WidthRequest="960" />
-            <Button 
-                Command="{Binding GoToSearchProductPageCommand}"
+            <Button Clicked="OnButtonClicked"
                 Grid.Column="0"
                 Grid.Row="3"
                 Margin="40"

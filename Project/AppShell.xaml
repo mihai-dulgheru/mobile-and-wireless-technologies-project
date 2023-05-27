@@ -6,26 +6,30 @@
     xmlns:views="clr-namespace:Project.Views"
     Shell.NavBarIsVisible="False">
 
-    <FlyoutItem Title="Home"
-                Icon="house.png">
+    <FlyoutItem x:Name="homeItem"
+        Title="Home"
+        Icon="house.png">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Search Ingredients"
-                Icon="magnifying_glass.png">
+    <FlyoutItem x:Name="ingredientsItem"
+        Title="Search Ingredients"
+        Icon="magnifying_glass.png">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:IngredientsPage}" />
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Favorite Recipes"
-                Icon="heart.png">
+    <FlyoutItem x:Name="favoriteRecipesItem"
+        Title="Favorite Recipes"
+        Icon="heart.png">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:FavoriteRecipesPage}" />
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="About Us"
-                Icon="info.png">
+    <FlyoutItem x:Name="aboutUsItem"
+        Title="About Us"
+        Icon="info.png">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:AboutUsPage}" />
         </Tab>
