@@ -10,22 +10,26 @@
     <Shell.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{DynamicResource White}" StatusBarStyle="DarkContent" />
     </Shell.Behaviors>
-    
-    <TabBar>
-        <Tab Title="Home"
-             Icon="house.png">
+
+    <TabBar x:Name="tabBar">
+        <Tab x:Name="mobileHomeItem"
+            Title="Home"
+            Icon="house.png">
             <ShellContent ContentTemplate="{DataTemplate views:MobileHomePage}" />
         </Tab>
-        <Tab Title="Search"
-             Icon="magnifying_glass.png">
+        <Tab x:Name="ingredientsItem"
+            Title="Search"
+            Icon="magnifying_glass.png">
             <ShellContent ContentTemplate="{DataTemplate views:IngredientsPage}" />
         </Tab>
-        <Tab Title="Favorite"
-             Icon="heart.png">
+        <Tab x:Name="mobileFavoriteRecipesItem"
+            Title="Favorite"
+            Icon="heart.png">
             <ShellContent ContentTemplate="{DataTemplate views:MobileFavoriteRecipesPage}" />
         </Tab>
-        <Tab Title="About Us"
-             Icon="info.png">
+        <Tab x:Name="aboutUsItem"
+            Title="About Us"
+            Icon="info.png">
             <ShellContent ContentTemplate="{DataTemplate views:AboutUsPage}" />
         </Tab>
     </TabBar>

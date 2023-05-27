@@ -15,8 +15,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label 
-            FontSize="Title"
+        <Label FontSize="Title"
             Grid.Column="0"
             Grid.Row="0"
             HorizontalOptions="Center"
@@ -24,14 +23,12 @@
             Text="WELCOME!"
             TextColor="#F55951"
             VerticalOptions="Center" />
-        <Image 
-            Grid.Column="0"
+        <Image Grid.Column="0"
             Grid.Row="1"
             HeightRequest="256"
             Source="home_page.png"
             WidthRequest="256" />
-        <Label 
-            FontSize="Small"
+        <Label FontSize="Small"
             Grid.Column="0"
             Grid.Row="2"
             HorizontalOptions="Center"
@@ -39,8 +36,7 @@
             Margin="40,0"
             Text="{Binding RandomFoodTrivia}"
             VerticalOptions="Center" />
-        <Button 
-            Command="{Binding GoToSearchProductPageCommand}"
+        <Button Clicked="OnButtonClicked"
             Grid.Column="0"
             Grid.Row="3"
             Margin="40"

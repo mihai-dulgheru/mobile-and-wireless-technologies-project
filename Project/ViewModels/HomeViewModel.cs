@@ -1,8 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using Project.Services;
-using Project.Views;
-using System.Windows.Input;
 
 namespace Project.ViewModels
 {
@@ -10,12 +7,10 @@ namespace Project.ViewModels
     {
         private readonly IRestService _restService;
         private string _randomFoodTrivia;
-        public ICommand GoToSearchProductPageCommand { get; }
 
         public HomeViewModel()
         {
             _restService = new RestService();
-            GoToSearchProductPageCommand = new AsyncRelayCommand(GoToSearchProductPageAsync);
         }
 
         public string RandomFoodTrivia
@@ -29,11 +24,6 @@ namespace Project.ViewModels
                     OnPropertyChanged();
                 }
             }
-        }
-
-        private async Task GoToSearchProductPageAsync()
-        {
-            await Shell.Current.GoToAsync(nameof(IngredientsPage));
         }
 
         public async Task GetRandomFoodTriviaAsync()

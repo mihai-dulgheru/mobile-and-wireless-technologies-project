@@ -17,4 +17,9 @@ public partial class MobileHomePage : ContentPage
         base.OnAppearing();
         await _homeViewModel.GetRandomFoodTriviaAsync();
     }
+
+    private void OnButtonClicked(object sender, EventArgs e)
+    {
+        ((AppShellMobile)Application.Current.MainPage).NavigateTo(nameof(IngredientsPage));
+    }
 }

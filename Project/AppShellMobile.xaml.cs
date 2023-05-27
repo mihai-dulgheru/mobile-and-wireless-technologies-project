@@ -20,4 +20,29 @@ public partial class AppShellMobile : Shell
         Routing.RegisterRoute(nameof(SearchProductPage), typeof(SearchProductPage));
         Routing.RegisterRoute(nameof(StatisticsPage), typeof(StatisticsPage));
     }
+
+    public void NavigateTo(string name)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            switch (name)
+            {
+                case nameof(MobileHomePage):
+                    tabBar.CurrentItem = mobileHomeItem;
+                    break;
+                case nameof(IngredientsPage):
+                    tabBar.CurrentItem = ingredientsItem;
+                    break;
+                case nameof(MobileFavoriteRecipesPage):
+                    tabBar.CurrentItem = mobileFavoriteRecipesItem;
+                    break;
+                case nameof(AboutUsPage):
+                    tabBar.CurrentItem = aboutUsItem;
+                    break;
+
+                default:
+                    break;
+            }
+        });
+    }
 }
