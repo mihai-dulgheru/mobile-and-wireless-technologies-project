@@ -18,6 +18,5 @@ public partial class AllRecipesPage : ContentPage
                 await Shell.Current.GoToAsync($"{nameof(RecipePage)}?RecipeId={recipe.Id}");
             }
         }
-
     }
 }

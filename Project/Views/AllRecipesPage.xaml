@@ -79,6 +79,8 @@
                                                     Text="{Binding Likes, StringFormat='Likes: {0}'}"
                                                     VerticalTextAlignment="Center" />
                                                 <Button BackgroundColor="{DynamicResource Accent}"
+                                                    Command="{Binding BindingContext.SelectRecipeCommand, Source={x:Reference collectionView}}"
+                                                    CommandParameter="{Binding .}"
                                                     Grid.Column="1"
                                                     StyleClass="rounded-lg"
                                                     Text="View Recipe 🡪"
