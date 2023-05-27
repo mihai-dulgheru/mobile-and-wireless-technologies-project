@@ -28,17 +28,20 @@
 
     <Grid Margin="20"
         RowDefinitions="Auto,*,Auto">
-        <Frame BorderColor="{DynamicResource Gray950}"
-            CornerRadius="9999"
+        <Border Background="{DynamicResource White}"
             Margin="0,0,0,20"
-            Padding="0">
+            Padding="0"
+            Stroke="{DynamicResource Gray950}"
+            StrokeShape="RoundRectangle 24"
+            StrokeThickness="1">
             <SearchBar x:Name="searchBar"
+                BackgroundColor="{DynamicResource White}"
                 IsFocused="{Binding IsSearchBarFocused}"
                 IsTextPredictionEnabled="True"
                 Placeholder="Search ingredient..."
                 PlaceholderColor="{DynamicResource Gray}"
                 Text="{Binding SearchText}" />
-        </Frame>
+        </Border>
         <ScrollView x:Name="scrollView"
             Grid.Row="1"
             Margin="0,0,0,20"
