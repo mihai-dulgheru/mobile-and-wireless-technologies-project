@@ -54,7 +54,7 @@ namespace Project.ViewModels
         {
             if (_recipe != null)
             {
-                await _recipeDatabase.DeleteRecipeAsync(_recipe);
+                _ = await _recipeDatabase.DeleteRecipeAsync(_recipe);
             }
             await Shell.Current.GoToAsync("..");
         }

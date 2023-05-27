@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace Project.ViewModels
 {
-    internal interface IAllRecipesViewModel: IQueryAttributable
+    internal interface IAllRecipesViewModel : IQueryAttributable
     {
         string Ingredients { set; }
         string Label { get; }

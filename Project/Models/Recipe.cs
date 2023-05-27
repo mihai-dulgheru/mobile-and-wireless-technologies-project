@@ -22,7 +22,7 @@
 
         public Recipe() { }
 
-        public Recipe(int id, string title, string image, string imageType, int usedIngredientCount, int missedIngredientCount, IList<Ingredient> missedIngredients, IList<Ingredient> usedIngredients, IList<Ingredient> unusedIngredients,IList<Ingredient> extendedIngredients, int likes, string instructions, int readyInMinutes)
+        public Recipe(int id, string title, string image, string imageType, int usedIngredientCount, int missedIngredientCount, IList<Ingredient> missedIngredients, IList<Ingredient> usedIngredients, IList<Ingredient> unusedIngredients, IList<Ingredient> extendedIngredients, int likes, string instructions, int readyInMinutes)
         {
             Id = id;
             Title = title ?? throw new ArgumentNullException(nameof(title));
@@ -42,7 +42,7 @@
         public Recipe(int id, string title, string image, /*IList<Ingredient> usedIngredients,*/ IList<Ingredient> extendedIngredients, string instructions)
         {
             Id = id;
-            Title = title ?? throw new ArgumentNullException( nameof(title));
+            Title = title ?? throw new ArgumentNullException(nameof(title));
             Image = image ?? throw new ArgumentNullException(nameof(image));
             //UsedIngredients = usedIngredients ?? throw new ArgumentNullException(nameof(usedIngredients));
             ExtendedIngredients = extendedIngredients ?? throw new ArgumentNullException(nameof(extendedIngredients));
