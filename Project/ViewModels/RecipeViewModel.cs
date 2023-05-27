@@ -46,16 +46,21 @@ namespace Project.ViewModels
 
         private async Task AddRecipeAsync()
         {
-            _ = await _recipeDatabase.CreateRecipeAsync(new Recipe(_recipe.Id, _recipe.Title, _recipe.Image, _recipe.ExtendedIngredients, _recipe.Instructions));
+            if (_recipe == null)
+            {
+                return;
+            }
+            _ = await _recipeDatabase.CreateRecipeAsync(_recipe);
             await Shell.Current.GoToAsync("..");
         }
 
         private async Task DeleteRecipeAsync()
         {
-            if (_recipe != null)
+            if (_recipe == null)
             {
-                _ = await _recipeDatabase.DeleteRecipeAsync(_recipe);
+                return;
             }
+            _ = await _recipeDatabase.DeleteRecipeAsync(_recipe);
             await Shell.Current.GoToAsync("..");
         }
     }

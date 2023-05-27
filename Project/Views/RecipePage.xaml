@@ -17,7 +17,7 @@
         <ScrollView>
             <Grid RowDefinitions="Auto,Auto,Auto,*,Auto">
                 <Image Aspect="AspectFit"
-                    MaximumHeightRequest="384"
+                    MaximumHeightRequest="240"
                     Source="{Binding Recipe.Image}" />
                 <Label FontSize="26"
                     Grid.Row="1"
@@ -75,7 +75,6 @@
                         TextColor="{DynamicResource Gray}" />
                 </StackLayout>
                 <Button Command="{Binding AddOrDeleteRecipeCommand}"
-                    CommandParameter="{Binding SourcePage}"
                     Grid.Row="4"
                     Margin="20"
                     Text="Add Recipe" />
