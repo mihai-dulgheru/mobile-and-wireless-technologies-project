@@ -7,7 +7,25 @@
     <ContentPage.BindingContext>
         <viewModels:AllRecipesViewModel />
     </ContentPage.BindingContext>
-    
+
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                    Value="{DynamicResource White}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
     <Grid RowDefinitions="Auto,*">
         <Grid Grid.Column="0"
             Grid.Row="0">

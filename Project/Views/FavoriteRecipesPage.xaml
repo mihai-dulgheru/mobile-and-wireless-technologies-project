@@ -7,6 +7,7 @@
     <ContentPage.BindingContext>
         <viewModels:FavoriteRecipesViewModel />
     </ContentPage.BindingContext>
+    
     <ContentPage.Resources>
         <StyleSheet Source="/Resources/styles.css" />
     </ContentPage.Resources>

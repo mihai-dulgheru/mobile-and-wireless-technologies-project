@@ -7,10 +7,11 @@
     <ContentPage.BindingContext>
         <viewModels:AllRecipesViewModel />
     </ContentPage.BindingContext>
-        <ContentPage.Resources>
+    
+    <ContentPage.Resources>
         <StyleSheet Source="/Resources/styles.css" />
     </ContentPage.Resources>
-
+    
     <Grid Margin="20"
         RowDefinitions="Auto,*">
         <Grid Grid.Column="0"
@@ -30,7 +31,7 @@
                 <CollectionView x:Name="collectionView"
                     ItemsSource="{Binding Recipes}"
                     SelectionChanged="OnCollectionViewSelectionChanged"
-                    SelectionMode="Single">
+                    SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid ColumnDefinitions="Auto,*"
@@ -78,7 +79,8 @@
                                                     MaxLines="2"
                                                     Text="{Binding Likes, StringFormat='Likes: {0}'}"
                                                     VerticalTextAlignment="Center" />
-                                                <Button BackgroundColor="{DynamicResource Accent}"
+                                                <Button x:Name="viewRecipeButton"
+                                                    BackgroundColor="{DynamicResource Accent}"
                                                     Command="{Binding BindingContext.SelectRecipeCommand, Source={x:Reference collectionView}}"
                                                     CommandParameter="{Binding .}"
                                                     Grid.Column="1"
