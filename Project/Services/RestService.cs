@@ -20,7 +20,7 @@ namespace Project.Services
             {
                 IList<Product> products = new List<Product>();
 
-                string RequestUri = string.Format(Constants.BaseUrl, $"food/products/search?query={query}&number=10&apiKey={Constants.APIKey}");
+                string RequestUri = string.Format(Constants.BaseUrl, $"food/products/search?query={query}&number=30&apiKey={Constants.APIKey}");
                 HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
                 HttpResponseMessage response = await _client.SendAsync(request);
                 _ = response.EnsureSuccessStatusCode();
@@ -89,7 +89,7 @@ namespace Project.Services
             {
                 IList<Ingredient> ingredients = new List<Ingredient>();
 
-                string RequestUri = string.Format(Constants.BaseUrl, $"food/ingredients/autocomplete?query={query}&number=10&apiKey={Constants.APIKey}");
+                string RequestUri = string.Format(Constants.BaseUrl, $"food/ingredients/autocomplete?query={query}&number=5&apiKey={Constants.APIKey}");
                 HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
                 HttpResponseMessage response = await _client.SendAsync(request);
                 _ = response.EnsureSuccessStatusCode();
@@ -140,7 +140,7 @@ namespace Project.Services
         {
             try
             {
-                string RequestUri = string.Format(Constants.BaseUrl, $"recipes/findByIngredients?ingredients={query}&number=10&limitLicense=true&ranking=1&ignorePantry=false&apiKey={Constants.APIKey}");
+                string RequestUri = string.Format(Constants.BaseUrl, $"recipes/findByIngredients?ingredients={query}&number=30&limitLicense=true&ranking=1&ignorePantry=false&apiKey={Constants.APIKey}");
                 HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
                 HttpResponseMessage response = await _client.SendAsync(request);
                 _ = response.EnsureSuccessStatusCode();

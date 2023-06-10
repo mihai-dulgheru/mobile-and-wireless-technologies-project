@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:Project.Resources.Helpers"
              xmlns:viewModels="clr-namespace:Project.ViewModels"
              x:Class="Project.Views.MobileAllRecipesPage"
              Title="MobileAllRecipesPage">
     <ContentPage.BindingContext>
         <viewModels:AllRecipesViewModel />
     </ContentPage.BindingContext>
-
+    
     <ContentPage.Resources>
         <Style TargetType="Grid">
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -24,6 +25,7 @@
                 </VisualStateGroupList>
             </Setter>
         </Style>
+        <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </ContentPage.Resources>
 
     <Grid RowDefinitions="Auto,*">
@@ -42,7 +44,11 @@
             Grid.Row="1"
             VerticalOptions="FillAndExpand">
             <StackLayout>
+                <ActivityIndicator Color="{DynamicResource Primary}"
+                    IsRunning="true" 
+                    IsVisible="{Binding IsBusy}" />
                 <CollectionView x:Name="collectionView"
+                    IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
                     ItemsSource="{Binding Recipes}"
                     SelectionChanged="OnCollectionViewSelectionChanged"
                     SelectionMode="Single">

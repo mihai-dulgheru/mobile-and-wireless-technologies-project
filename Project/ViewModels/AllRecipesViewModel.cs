@@ -10,10 +10,11 @@ namespace Project.ViewModels
     internal class AllRecipesViewModel : ObservableObject, IAllRecipesViewModel
     {
         private IList<Recipe> _recipes;
+        private bool _isBusy = true;
         private readonly IRestService _restService;
         private string _ingredients;
-        public string Label { get; } = "Recommended recipes";
         public ICommand SelectRecipeCommand { get; }
+        public string Label { get; } = "Recommended recipes";
 
         public AllRecipesViewModel()
         {
@@ -38,6 +39,7 @@ namespace Project.ViewModels
                 if (_recipes != value)
                 {
                     _recipes = (List<Recipe>)value;
+                    IsBusy = false;
                     OnPropertyChanged();
                 }
             }
@@ -51,7 +53,7 @@ namespace Project.ViewModels
                 {
                     _ingredients = value;
                     OnPropertyChanged();
-                    _ = SearchRecipesAsync(_ingredients);
+                    _ = Task.Run(() => SearchRecipesAsync(_ingredients));
                 }
             }
         }
@@ -67,6 +69,19 @@ namespace Project.ViewModels
             if (recipe != null)
             {
                 await Shell.Current.GoToAsync($"{nameof(RecipePage)}?RecipeId={recipe.Id}");
+            }
+        }
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                if (_isBusy != value)
+                {
+                    _isBusy = value;
+                    OnPropertyChanged();
+                }
             }
         }
     }

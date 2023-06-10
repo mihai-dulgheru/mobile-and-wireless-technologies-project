@@ -36,7 +36,7 @@ namespace Project.Models
         [Ignore]
         public string Instructions
         {
-            get => _instructions;
+            get => !string.IsNullOrEmpty(_instructions) ? _instructions : "No instructions provided for this recipe.";
             set
             {
                 _instructions = value;

@@ -6,10 +6,11 @@ namespace Project.ViewModels
     internal interface IAllRecipesViewModel : IQueryAttributable
     {
         string Ingredients { set; }
+        bool IsBusy { get; set; }
         string Label { get; }
         IList<Recipe> Recipes { get; set; }
+        ICommand SelectRecipeCommand { get; }
 
         Task SearchRecipesAsync(string ingredients);
-        ICommand SelectRecipeCommand { get; }
     }
 }
