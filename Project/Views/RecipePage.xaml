@@ -15,7 +15,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <Grid RowDefinitions="Auto,Auto,Auto,*,Auto">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto">
                 <Image Aspect="AspectFit"
                     MaximumHeightRequest="240"
                     Source="{Binding Recipe.Image}" />
@@ -24,8 +24,20 @@
                     HorizontalOptions="Center" TextColor="#f55951"
                     Margin="10"
                     Text="{Binding Recipe.Title}" />
+                <Label Grid.Row="2"
+                       HorizontalOptions="Center"
+                       TextColor="{DynamicResource Gray500}"
+                       Margin="10,0,10,10">
+                    <Label.FormattedText>
+                        <FormattedString >
+                            <Span Text="Ready in "  FontAttributes="Italic"/>
+                            <Span Text="{Binding Recipe.ReadyInMinutes}" FontAttributes="Italic"/>
+                            <Span Text=" minutes" FontAttributes="Italic"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
                 <Grid ColumnDefinitions="*,Auto"
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Margin="10">
                     <StackLayout Grid.Column="0"
                         Spacing="5">
@@ -35,9 +47,12 @@
                         <CollectionView ItemsSource="{Binding Recipe.ExtendedIngredients}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Label FontSize="16"
-                                        Text="{Binding Name}"
-                                        TextColor="{DynamicResource Gray}" />
+                                    <Label FontSize="16" Text="{Binding Name}"
+                                           ToolTipProperties.Text="{Binding Name}"
+                                           TextColor="{DynamicResource Gray}"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="1"
+                                           Margin="0,0,40,0"/>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
@@ -66,7 +81,7 @@
                         </CollectionView>
                     </StackLayout>
                 </Grid>
-                <StackLayout Grid.Row="3"
+                <StackLayout Grid.Row="4"
                     Margin="10">
                     <Label FontAttributes="Bold"
                         FontSize="20"
@@ -75,7 +90,7 @@
                         TextColor="{DynamicResource Gray}" />
                 </StackLayout>
                 <Button Command="{Binding AddOrDeleteRecipeCommand}"
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Margin="20"
                     Text="Add Recipe" />
             </Grid>
