@@ -3,7 +3,7 @@ using SQLite;
 
 namespace Project.Models
 {
-    [Table("Recipe")]
+    [Table("Recipes")]
     public class Recipe
     {
         private string _instructions;
@@ -17,15 +17,18 @@ namespace Project.Models
         [Ignore]
         public IList<Ingredient> UsedIngredients { get; set; } = new List<Ingredient>();
         [PrimaryKey, AutoIncrement]
+        [Column("id")]
         public int Id { get; set; }
         [Ignore]
         public int Likes { get; set; }
         [Ignore]
         public int MissedIngredientCount { get; set; }
+        [Column("ready_in_minutes")]
         public int ReadyInMinutes { get; set; }
         [Ignore]
         public int UsedIngredientCount { get; set; }
         [MaxLength(250)]
+        [Column("image")]
         public string Image { get; set; }
         [Ignore]
         public string ImageType { get; set; }
@@ -47,9 +50,10 @@ namespace Project.Models
             }
         }
         [MaxLength(250)]
+        [Column("title")]
         public string Title { get; set; }
         [MaxLength(250)]
-        [Column("Ingredients")]
+        [Column("ingredients")]
         public string StoredIngredients { get; set; }
 
         public Recipe() { }

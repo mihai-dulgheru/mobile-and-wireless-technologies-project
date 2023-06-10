@@ -2,19 +2,23 @@
 
 namespace Project.Models
 {
-    [Table("Product")]
+    [Table("Products")]
     public class Product
     {
         [PrimaryKey, AutoIncrement]
+        [Column("id")]
         public int Id { get; set; }
 
         [MaxLength(250)]
+        [Column("title")]
         public string Title { get; set; }
 
         [MaxLength(250)]
+        [Column("image")]
         public string Image { get; set; }
 
         [MaxLength(250)]
+        [Column("image_type")]
         public string ImageType { get; set; }
 
         public Product()

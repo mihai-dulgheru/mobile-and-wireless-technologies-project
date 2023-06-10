@@ -50,7 +50,7 @@ namespace Project.ViewModels
             {
                 return;
             }
-            _ = await _recipeDatabase.CreateRecipeAsync(_recipe);
+            await _recipeDatabase.CreateRecipeAsync(_recipe);
             await Shell.Current.GoToAsync("..");
         }
 
