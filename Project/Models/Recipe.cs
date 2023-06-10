@@ -71,13 +71,14 @@ namespace Project.Models
             ReadyInMinutes = readyInMinutes;
         }
 
-        public Recipe(int id, string title, string image, IList<Ingredient> extendedIngredients, string instructions)
+        public Recipe(int id, string title, string image, IList<Ingredient> extendedIngredients, string instructions, int readyInMinutes)
         {
             Id = id;
             Title = title ?? throw new ArgumentNullException(nameof(title));
             Image = image ?? throw new ArgumentNullException(nameof(image));
             ExtendedIngredients = extendedIngredients ?? throw new ArgumentNullException(nameof(extendedIngredients));
             Instructions = instructions ?? throw new ArgumentNullException(nameof(title));
+            ReadyInMinutes = readyInMinutes;
         }
 
         public void SetIngredients()
