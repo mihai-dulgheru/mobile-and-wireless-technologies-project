@@ -16,8 +16,8 @@ public partial class MobileAllRecipesPage : ContentPage
             if (e.CurrentSelection[0] is Recipe recipe)
             {
                 await Shell.Current.GoToAsync($"{nameof(RecipePage)}?RecipeId={recipe.Id}");
+                collectionView.SelectedItem = null;
             }
         }
-
     }
 }
