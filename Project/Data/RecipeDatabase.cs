@@ -21,10 +21,11 @@ namespace Project.Data
             }
 
             Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+            _ = await Database.CreateTableAsync<Ingredient>();
             _ = await Database.CreateTableAsync<Recipe>();
         }
 
-        public async Task<List<Recipe>> GetRecipessAsync()
+        public async Task<List<Recipe>> GetRecipesAsync()
         {
             await InitAsync();
             return await Database.Table<Recipe>().ToListAsync();
@@ -36,16 +37,24 @@ namespace Project.Data
             return await Database.Table<Recipe>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<int> CreateRecipeAsync(Recipe Recipe)
+        public async Task CreateRecipeAsync(Recipe recipe)
         {
+            List<Ingredient> ingredients = (List<Ingredient>)recipe.ExtendedIngredients;
             await InitAsync();
-            return await Database.InsertAsync(Recipe);
+            await Database.InsertAsync(recipe).ContinueWith((t) =>
+            {
+                foreach (Ingredient ingredient in ingredients)
+                {
+                    ingredient.RecipeId = recipe.Id;
+                }
+                _ = Database.InsertAllAsync(ingredients);
+            });
         }
 
-        public async Task<int> DeleteRecipeAsync(Recipe Recipe)
+        public async Task<int> DeleteRecipeAsync(Recipe recipe)
         {
             await InitAsync();
-            return await Database.DeleteAsync(Recipe);
+            return await Database.DeleteAsync(recipe);
         }
     }
 }
