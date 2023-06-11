@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:Project.Resources.Helpers"
              xmlns:viewModels="clr-namespace:Project.ViewModels"
-             x:Class="Project.Views.RecipePage"
-             Title="RecipePage">
+             x:Class="Project.Views.FavoriteRecipePage"
+             Title="FavoriteRecipePage">
     <ContentPage.BindingContext>
-        <viewModels:RecipeViewModel />
+        <viewModels:FavoriteRecipeViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
@@ -90,10 +90,10 @@
                     <Label Text="{Binding Recipe.Instructions}"
                         TextColor="{DynamicResource Gray}" />
                 </StackLayout>
-                <Button Command="{Binding AddRecipeCommand}"
+                <Button Command="{Binding RemoveRecipeCommand}"
                     Grid.Row="5"
                     Margin="20"
-                    Text="Add Recipe" />
+                    Text="Remove Recipe" />
             </Grid>
         </ScrollView>
     </ContentPage.Content>

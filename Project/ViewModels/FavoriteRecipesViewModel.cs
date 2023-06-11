@@ -1,285 +1,69 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Project.Data;
 using Project.Models;
+using Project.Views;
+using System.Windows.Input;
 
 namespace Project.ViewModels
 {
     internal class FavoriteRecipesViewModel : ObservableObject, IFavoriteRecipesViewModel
     {
-        public string Label { get; } = "Your favorite recipes";
+        private bool _isBusy = true;
         private List<Recipe> _recipes = new();
+        private readonly IRecipeDatabase _recipeDatabase;
+        public ICommand SelectRecipeCommand { get; }
+        public string Label { get; } = "Your favorite recipes";
+
+        public FavoriteRecipesViewModel()
+        {
+            _recipeDatabase = new RecipeDatabase();
+            SelectRecipeCommand = new AsyncRelayCommand<Recipe>(SelectRecipeAsync);
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await OnAppearing();
+            });
+        }
 
         public IList<Recipe> Recipes
         {
-            get
-            {
-                //Mock data
-                _recipes.Add(new Recipe
-                {
-                    Id = 642582,
-                    Title = "Farfalle With Broccoli, Carrots and Tomatoes",
-                    Image = "https://spoonacular.com/recipeImages/642582-312x231.jpg",
-                    ImageType = "jpg",
-                    UsedIngredientCount = 2,
-                    MissedIngredientCount = 6,
-                    MissedIngredients = new List<Ingredient>
-                    {
-                        new Ingredient
-                        {
-                            Id = 10120420,
-                            Amount = 1.0,
-                            Unit = "pound",
-                            UnitLong = "pound",
-                            UnitShort = "lb",
-                            Aisle = "Pasta and Rice",
-                            Name = "farfalle pasta",
-                            Original = "1 pound farfalle pasta",
-                            OriginalName = "farfalle pasta",
-                            Meta = Array.Empty < string >(),
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/farfalle.png"
-                        },
-                        new Ingredient
-                        {
-                            Id = 4042,
-                            Amount = 2.0,
-                            Unit = "tablespoons",
-                            UnitLong = "tablespoons",
-                            UnitShort = "Tbsp",
-                            Aisle = "Oil, Vinegar, Salad Dressing",
-                            Name = "peanut oil",
-                            Original = "2 tablespoons peanut oil",
-                            OriginalName = "peanut oil",
-                            Meta = Array.Empty < string >(),
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/peanut-oil.jpg"
-                        },
-                        new Ingredient
-                        {
-                            Id = 11090,
-                            Amount = 2.0,
-                            Unit = "inches",
-                            UnitLong = "inches",
-                            UnitShort = "inches",
-                            Aisle = "Produce",
-                            Name = "broccoli heads",
-                            Original = "2 inches large broccoli heads (that's what she said)",
-                            OriginalName = "broccoli heads (that's what she said)",
-                            Meta = new string[] {"(that's what she said)"},
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/broccoli.jpg"
-                        },
-                        new Ingredient
-                        {
-                            Id = 11291,
-                            Amount = 2.0,
-                            Unit = "bunches",
-                            UnitLong = "bunches",
-                            UnitShort = "bunches",
-                            Aisle = "Produce",
-                            Name = "scallions",
-                            Original = "2 bunches of scallions",
-                            OriginalName = "scallions",
-                            Meta = Array.Empty < string >(),
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/spring-onions.jpg"
-                        },
-                        new Ingredient
-                        {
-                            Id = 10211215,
-                            Amount = 3.0,
-                            Unit = "",
-                            UnitLong = "",
-                            UnitShort = "",
-                            Aisle = "Produce",
-                            Name = "garlic cloves",
-                            Original = "3 garlic cloves, minced",
-                            OriginalName = "garlic cloves, minced",
-                            Meta = new string[] { "minced" },
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg"
-                        },
-                        new Ingredient
-                        {
-                            Id = 1033,
-                            Amount = 1.0,
-                            Unit = "cup",
-                            UnitLong = "cup",
-                            UnitShort = "cup",
-                            Aisle = "Cheese",
-                            Name = "parmigiano-reggiano",
-                            Original = "1 cup + of Parmigiano-Reggiano, grated",
-                            OriginalName = "of Parmigiano-Reggiano, grated",
-                            Meta = new string[] { "grated" },
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/parmesan.jpg"
-                        }
-                    },
-                    UsedIngredients = new List<Ingredient>
-                    {
-                        new Ingredient
-                        {
-                            Id = 11124,
-                            Name = "carrots",
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/sliced-carrot.png",
-                            Amount = 3.0,
-                            Unit = "",
-                            UnitShort = "",
-                            UnitLong = "",
-                            Aisle = "Produce",
-                            Original = "3 carrots",
-                            OriginalName = "carrots",
-                            Meta = Array.Empty<string>()
-                        },
-                        new Ingredient
-                        {
-                            Id = 10111529,
-                            Name = "grape tomatoes",
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/cherry-tomatoes.png",
-                            Amount = 1.0,
-                            Unit = "container",
-                            UnitShort = "container",
-                            UnitLong = "container",
-                            Aisle = "Produce",
-                            Original = "1 container grape tomatoes",
-                            OriginalName = "grape tomatoes",
-                            Meta = Array.Empty<string>()
-                        }
-                    },
-                    UnusedIngredients = new List<Ingredient>(),
-                    Likes = 4,
-                    ReadyInMinutes = 40
-                });
-                _recipes.Add(new Recipe
-                {
-                    Id = 642582,
-                    Title = "Farfalle With Broccoli, Carrots and Tomatoes",
-                    Image = "https://spoonacular.com/recipeImages/642582-312x231.jpg",
-                    ImageType = "jpg",
-                    UsedIngredientCount = 2,
-                    MissedIngredientCount = 6,
-                    MissedIngredients = new List<Ingredient>
-                    {
-                        new Ingredient
-                        {
-                            Id = 10120420,
-                            Amount = 1.0,
-                            Unit = "pound",
-                            UnitLong = "pound",
-                            UnitShort = "lb",
-                            Aisle = "Pasta and Rice",
-                            Name = "farfalle pasta",
-                            Original = "1 pound farfalle pasta",
-                            OriginalName = "farfalle pasta",
-                            Meta = Array.Empty < string >(),
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/farfalle.png"
-                        },
-                        new Ingredient
-                        {
-                            Id = 4042,
-                            Amount = 2.0,
-                            Unit = "tablespoons",
-                            UnitLong = "tablespoons",
-                            UnitShort = "Tbsp",
-                            Aisle = "Oil, Vinegar, Salad Dressing",
-                            Name = "peanut oil",
-                            Original = "2 tablespoons peanut oil",
-                            OriginalName = "peanut oil",
-                            Meta = Array.Empty < string >(),
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/peanut-oil.jpg"
-                        },
-                        new Ingredient
-                        {
-                            Id = 11090,
-                            Amount = 2.0,
-                            Unit = "inches",
-                            UnitLong = "inches",
-                            UnitShort = "inches",
-                            Aisle = "Produce",
-                            Name = "broccoli heads",
-                            Original = "2 inches large broccoli heads (that's what she said)",
-                            OriginalName = "broccoli heads (that's what she said)",
-                            Meta = new string[] {"(that's what she said)"},
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/broccoli.jpg"
-                        },
-                        new Ingredient
-                        {
-                            Id = 11291,
-                            Amount = 2.0,
-                            Unit = "bunches",
-                            UnitLong = "bunches",
-                            UnitShort = "bunches",
-                            Aisle = "Produce",
-                            Name = "scallions",
-                            Original = "2 bunches of scallions",
-                            OriginalName = "scallions",
-                            Meta = Array.Empty < string >(),
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/spring-onions.jpg"
-                        },
-                        new Ingredient
-                        {
-                            Id = 10211215,
-                            Amount = 3.0,
-                            Unit = "",
-                            UnitLong = "",
-                            UnitShort = "",
-                            Aisle = "Produce",
-                            Name = "garlic cloves",
-                            Original = "3 garlic cloves, minced",
-                            OriginalName = "garlic cloves, minced",
-                            Meta = new string[] { "minced" },
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg"
-                        },
-                        new Ingredient
-                        {
-                            Id = 1033,
-                            Amount = 1.0,
-                            Unit = "cup",
-                            UnitLong = "cup",
-                            UnitShort = "cup",
-                            Aisle = "Cheese",
-                            Name = "parmigiano-reggiano",
-                            Original = "1 cup + of Parmigiano-Reggiano, grated",
-                            OriginalName = "of Parmigiano-Reggiano, grated",
-                            Meta = new string[] { "grated" },
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/parmesan.jpg"
-                        }
-                    },
-                    UsedIngredients = new List<Ingredient>
-                    {
-                        new Ingredient
-                        {
-                            Id = 11124,
-                            Name = "carrots",
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/sliced-carrot.png",
-                            Amount = 3.0,
-                            Unit = "",
-                            UnitShort = "",
-                            UnitLong = "",
-                            Aisle = "Produce",
-                            Original = "3 carrots",
-                            OriginalName = "carrots",
-                            Meta = Array.Empty<string>()
-                        },
-                        new Ingredient
-                        {
-                            Id = 10111529,
-                            Name = "grape tomatoes",
-                            Image = "https://spoonacular.com/cdn/ingredients_100x100/cherry-tomatoes.png",
-                            Amount = 1.0,
-                            Unit = "container",
-                            UnitShort = "container",
-                            UnitLong = "container",
-                            Aisle = "Produce",
-                            Original = "1 container grape tomatoes",
-                            OriginalName = "grape tomatoes",
-                            Meta = Array.Empty<string>()
-                        }
-                    },
-                    UnusedIngredients = new List<Ingredient>(),
-                    Likes = 4,
-                    ReadyInMinutes = 40
-                });
-                return _recipes;
-            }
+            get => _recipes;
             set
             {
                 if (_recipes != value)
                 {
                     _recipes = (List<Recipe>)value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private async Task SelectRecipeAsync(Recipe recipe)
+        {
+            if (recipe != null)
+            {
+                await Shell.Current.GoToAsync($"{nameof(FavoriteRecipePage)}?RecipeId={recipe.Id}");
+            }
+        }
+
+        public async Task OnAppearing()
+        {
+            IList<Recipe> recipes = await _recipeDatabase.GetRecipesAsync();
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                Recipes = recipes;
+                IsBusy = false;
+            });
+        }
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                if (_isBusy != value)
+                {
+                    _isBusy = value;
                     OnPropertyChanged();
                 }
             }

@@ -3,9 +3,9 @@ using System.Windows.Input;
 
 namespace Project.ViewModels
 {
-    internal interface IRecipeViewModel : IQueryAttributable
+    internal interface IFavoriteRecipeViewModel : IQueryAttributable
     {
-        ICommand AddRecipeCommand { get; }
+        ICommand RemoveRecipeCommand { get; }
         Recipe Recipe { get; set; }
     }
 }

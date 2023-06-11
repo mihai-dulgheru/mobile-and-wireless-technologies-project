@@ -53,7 +53,10 @@ namespace Project.ViewModels
                 {
                     _ingredients = value;
                     OnPropertyChanged();
-                    _ = Task.Run(() => SearchRecipesAsync(_ingredients));
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await SearchRecipesAsync(_ingredients);
+                    });
                 }
             }
         }

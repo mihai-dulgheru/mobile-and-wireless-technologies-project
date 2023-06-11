@@ -1,14 +1,21 @@
+using Project.ViewModels;
+
 namespace Project.Views;
 
 public partial class FavoriteRecipesPage : ContentPage
 {
+    private readonly IFavoriteRecipesViewModel _viewModel;
+
     public FavoriteRecipesPage()
     {
         InitializeComponent();
+        _viewModel = new FavoriteRecipesViewModel();
+        BindingContext = _viewModel;
     }
 
-    private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    protected override async void OnAppearing()
     {
-
+        base.OnAppearing();
+        await _viewModel.OnAppearing();
     }
 }

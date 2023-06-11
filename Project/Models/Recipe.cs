@@ -36,7 +36,7 @@ namespace Project.Models
         public string Ingredients => UsedIngredientCount + MissedIngredientCount > 0
                     ? string.Join(", ", MissedIngredients.Concat(UsedIngredients).Select(ingredient => ingredient.Name))
                     : string.Empty;
-        [Ignore]
+        [Column("instructions")]
         public string Instructions
         {
             get => !string.IsNullOrEmpty(_instructions) ? _instructions : "No instructions provided for this recipe.";

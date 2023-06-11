@@ -9,6 +9,7 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         Routing.RegisterRoute(nameof(AllRecipesPage), typeof(AllRecipesPage));
+        Routing.RegisterRoute(nameof(FavoriteRecipePage), typeof(FavoriteRecipePage));
         Routing.RegisterRoute(nameof(FavoriteRecipesPage), typeof(FavoriteRecipesPage));
         Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
         Routing.RegisterRoute(nameof(IngredientsPage), typeof(IngredientsPage));

@@ -36,7 +36,6 @@
                 <CollectionView x:Name="collectionView"
                     IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
                     ItemsSource="{Binding Recipes}"
-                    SelectionChanged="OnCollectionViewSelectionChanged"
                     SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>

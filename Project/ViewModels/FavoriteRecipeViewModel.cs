@@ -2,29 +2,26 @@
 using CommunityToolkit.Mvvm.Input;
 using Project.Data;
 using Project.Models;
-using Project.Services;
 using System.Windows.Input;
 
 namespace Project.ViewModels
 {
-    internal class RecipeViewModel : ObservableObject, IRecipeViewModel
+    internal class FavoriteRecipeViewModel : ObservableObject, IFavoriteRecipeViewModel
     {
         private Recipe _recipe;
         private readonly IRecipeDatabase _recipeDatabase;
-        private readonly IRestService _restService;
-        public ICommand AddRecipeCommand { get; }
+        public ICommand RemoveRecipeCommand { get; }
 
-        public RecipeViewModel()
+        public FavoriteRecipeViewModel()
         {
-            AddRecipeCommand = new AsyncRelayCommand(AddRecipeAsync);
+            RemoveRecipeCommand = new AsyncRelayCommand(DeleteRecipeAsync);
             _recipeDatabase = new RecipeDatabase();
-            _restService = new RestService();
         }
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            string recipeId = query["RecipeId"] as string;
-            Recipe recipe = await _restService.GetRecipeInformationAsync(recipeId);
+            int recipeId = int.Parse(query["RecipeId"] as string);
+            Recipe recipe = await _recipeDatabase.GetRecipeAsync(recipeId);
             if (recipe != null)
             {
                 Recipe = recipe;
@@ -44,13 +41,13 @@ namespace Project.ViewModels
             }
         }
 
-        private async Task AddRecipeAsync()
+        private async Task DeleteRecipeAsync()
         {
             if (_recipe == null)
             {
                 return;
             }
-            await _recipeDatabase.CreateRecipeAsync(_recipe);
+            _ = await _recipeDatabase.DeleteRecipeAsync(_recipe);
             await Shell.Current.GoToAsync("..");
         }
     }

@@ -1,102 +1,108 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:Project.ViewModels"
+             xmlns:helpers="clr-namespace:Project.Resources.Helpers"
              x:Class="Project.Views.FavoriteRecipesPage"
              Title="FavoriteRecipesPage">
-    <ContentPage.BindingContext>
-        <viewModels:FavoriteRecipesViewModel />
-    </ContentPage.BindingContext>
-    
     <ContentPage.Resources>
         <StyleSheet Source="/Resources/styles.css" />
+        <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </ContentPage.Resources>
 
-    <VerticalStackLayout Margin="20">
-        <Label FontAttributes="Bold"
-            FontSize="Title"
-            HorizontalOptions="CenterAndExpand"
-            Text="{Binding Label}"
-            TextColor="{DynamicResource Primary}"
-            VerticalOptions="StartAndExpand" />
-        <Grid>
-            <CollectionView ItemsSource="{Binding Recipes}"
-                        SelectionChanged="CollectionView_SelectionChanged"
-                        SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid ColumnDefinitions="Auto,*"
-                            Margin="0,20,0,0">
-                            <Border Grid.Column="0"
-                                Grid.Row="0"
-                                StrokeShape="RoundRectangle 16,0,16,0"
-                                StrokeThickness="0">
-                                <Image Aspect="AspectFill"
-                                    HeightRequest="136"
-                                    Source="{Binding Image}"
-                                    WidthRequest="136" />
-                            </Border>
-                            <Grid Grid.Column="1"
-                                Grid.Row="0"
-                                Padding="-2,1,0,0">
-                                <Border Opacity="1"
-                                    Padding="10"
-                                    StrokeShape="RoundRectangle 0,16,0,16"
+    <ScrollView>
+        <VerticalStackLayout Margin="20">
+            <Label FontAttributes="Bold"
+                FontSize="Title"
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding Label}"
+                TextColor="{DynamicResource Primary}"
+                VerticalOptions="StartAndExpand" />
+            <Grid>
+                <ActivityIndicator Color="{DynamicResource Primary}"
+                    IsRunning="true" 
+                    IsVisible="{Binding IsBusy}" />
+                <CollectionView x:Name="collectionView"
+                    IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                    ItemsSource="{Binding Recipes}"
+                    SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="Auto,*"
+                                Margin="0,20,0,0">
+                                <Border Grid.Column="0"
+                                    Grid.Row="0"
+                                    StrokeShape="RoundRectangle 16,0,16,0"
                                     StrokeThickness="0">
-                                    <Grid RowDefinitions="*,*,Auto">
-                                        <Label FontAttributes="Bold"
-                                            FontSize="Small"
-                                            Grid.Column="0"
-                                            Grid.Row="0"
-                                            HorizontalTextAlignment="Start"
-                                            LineBreakMode="TailTruncation"
-                                            Text="{Binding Title}"
-                                            TextColor="{DynamicResource Primary}"
-                                            VerticalTextAlignment="Start" />
-                                        <Label FontSize="Body"
-                                            Grid.Column="0"
-                                            Grid.Row="1"
-                                            HorizontalTextAlignment="Start"
-                                            LineBreakMode="WordWrap"
-                                            MaxLines="2"
-                                            Text="{Binding Ingredients, StringFormat='Ingredients: {0}'}"
-                                            VerticalTextAlignment="Start" />
-                                        <Grid ColumnDefinitions="*,160"
-                                            Grid.Column="0"
-                                            Grid.Row="3">
-                                            <Label Grid.Column="0"
+                                    <Image Aspect="AspectFill"
+                                        HeightRequest="136"
+                                        Source="{Binding Image}"
+                                        WidthRequest="136" />
+                                </Border>
+                                <Grid Grid.Column="1"
+                                    Grid.Row="0"
+                                    Padding="-2,1,0,0">
+                                    <Border Opacity="1"
+                                        Padding="10"
+                                        StrokeShape="RoundRectangle 0,16,0,16"
+                                        StrokeThickness="0">
+                                        <Grid RowDefinitions="*,*,Auto">
+                                            <Label FontAttributes="Bold"
+                                                FontSize="Small"
+                                                Grid.Column="0"
+                                                Grid.Row="0"
+                                                HorizontalTextAlignment="Start"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding Title}"
+                                                TextColor="{DynamicResource Primary}"
+                                                VerticalTextAlignment="Start" />
+                                            <Label FontSize="Body"
+                                                Grid.Column="0"
+                                                Grid.Row="1"
                                                 HorizontalTextAlignment="Start"
                                                 LineBreakMode="WordWrap"
                                                 MaxLines="2"
-                                                Text="{Binding Likes, StringFormat='Likes: {0}'}"
-                                                VerticalTextAlignment="Center" />
-                                            <Button BackgroundColor="{DynamicResource Accent}"
-                                                Grid.Column="1"
-                                                StyleClass="rounded-lg"
-                                                Text="View Recipe 🡪"
-                                                TextColor="{DynamicResource White}"
-                                                TextTransform="Uppercase" />
+                                                Text="{Binding StoredIngredients, StringFormat='Ingredients: {0}'}"
+                                                VerticalTextAlignment="Start" />
+                                            <Grid ColumnDefinitions="*,160"
+                                                Grid.Column="0"
+                                                Grid.Row="3">
+                                                <Label Grid.Column="0"
+                                                    HorizontalTextAlignment="Start"
+                                                    LineBreakMode="WordWrap"
+                                                    MaxLines="2"
+                                                    Text="{Binding ReadyInMinutes, StringFormat='Total time: {0} min'}"
+                                                    VerticalTextAlignment="Center" />
+                                                <Button x:Name="viewRecipeButton"
+                                                    BackgroundColor="{DynamicResource Accent}"
+                                                    Command="{Binding BindingContext.SelectRecipeCommand, Source={x:Reference collectionView}}"
+                                                    CommandParameter="{Binding .}"
+                                                    Grid.Column="1"
+                                                    StyleClass="rounded-lg"
+                                                    Text="View Recipe 🡪"
+                                                    TextColor="{DynamicResource White}"
+                                                    TextTransform="Uppercase" />
+                                            </Grid>
                                         </Grid>
-                                    </Grid>
-                                </Border>
+                                    </Border>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <CollectionView.EmptyView>
-                    <ContentView>
-                        <StackLayout HorizontalOptions="CenterAndExpand"
-                            VerticalOptions="CenterAndExpand">
-                            <Label FontAttributes="Bold"
-                                FontSize="Micro"
-                                HorizontalOptions="Fill"
-                                HorizontalTextAlignment="Center"
-                                Margin="0,20,0,0"
-                                Text="No items to display" />
-                        </StackLayout>
-                    </ContentView>
-                </CollectionView.EmptyView>
-            </CollectionView>
-        </Grid>
-    </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <StackLayout HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand">
+                                <Label FontAttributes="Bold"
+                                    FontSize="Micro"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Margin="0,20,0,0"
+                                    Text="No items to display" />
+                            </StackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
