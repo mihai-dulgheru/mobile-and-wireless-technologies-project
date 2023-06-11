@@ -19,10 +19,7 @@ namespace Project.ViewModels
         {
             _recipeDatabase = new RecipeDatabase();
             SelectRecipeCommand = new AsyncRelayCommand<Recipe>(SelectRecipeAsync);
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                await OnAppearing();
-            });
+            Task.Run(async () => await OnAppearing());
         }
 
         public IList<Recipe> Recipes

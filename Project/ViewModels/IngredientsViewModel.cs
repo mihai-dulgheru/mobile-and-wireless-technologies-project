@@ -18,8 +18,8 @@ namespace Project.ViewModels
 
         public IngredientsViewModel()
         {
-            GoToSearchRecipePageCommand = new AsyncRelayCommand(GoToSearchRecipePageAsync);
             _restService = new RestService();
+            GoToSearchRecipePageCommand = new AsyncRelayCommand(GoToSearchRecipePageAsync);
         }
 
         private async Task GoToSearchRecipePageAsync()

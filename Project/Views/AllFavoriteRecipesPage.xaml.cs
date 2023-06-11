@@ -2,11 +2,11 @@ using Project.ViewModels;
 
 namespace Project.Views;
 
-public partial class FavoriteRecipesPage : ContentPage
+public partial class AllFavoriteRecipesPage : ContentPage
 {
     private readonly IFavoriteRecipesViewModel _viewModel;
 
-    public FavoriteRecipesPage()
+    public AllFavoriteRecipesPage()
     {
         InitializeComponent();
         _viewModel = new FavoriteRecipesViewModel();

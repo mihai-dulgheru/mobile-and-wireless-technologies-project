@@ -9,7 +9,7 @@ namespace Project.ViewModels
 {
     internal class AllRecipesViewModel : ObservableObject, IAllRecipesViewModel
     {
-        private IList<Recipe> _recipes;
+        private IList<Recipe> _recipes = null;
         private bool _isBusy = true;
         private readonly IRestService _restService;
         private string _ingredients;
@@ -18,12 +18,16 @@ namespace Project.ViewModels
 
         public AllRecipesViewModel()
         {
-            _restService = new RestService();
             SelectRecipeCommand = new AsyncRelayCommand<Recipe>(SelectRecipeAsync);
+            _restService = new RestService();
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
+            if (_recipes != null && _recipes.Count > 0)
+            {
+                return;
+            }
             if (query["Ingredients"] is string ingredients)
             {
                 Ingredients = ingredients;
@@ -39,7 +43,6 @@ namespace Project.ViewModels
                 if (_recipes != value)
                 {
                     _recipes = (List<Recipe>)value;
-                    IsBusy = false;
                     OnPropertyChanged();
                 }
             }
@@ -52,8 +55,7 @@ namespace Project.ViewModels
                 if (_ingredients != value)
                 {
                     _ingredients = value;
-                    OnPropertyChanged();
-                    MainThread.BeginInvokeOnMainThread(async () =>
+                    _ = Task.Run(async () =>
                     {
                         await SearchRecipesAsync(_ingredients);
                     });
@@ -64,7 +66,8 @@ namespace Project.ViewModels
         public async Task SearchRecipesAsync(string ingredients)
         {
             IList<Recipe> recipes = await _restService.SearchRecipesAsync(ingredients);
-            Recipes = recipes.OrderByDescending(r => r.Likes).ToList();
+            Recipes = await Task.Run(() => recipes.OrderByDescending(r => r.Likes).ToList());
+            IsBusy = false;
         }
 
         private async Task SelectRecipeAsync(Recipe recipe)

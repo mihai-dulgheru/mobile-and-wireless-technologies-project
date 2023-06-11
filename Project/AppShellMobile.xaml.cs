@@ -8,18 +8,13 @@ public partial class AppShellMobile : Shell
     {
         InitializeComponent();
 
-        Routing.RegisterRoute(nameof(AllRecipesPage), typeof(AllRecipesPage));
+        Routing.RegisterRoute(nameof(AboutUsPage), typeof(AboutUsPage));
         Routing.RegisterRoute(nameof(FavoriteRecipePage), typeof(FavoriteRecipePage));
-        Routing.RegisterRoute(nameof(FavoriteRecipesPage), typeof(FavoriteRecipesPage));
-        Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
         Routing.RegisterRoute(nameof(IngredientsPage), typeof(IngredientsPage));
+        Routing.RegisterRoute(nameof(MobileAllFavoriteRecipesPage), typeof(MobileAllFavoriteRecipesPage));
         Routing.RegisterRoute(nameof(MobileAllRecipesPage), typeof(MobileAllRecipesPage));
-        Routing.RegisterRoute(nameof(MobileFavoriteRecipesPage), typeof(MobileFavoriteRecipesPage));
         Routing.RegisterRoute(nameof(MobileHomePage), typeof(MobileHomePage));
-        Routing.RegisterRoute(nameof(ProductPage), typeof(ProductPage));
         Routing.RegisterRoute(nameof(RecipePage), typeof(RecipePage));
-        Routing.RegisterRoute(nameof(SearchProductPage), typeof(SearchProductPage));
-        Routing.RegisterRoute(nameof(StatisticsPage), typeof(StatisticsPage));
     }
 
     public void NavigateTo(string name)
@@ -34,7 +29,7 @@ public partial class AppShellMobile : Shell
                 case nameof(IngredientsPage):
                     tabBar.CurrentItem = ingredientsItem;
                     break;
-                case nameof(MobileFavoriteRecipesPage):
+                case nameof(MobileAllFavoriteRecipesPage):
                     tabBar.CurrentItem = mobileFavoriteRecipesItem;
                     break;
                 case nameof(AboutUsPage):

@@ -93,7 +93,9 @@
                 <Button Command="{Binding RemoveRecipeCommand}"
                     Grid.Row="5"
                     Margin="20"
-                    Text="Remove Recipe" />
+                    Text="Remove Recipe from Favorites"
+                    TextTransform="Uppercase"
+                    WidthRequest="320" />
             </Grid>
         </ScrollView>
     </ContentPage.Content>

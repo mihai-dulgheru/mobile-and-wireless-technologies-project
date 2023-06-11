@@ -93,7 +93,9 @@
                 <Button Command="{Binding AddRecipeCommand}"
                     Grid.Row="5"
                     Margin="20"
-                    Text="Add Recipe" />
+                    Text="Add Recipe to Favorites"
+                    TextTransform="Uppercase"
+                    WidthRequest="320" />
             </Grid>
         </ScrollView>
     </ContentPage.Content>

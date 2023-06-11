@@ -6,7 +6,6 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        //Current.UserAppTheme = Current.RequestedTheme;
         Current.UserAppTheme = AppTheme.Light;
 
 #if __MOBILE__

@@ -3,11 +3,11 @@ using Project.ViewModels;
 
 namespace Project.Views;
 
-public partial class MobileFavoriteRecipesPage : ContentPage
+public partial class MobileAllFavoriteRecipesPage : ContentPage
 {
     private readonly IFavoriteRecipesViewModel _viewModel;
 
-    public MobileFavoriteRecipesPage()
+    public MobileAllFavoriteRecipesPage()
     {
         InitializeComponent();
         _viewModel = new FavoriteRecipesViewModel();

@@ -63,7 +63,15 @@
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.4" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="21.1.41" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\AllFavoriteRecipesPage.xaml.cs">
+	    <DependentUpon>AllFavoriteRecipesPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MobileAllFavoriteRecipesPage.xaml.cs">
+	    <DependentUpon>MobileAllFavoriteRecipesPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,19 +81,16 @@
 	  <MauiXaml Update="Views\AllRecipesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CartesianChartPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\FavoriteRecipePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\FavoriteRecipesPage.xaml">
+	  <MauiXaml Update="Views\AllFavoriteRecipesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MobileAllRecipesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\MobileFavoriteRecipesPage.xaml">
+	  <MauiXaml Update="Views\MobileAllFavoriteRecipesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">
@@ -97,16 +102,7 @@
 	  <MauiXaml Update="Views\IngredientsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ProductPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\RecipePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SearchProductPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\StatisticsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

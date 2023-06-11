@@ -25,7 +25,7 @@
         <Tab x:Name="mobileFavoriteRecipesItem"
             Title="Favorite"
             Icon="heart.png">
-            <ShellContent ContentTemplate="{DataTemplate views:MobileFavoriteRecipesPage}" />
+            <ShellContent ContentTemplate="{DataTemplate views:MobileAllFavoriteRecipesPage}" />
         </Tab>
         <Tab x:Name="aboutUsItem"
             Title="About Us"

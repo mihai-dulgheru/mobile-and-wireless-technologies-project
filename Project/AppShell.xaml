@@ -24,7 +24,7 @@
         Title="Favorite Recipes"
         Icon="heart.png">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate views:FavoriteRecipesPage}" />
+            <ShellContent ContentTemplate="{DataTemplate views:AllFavoriteRecipesPage}" />
         </Tab>
     </FlyoutItem>
     <FlyoutItem x:Name="aboutUsItem"

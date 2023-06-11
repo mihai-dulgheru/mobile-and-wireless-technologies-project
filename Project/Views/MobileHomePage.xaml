@@ -31,6 +31,7 @@
             Grid.Row="3"
             Margin="40"
             Text="FIND YOUR RECIPE"
-            WidthRequest="304" />
+            TextTransform="Uppercase"
+            WidthRequest="320" />
     </Grid>
 </ContentPage>
