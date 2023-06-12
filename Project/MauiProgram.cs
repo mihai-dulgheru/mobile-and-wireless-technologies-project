@@ -25,22 +25,22 @@ public static class MauiProgram
 #endif
         builder.Services.AddSingleton<Data.IRecipeDatabase, Data.RecipeDatabase>();
         builder.Services.AddSingleton<Services.IRestService, Services.RestService>();
-        builder.Services.AddSingleton<ViewModels.IAllRecipesViewModel, ViewModels.AllRecipesViewModel>();
-        builder.Services.AddSingleton<ViewModels.IFavoriteRecipeViewModel, ViewModels.FavoriteRecipeViewModel>();
-        builder.Services.AddSingleton<ViewModels.IFavoriteRecipesViewModel, ViewModels.FavoriteRecipesViewModel>();
-        builder.Services.AddSingleton<ViewModels.IHomeViewModel, ViewModels.HomeViewModel>();
-        builder.Services.AddSingleton<ViewModels.IIngredientsViewModel, ViewModels.IngredientsViewModel>();
-        builder.Services.AddSingleton<ViewModels.IRecipeViewModel, ViewModels.RecipeViewModel>();
-        builder.Services.AddSingleton<Views.AboutUsPage>();
-        builder.Services.AddSingleton<Views.AllRecipesPage>();
-        builder.Services.AddSingleton<Views.FavoriteRecipePage>();
-        builder.Services.AddSingleton<Views.AllFavoriteRecipesPage>();
-        builder.Services.AddSingleton<Views.HomePage>();
+        builder.Services.AddTransient<ViewModels.IAllRecipesViewModel, ViewModels.AllRecipesViewModel>();
+        builder.Services.AddTransient<ViewModels.IFavoriteRecipeViewModel, ViewModels.FavoriteRecipeViewModel>();
+        builder.Services.AddTransient<ViewModels.IFavoriteRecipesViewModel, ViewModels.FavoriteRecipesViewModel>();
+        builder.Services.AddTransient<ViewModels.IHomeViewModel, ViewModels.HomeViewModel>();
+        builder.Services.AddTransient<ViewModels.IIngredientsViewModel, ViewModels.IngredientsViewModel>();
+        builder.Services.AddTransient<ViewModels.IRecipeViewModel, ViewModels.RecipeViewModel>();
         builder.Services.AddSingleton<Views.IngredientsPage>();
-        builder.Services.AddSingleton<Views.MobileAllFavoriteRecipesPage>();
-        builder.Services.AddSingleton<Views.MobileAllRecipesPage>();
-        builder.Services.AddSingleton<Views.MobileHomePage>();
-        builder.Services.AddSingleton<Views.RecipePage>();
+        builder.Services.AddTransient<Views.AboutUsPage>();
+        builder.Services.AddTransient<Views.AllFavoriteRecipesPage>();
+        builder.Services.AddTransient<Views.AllRecipesPage>();
+        builder.Services.AddTransient<Views.FavoriteRecipePage>();
+        builder.Services.AddTransient<Views.HomePage>();
+        builder.Services.AddTransient<Views.MobileAllFavoriteRecipesPage>();
+        builder.Services.AddTransient<Views.MobileAllRecipesPage>();
+        builder.Services.AddTransient<Views.MobileHomePage>();
+        builder.Services.AddTransient<Views.RecipePage>();
 
         return builder.Build();
     }

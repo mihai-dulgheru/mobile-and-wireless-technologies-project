@@ -11,92 +11,100 @@
 
     <ContentPage.Resources>
         <helpers:DecimalFormatConverter x:Key="DecimalFormatConverter" />
+        <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <ScrollView>
-            <Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto">
-                <Image Aspect="AspectFit"
-                    MaximumHeightRequest="240"
-                    Source="{Binding Recipe.Image}" />
-                <Label FontSize="26"
-                    Grid.Row="1"
-                    HorizontalOptions="Center" TextColor="#f55951"
-                    Margin="10"
-                    Text="{Binding Recipe.Title}" />
-                <Label Grid.Row="2"
-                    HorizontalOptions="Center"
-                    Margin="10,0,10,10"
-                    TextColor="{DynamicResource Gray500}">
-                    <Label.FormattedText>
-                        <FormattedString >
-                            <Span Text="Ready in " FontAttributes="Italic"/>
-                            <Span Text="{Binding Recipe.ReadyInMinutes}" FontAttributes="Italic"/>
-                            <Span Text=" minutes" FontAttributes="Italic"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Grid ColumnDefinitions="*,Auto"
-                    Grid.Row="3"
-                    Margin="10">
-                    <StackLayout Grid.Column="0"
-                        Spacing="5">
+            <StackLayout>
+                <ActivityIndicator Color="{DynamicResource Primary}"
+                    IsRunning="true" 
+                    IsVisible="{Binding IsBusy}"
+                    Margin="0,20,0,0" />
+                <Grid IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                    RowDefinitions="Auto,Auto,Auto,Auto,*,Auto">
+                    <Image Aspect="AspectFit"
+                        MaximumHeightRequest="240"
+                        Source="{Binding Recipe.Image}" />
+                    <Label FontSize="26"
+                        Grid.Row="1"
+                        HorizontalOptions="Center" TextColor="#f55951"
+                        Margin="10"
+                        Text="{Binding Recipe.Title}" />
+                    <Label Grid.Row="2"
+                        HorizontalOptions="Center"
+                        Margin="10,0,10,10"
+                        TextColor="{DynamicResource Gray500}">
+                        <Label.FormattedText>
+                            <FormattedString >
+                                <Span Text="Ready in " FontAttributes="Italic"/>
+                                <Span Text="{Binding Recipe.ReadyInMinutes}" FontAttributes="Italic"/>
+                                <Span Text=" minutes" FontAttributes="Italic"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Grid ColumnDefinitions="*,Auto"
+                        Grid.Row="3"
+                        Margin="10">
+                        <StackLayout Grid.Column="0"
+                            Spacing="5">
+                            <Label FontAttributes="Bold"
+                                FontSize="20"
+                                Text="Ingredients" />
+                            <CollectionView ItemsSource="{Binding Recipe.ExtendedIngredients}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label FontSize="16"
+                                            LineBreakMode="TailTruncation"
+                                            Margin="0,0,40,0"
+                                            MaxLines="1"
+                                            Text="{Binding Name}"
+                                            TextColor="{DynamicResource Gray}"
+                                            ToolTipProperties.Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1"
+                            Spacing="5">
+                            <Label FontAttributes="Bold"
+                                FontSize="20"
+                                Text=" " />
+                            <CollectionView ItemsSource="{Binding Recipe.ExtendedIngredients}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label FontAttributes="Italic"
+                                            FontSize="16"
+                                            TextColor="{DynamicResource Gray}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Amount, Converter={StaticResource DecimalFormatConverter}}" />
+                                                    <Span Text=" " />
+                                                    <Span Text="{Binding Unit}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </Grid>
+                    <StackLayout Grid.Row="4"
+                        Margin="10">
                         <Label FontAttributes="Bold"
                             FontSize="20"
-                            Text="Ingredients" />
-                        <CollectionView ItemsSource="{Binding Recipe.ExtendedIngredients}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Label FontSize="16"
-                                        LineBreakMode="TailTruncation"
-                                        Margin="0,0,40,0"
-                                        MaxLines="1"
-                                        Text="{Binding Name}"
-                                        TextColor="{DynamicResource Gray}"
-                                        ToolTipProperties.Text="{Binding Name}" />
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
+                            Text="Instructions" />
+                        <Label Text="{Binding Recipe.Instructions}"
+                            TextColor="{DynamicResource Gray}" />
                     </StackLayout>
-                    <StackLayout Grid.Column="1"
-                        Spacing="5">
-                        <Label FontAttributes="Bold"
-                            FontSize="20"
-                            Text=" " />
-                        <CollectionView ItemsSource="{Binding Recipe.ExtendedIngredients}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Label FontAttributes="Italic"
-                                        FontSize="16"
-                                        TextColor="{DynamicResource Gray}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding Amount, Converter={StaticResource DecimalFormatConverter}}" />
-                                                <Span Text=" " />
-                                                <Span Text="{Binding Unit}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </StackLayout>
+                    <Button Command="{Binding AddRecipeCommand}"
+                        Grid.Row="5"
+                        Margin="20"
+                        Text="Add Recipe to Favorites"
+                        TextTransform="Uppercase"
+                        WidthRequest="320" />
                 </Grid>
-                <StackLayout Grid.Row="4"
-                    Margin="10">
-                    <Label FontAttributes="Bold"
-                        FontSize="20"
-                        Text="Instructions" />
-                    <Label Text="{Binding Recipe.Instructions}"
-                        TextColor="{DynamicResource Gray}" />
-                </StackLayout>
-                <Button Command="{Binding AddRecipeCommand}"
-                    Grid.Row="5"
-                    Margin="20"
-                    Text="Add Recipe to Favorites"
-                    TextTransform="Uppercase"
-                    WidthRequest="320" />
-            </Grid>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -14,25 +14,6 @@ namespace Project.Services
             _client = new HttpClient();
         }
 
-        public async Task<ProductInformation> GetProductInformationAsync(string id)
-        {
-            try
-            {
-                string RequestUri = string.Format(Constants.BaseUrl, $"food/products/{id}?apiKey={Constants.APIKey}");
-                HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
-                HttpResponseMessage response = await _client.SendAsync(request);
-                _ = response.EnsureSuccessStatusCode();
-                string content = await response.Content.ReadAsStringAsync();
-
-                return JObject.Parse(content).ToObject<ProductInformation>();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(@"\tERROR {0}", ex.Message);
-                return null;
-            }
-        }
-
         public async Task<string> RandomFoodTriviaAsync()
         {
             try
@@ -110,13 +91,14 @@ namespace Project.Services
         {
             try
             {
-                string RequestUri = string.Format(Constants.BaseUrl, $"recipes/findByIngredients?ingredients={query}&number=30&limitLicense=true&ranking=1&ignorePantry=false&apiKey={Constants.APIKey}");
+                string RequestUri = string.Format(Constants.BaseUrl, $"recipes/findByIngredients?ingredients={query}&number=10&limitLicense=true&ranking=1&ignorePantry=false&apiKey={Constants.APIKey}");
                 HttpRequestMessage request = new(HttpMethod.Get, RequestUri);
                 HttpResponseMessage response = await _client.SendAsync(request);
                 _ = response.EnsureSuccessStatusCode();
                 string content = await response.Content.ReadAsStringAsync();
+                IList<Recipe> recipes = JArray.Parse(content).ToObject<IList<Recipe>>();
 
-                return JArray.Parse(content).ToObject<IList<Recipe>>();
+                return recipes.OrderByDescending(r => r.Likes).ToList();
             }
             catch (Exception ex)
             {

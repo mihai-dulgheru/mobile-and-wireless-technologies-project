@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Project.Models;
 using Project.Services;
+using Project.Utilities;
 using Project.Views;
 using System.Windows.Input;
 
@@ -42,9 +43,15 @@ namespace Project.ViewModels
 
         private async Task UpdateCollectionViewAsync()
         {
-            Ingredients = IsSearchBarFocused && !string.IsNullOrWhiteSpace(_searchText)
-                ? await _restService.AutocompleteIngredientSearchAsync(_searchText)
-                : _cachedCollection;
+            if (IsSearchBarFocused && !string.IsNullOrWhiteSpace(SearchText) && SearchText.Length > 2)
+            {
+                await Task.Delay(Constants.MillisecondsDelay);
+                Ingredients = await _restService.AutocompleteIngredientSearchAsync(SearchText);
+            }
+            else
+            {
+                Ingredients = _cachedCollection;
+            }
         }
 
         public ICommand AddIngredientCommand => new Command<Ingredient>((Ingredient ingredient) =>
@@ -84,13 +91,10 @@ namespace Project.ViewModels
                 {
                     _isSearchBarFocused = value;
                     OnPropertyChanged();
-                    if (!_isSearchBarFocused && !string.IsNullOrWhiteSpace(_searchText))
+                    _ = UpdateCollectionViewAsync();
+                    if (!_isSearchBarFocused && !string.IsNullOrWhiteSpace(SearchText))
                     {
                         SearchText = string.Empty;
-                    }
-                    else
-                    {
-                        _ = UpdateCollectionViewAsync();
                     }
                 }
             }
@@ -126,6 +130,6 @@ namespace Project.ViewModels
 #endif
 
         public bool IsRemoveIngredientButtonVisible =>
-            _cachedCollection != null && _cachedCollection.Any() && !IsSearchBarFocused && string.IsNullOrWhiteSpace(_searchText);
+            _cachedCollection != null && _cachedCollection.Any() && !IsSearchBarFocused && string.IsNullOrWhiteSpace(SearchText);
     }
 }

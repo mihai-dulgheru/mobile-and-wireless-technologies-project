@@ -93,7 +93,7 @@
                     <CollectionView.EmptyView>
                         <ContentView>
                             <StackLayout HorizontalOptions="CenterAndExpand"
-                                VerticalOptions="StartAndExpand">
+                                VerticalOptions="CenterAndExpand">
                                 <Label FontAttributes="Bold"
                                     FontSize="Micro"
                                     HorizontalOptions="Fill"

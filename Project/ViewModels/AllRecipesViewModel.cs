@@ -65,8 +65,7 @@ namespace Project.ViewModels
 
         public async Task SearchRecipesAsync(string ingredients)
         {
-            IList<Recipe> recipes = await _restService.SearchRecipesAsync(ingredients);
-            Recipes = await Task.Run(() => recipes.OrderByDescending(r => r.Likes).ToList());
+            Recipes = await _restService.SearchRecipesAsync(ingredients);
             IsBusy = false;
         }
 

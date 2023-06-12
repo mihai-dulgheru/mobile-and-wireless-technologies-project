@@ -3,13 +3,15 @@ using CommunityToolkit.Mvvm.Input;
 using Project.Data;
 using Project.Models;
 using Project.Services;
+using Project.Utilities;
 using System.Windows.Input;
 
 namespace Project.ViewModels
 {
     internal class RecipeViewModel : ObservableObject, IRecipeViewModel
     {
-        private Recipe _recipe;
+        private Recipe _recipe = null;
+        private bool _isBusy = true;
         private readonly IRecipeDatabase _recipeDatabase;
         private readonly IRestService _restService;
         public ICommand AddRecipeCommand { get; }
@@ -23,11 +25,30 @@ namespace Project.ViewModels
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            string recipeId = query["RecipeId"] as string;
+            if (query["RecipeId"] is not string recipeId)
+            {
+                return;
+            }
+            IsBusy = true;
             Recipe recipe = await _restService.GetRecipeInformationAsync(recipeId);
             if (recipe != null)
             {
-                Recipe = recipe;
+                await Task.Run(() => { Recipe = recipe; });
+                await Task.Delay(Constants.MillisecondsDelay);
+                IsBusy = false;
+            }
+        }
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                if (_isBusy != value)
+                {
+                    _isBusy = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
