@@ -16,7 +16,7 @@ namespace Project.Models
         public IList<Ingredient> UnusedIngredients { get; set; } = new List<Ingredient>();
         [Ignore]
         public IList<Ingredient> UsedIngredients { get; set; } = new List<Ingredient>();
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         [Column("id")]
         public int Id { get; set; }
         [Ignore]

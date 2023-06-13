@@ -13,8 +13,8 @@ namespace Project.ViewModels
         private bool _isBusy = true;
         private readonly IRestService _restService;
         private string _ingredients;
+        private string _label = "Recommended recipes";
         public ICommand SelectRecipeCommand { get; }
-        public string Label { get; } = "Recommended recipes";
 
         public AllRecipesViewModel()
         {
@@ -31,6 +31,7 @@ namespace Project.ViewModels
             if (query["Ingredients"] is string ingredients)
             {
                 Ingredients = ingredients;
+                Label = $"Recommended recipes for {ingredients.Replace("%20", " ").Replace(",", ", ")}";
             }
         }
 
@@ -59,6 +60,19 @@ namespace Project.ViewModels
                     {
                         await SearchRecipesAsync(_ingredients);
                     });
+                }
+            }
+        }
+
+        public string Label
+        {
+            get => _label;
+            set
+            {
+                if (_label != value)
+                {
+                    _label = value;
+                    OnPropertyChanged();
                 }
             }
         }

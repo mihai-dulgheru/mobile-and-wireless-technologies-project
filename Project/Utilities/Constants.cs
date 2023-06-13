@@ -14,6 +14,6 @@
         public static readonly string DatabasePath = Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
         public static readonly string RestUrl = "https://moviesdatabase.p.rapidapi.com/{0}";
         public static readonly string BaseUrl = "https://api.spoonacular.com/{0}";
-        public static readonly int MillisecondsDelay = 500;
+        public static readonly int MillisecondsDelay = 1000;
     }
 }

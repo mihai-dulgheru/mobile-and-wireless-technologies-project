@@ -43,7 +43,7 @@
                                     Grid.Row="0"
                                     Padding="-2,1,0,0">
                                     <Border Opacity="1"
-                                        Padding="10"
+                                        Padding="16"
                                         StrokeShape="RoundRectangle 0,16,0,16"
                                         StrokeThickness="0">
                                         <Grid RowDefinitions="*,*,Auto">
@@ -56,13 +56,15 @@
                                                 Text="{Binding Title}"
                                                 TextColor="{DynamicResource Primary}"
                                                 VerticalTextAlignment="Start" />
-                                            <Label FontSize="Body"
+                                            <Label FontFamily="GothamRound-Light"
+                                                FontSize="Body"
                                                 Grid.Column="0"
                                                 Grid.Row="1"
                                                 HorizontalTextAlignment="Start"
                                                 LineBreakMode="WordWrap"
                                                 MaxLines="2"
                                                 Text="{Binding StoredIngredients, StringFormat='Ingredients: {0}'}"
+                                                TextColor="{DynamicResource Gray500}"
                                                 VerticalTextAlignment="Start" />
                                             <Grid ColumnDefinitions="*,160"
                                                 Grid.Column="0"
@@ -71,7 +73,8 @@
                                                     HorizontalTextAlignment="Start"
                                                     LineBreakMode="WordWrap"
                                                     MaxLines="2"
-                                                    Text="{Binding ReadyInMinutes, StringFormat='Total time: {0} min'}"
+                                                    Text="{Binding ReadyInMinutes, StringFormat='⏲️ {0} min'}"
+                                                    TextColor="{DynamicResource Gray500}"
                                                     VerticalTextAlignment="Center" />
                                                 <Button x:Name="viewRecipeButton"
                                                     BackgroundColor="{DynamicResource Accent}"

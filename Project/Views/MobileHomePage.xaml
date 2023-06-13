@@ -8,11 +8,11 @@
         <Label FontSize="Title"
             Grid.Column="0"
             Grid.Row="0"
-            HorizontalOptions="Center"
+            HorizontalOptions="CenterAndExpand"
             Margin="0, 40, 0, 0"
             Text="WELCOME!"
             TextColor="#F55951"
-            VerticalOptions="Center" />
+            VerticalOptions="CenterAndExpand" />
         <Image Grid.Column="0"
             Grid.Row="1"
             HeightRequest="256"
@@ -21,11 +21,11 @@
         <Label FontSize="Small"
             Grid.Column="0"
             Grid.Row="2"
-            HorizontalOptions="Center"
+            HorizontalOptions="CenterAndExpand"
             HorizontalTextAlignment="Center"
             Margin="40,0"
             Text="{Binding RandomFoodTrivia}"
-            VerticalOptions="Center" />
+            VerticalOptions="CenterAndExpand" />
         <Button Clicked="OnButtonClicked"
             Grid.Column="0"
             Grid.Row="3"

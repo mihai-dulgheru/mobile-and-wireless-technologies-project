@@ -5,15 +5,15 @@
              x:Class="Project.Views.HomePage"
              Title="HomePage">
     <ScrollView>
-        <Grid RowDefinitions="Auto,320,*,Auto">
+        <Grid RowDefinitions="Auto,320,Auto,Auto">
             <Label FontSize="Header"
                 Grid.Column="0"
                 Grid.Row="0"
-                HorizontalOptions="Center"
+                HorizontalOptions="CenterAndExpand"
                 Margin="0, 40, 0, 0"
                 Text="WELCOME!"
                 TextColor="#F55951"
-                VerticalOptions="Center" />
+                VerticalOptions="CenterAndExpand" />
             <Image Grid.Column="0"
                 Grid.Row="1"
                 HeightRequest="320"
@@ -26,7 +26,7 @@
                 HorizontalTextAlignment="Center"
                 Margin="40,0"
                 Text="{Binding RandomFoodTrivia}"
-                VerticalOptions="Center"
+                VerticalOptions="CenterAndExpand"
                 WidthRequest="960" />
             <Button Clicked="OnButtonClicked"
                 Grid.Column="0"

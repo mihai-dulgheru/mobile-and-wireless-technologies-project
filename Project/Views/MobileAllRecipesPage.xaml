@@ -34,7 +34,7 @@
             <Label FontAttributes="Bold"
                 FontSize="Title"
                 HorizontalOptions="CenterAndExpand"
-                Margin="0,30,0,20"
+                Margin="20"
                 Text="{Binding Label}"
                 TextColor="{DynamicResource Primary}"
                 VerticalOptions="CenterAndExpand" />
@@ -89,6 +89,7 @@
                                                 TextColor="{DynamicResource Primary}"
                                                 VerticalTextAlignment="Start" />
                                             <Label FontAttributes="Italic"
+                                                FontFamily="GothamRound-Light"
                                                 FontSize="14"
                                                 Grid.Column="0"
                                                 Grid.Row="1"
@@ -96,12 +97,14 @@
                                                 LineBreakMode="WordWrap"
                                                 MaxLines="2"
                                                 Text="{Binding Ingredients}"
+                                                TextColor="{DynamicResource Gray500}"
                                                 VerticalTextAlignment="Start" />
                                             <Label FontSize="14"
                                                 Grid.Column="0"
                                                 Grid.Row="3"
                                                 HorizontalTextAlignment="Start"
-                                                Text="{Binding Likes, StringFormat='Likes: {0}'}"
+                                                Text="{Binding Likes, StringFormat='{0} ❤️'}"
+                                                TextColor="{DynamicResource Gray500}"
                                                 VerticalTextAlignment="End" />
                                         </Grid>
                                     </Grid>

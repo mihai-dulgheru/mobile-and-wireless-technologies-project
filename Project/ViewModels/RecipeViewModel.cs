@@ -12,6 +12,7 @@ namespace Project.ViewModels
     {
         private Recipe _recipe = null;
         private bool _isBusy = true;
+        private bool _recipeExists = false;
         private readonly IRecipeDatabase _recipeDatabase;
         private readonly IRestService _restService;
         public ICommand AddRecipeCommand { get; }
@@ -27,15 +28,28 @@ namespace Project.ViewModels
         {
             if (query["RecipeId"] is not string recipeId)
             {
+                await Shell.Current.GoToAsync("..");
                 return;
             }
             IsBusy = true;
-            Recipe recipe = await _restService.GetRecipeInformationAsync(recipeId);
+            Task<Recipe> recipeTask = _restService.GetRecipeInformationAsync(recipeId);
+            Task<bool> recipeExistsTask = _recipeDatabase.RecipeExistsAsync(recipeId);
+            await Task.WhenAll(recipeTask, recipeExistsTask);
+            Recipe recipe = recipeTask.Result;
+            bool recipeExists = recipeExistsTask.Result;
             if (recipe != null)
             {
                 await Task.Run(() => { Recipe = recipe; });
+                if (recipeExists)
+                {
+                    await Task.Run(() => { RecipeExists = true; });
+                }
                 await Task.Delay(Constants.MillisecondsDelay);
                 IsBusy = false;
+            }
+            else
+            {
+                await Shell.Current.GoToAsync("..");
             }
         }
 
@@ -73,6 +87,19 @@ namespace Project.ViewModels
             }
             await _recipeDatabase.CreateRecipeAsync(_recipe);
             await Shell.Current.GoToAsync("..");
+        }
+
+        public bool RecipeExists
+        {
+            get => _recipeExists;
+            set
+            {
+                if (_recipeExists != value)
+                {
+                    _recipeExists = value;
+                    OnPropertyChanged();
+                }
+            }
         }
     }
 }

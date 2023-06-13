@@ -26,10 +26,10 @@
             <Label FontAttributes="Bold"
                 FontSize="Title"
                 HorizontalOptions="CenterAndExpand"
-                Margin="0,30,0,20"
+                Margin="20"
                 Text="{Binding Label}"
                 TextColor="{DynamicResource Primary}"
-                VerticalOptions="StartAndExpand" />
+                VerticalOptions="CenterAndExpand" />
             <Grid>
                 <CollectionView x:Name="collectionView"
                     ItemsSource="{Binding Recipes}"
@@ -71,6 +71,7 @@
                                                 TextColor="{DynamicResource Primary}"
                                                 VerticalTextAlignment="Start" />
                                             <Label FontAttributes="Italic"
+                                                FontFamily="GothamRound-Light"
                                                 FontSize="14"
                                                 Grid.Column="0"
                                                 Grid.Row="1"
@@ -78,12 +79,14 @@
                                                 LineBreakMode="WordWrap"
                                                 MaxLines="2"
                                                 Text="{Binding StoredIngredients}"
+                                                TextColor="{DynamicResource Gray500}"
                                                 VerticalTextAlignment="Start" />
                                             <Label FontSize="14"
                                                 Grid.Column="0"
                                                 Grid.Row="3"
                                                 HorizontalTextAlignment="Start"
-                                                Text="{Binding ReadyInMinutes, StringFormat='Total time: {0} min'}"
+                                                Text="{Binding ReadyInMinutes, StringFormat='⏲️ {0} min'}"
+                                                TextColor="{DynamicResource Gray500}"
                                                 VerticalTextAlignment="End" />
                                         </Grid>
                                     </Grid>

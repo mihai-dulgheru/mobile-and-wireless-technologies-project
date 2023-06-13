@@ -9,13 +9,14 @@
                 Source="team.png"
                 WidthRequest="320" />
             <Label FontSize="24"
-                HorizontalOptions="Center"
+                HorizontalOptions="CenterAndExpand"
                 Text="About Us" 
                 TextColor="#F55951" />
             <Label FontSize="15"
-                HorizontalOptions="Center"
+                HorizontalOptions="CenterAndExpand"
                 Text="Cooking Elevated. Ingredients Transformed!" />
             <Label 
+                FontFamily="GothamRound-Light"
                 FontSize="14"
                 LineBreakMode="WordWrap"
                 Text="At KitchenGenie, we believe that cooking should be a delightful and hassle-free experience for every home chef. Our team of passionate food enthusiasts came together to create a revolutionary app that empowers you to transform everyday ingredients into delicious meals. With the combined expertise of our talented trio, we've developed a user-friendly platform that offers a vast collection of recipes tailored to your available ingredients.

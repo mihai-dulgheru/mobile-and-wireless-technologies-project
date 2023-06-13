@@ -76,5 +76,12 @@ namespace Project.Data
             }
             return await Database.DeleteAsync(recipe);
         }
+
+        public async Task<bool> RecipeExistsAsync(string recipeId)
+        {
+            await InitAsync();
+            int recipeIdInt = int.Parse(recipeId);
+            return await Database.Table<Recipe>().Where(x => x.Id == recipeIdInt).CountAsync() > 0;
+        }
     }
 }

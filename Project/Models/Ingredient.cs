@@ -28,6 +28,7 @@ namespace Project.Models
         public string[] Meta { get; set; }
         [Ignore]
         public string Image { get; set; }
+        [Indexed]
         [Column("recipe_id")]
         public int RecipeId { get; set; }
 

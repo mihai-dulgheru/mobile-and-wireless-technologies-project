@@ -7,7 +7,7 @@ namespace Project.ViewModels
     {
         string Ingredients { set; }
         bool IsBusy { get; set; }
-        string Label { get; }
+        string Label { get; set; }
         IList<Recipe> Recipes { get; set; }
         ICommand SelectRecipeCommand { get; }
 

@@ -21,11 +21,11 @@
                     Source="{Binding Recipe.Image}" />
                 <Label FontSize="26"
                     Grid.Row="1"
-                    HorizontalOptions="Center" TextColor="#f55951"
+                    HorizontalOptions="CenterAndExpand" TextColor="#f55951"
                     Margin="10"
                     Text="{Binding Recipe.Title}" />
                 <Label Grid.Row="2"
-                    HorizontalOptions="Center"
+                    HorizontalOptions="CenterAndExpand"
                     Margin="10,0,10,10"
                     TextColor="{DynamicResource Gray500}">
                     <Label.FormattedText>

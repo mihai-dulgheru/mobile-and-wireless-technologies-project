@@ -28,11 +28,11 @@
                         Source="{Binding Recipe.Image}" />
                     <Label FontSize="26"
                         Grid.Row="1"
-                        HorizontalOptions="Center" TextColor="#f55951"
+                        HorizontalOptions="CenterAndExpand" TextColor="#f55951"
                         Margin="10"
                         Text="{Binding Recipe.Title}" />
                     <Label Grid.Row="2"
-                        HorizontalOptions="Center"
+                        HorizontalOptions="CenterAndExpand"
                         Margin="10,0,10,10"
                         TextColor="{DynamicResource Gray500}">
                         <Label.FormattedText>
@@ -97,8 +97,16 @@
                         <Label Text="{Binding Recipe.Instructions}"
                             TextColor="{DynamicResource Gray}" />
                     </StackLayout>
+                    <Button Grid.Row="5"
+                        IsEnabled="false"
+                        IsVisible="{Binding RecipeExists}"
+                        Margin="20"
+                        Text="Recipe already in Favorites"
+                        TextTransform="Uppercase"
+                        WidthRequest="320" />
                     <Button Command="{Binding AddRecipeCommand}"
                         Grid.Row="5"
+                        IsVisible="{Binding RecipeExists, Converter={StaticResource InverseBooleanConverter}}"
                         Margin="20"
                         Text="Add Recipe to Favorites"
                         TextTransform="Uppercase"
