@@ -9,14 +9,15 @@
         <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </ContentPage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Margin="20">
-            <Label FontAttributes="Bold"
-                FontSize="Title"
-                HorizontalOptions="CenterAndExpand"
-                Text="{Binding Label}"
-                TextColor="{DynamicResource Primary}"
-                VerticalOptions="StartAndExpand" />
+    <Grid Margin="20"
+        RowDefinitions="Auto,*">
+        <Label FontAttributes="Bold"
+            FontSize="Title"
+            HorizontalOptions="CenterAndExpand"
+            Text="{Binding Label}"
+            TextColor="{DynamicResource Primary}"
+            VerticalOptions="CenterAndExpand" />
+        <ScrollView Grid.Row="1">
             <Grid>
                 <ActivityIndicator Color="{DynamicResource Primary}"
                     IsRunning="true" 
@@ -107,6 +108,6 @@
                     </CollectionView.EmptyView>
                 </CollectionView>
             </Grid>
-        </VerticalStackLayout>
-    </ScrollView>
+        </ScrollView>
+    </Grid>
 </ContentPage>

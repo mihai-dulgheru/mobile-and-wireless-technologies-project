@@ -20,17 +20,18 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-    
-    <ScrollView>
-        <VerticalStackLayout>
-            <Label FontAttributes="Bold"
-                FontSize="Title"
-                HorizontalOptions="CenterAndExpand"
-                Margin="20"
-                Text="{Binding Label}"
-                TextColor="{DynamicResource Primary}"
-                VerticalOptions="CenterAndExpand" />
-            <Grid>
+
+    <Grid RowDefinitions="Auto,*">
+        <Label FontAttributes="Bold"
+            FontSize="Title"
+            HorizontalOptions="CenterAndExpand"
+            Margin="20"
+            Text="{Binding Label}"
+            TextColor="{DynamicResource Primary}"
+            VerticalOptions="CenterAndExpand" />
+        <ScrollView Grid.Row="1"
+            VerticalOptions="FillAndExpand">
+            <StackLayout>
                 <CollectionView x:Name="collectionView"
                     ItemsSource="{Binding Recipes}"
                     SelectionChanged="OnCollectionViewSelectionChanged"
@@ -108,7 +109,7 @@
                         </ContentView>
                     </CollectionView.EmptyView>
                 </CollectionView>
-            </Grid>
-        </VerticalStackLayout>
-    </ScrollView>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

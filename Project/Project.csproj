@@ -51,8 +51,6 @@
 	  <None Remove="Resources\Fonts\GothamRound-Bold.otf" />
 	  <None Remove="Resources\Fonts\GothamRound-Light.otf" />
 	  <None Remove="Resources\Fonts\GothamRound-Medium.otf" />
-	  <None Remove="Resources\Images\home_page.png" />
-	  <None Remove="Resources\Images\home_page_dark.png" />
 	</ItemGroup>
 
 	<ItemGroup>

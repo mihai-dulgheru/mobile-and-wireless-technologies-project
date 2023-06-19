@@ -5,7 +5,7 @@
              x:Class="Project.Views.HomePage"
              Title="HomePage">
     <ScrollView>
-        <Grid RowDefinitions="Auto,320,Auto,Auto">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto">
             <Label FontSize="Header"
                 Grid.Column="0"
                 Grid.Row="0"
@@ -17,7 +17,7 @@
             <Image Grid.Column="0"
                 Grid.Row="1"
                 HeightRequest="320"
-                Source="{AppThemeBinding Light=home_page.png, Dark=home_page_dark.png}"
+                Source="home_page.png"
                 WidthRequest="320" />
             <Label FontSize="Small"
                 Grid.Column="0"

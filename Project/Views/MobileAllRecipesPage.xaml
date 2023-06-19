@@ -29,18 +29,14 @@
     </ContentPage.Resources>
 
     <Grid RowDefinitions="Auto,*">
-        <Grid Grid.Column="0"
-            Grid.Row="0">
-            <Label FontAttributes="Bold"
-                FontSize="Title"
-                HorizontalOptions="CenterAndExpand"
-                Margin="20"
-                Text="{Binding Label}"
-                TextColor="{DynamicResource Primary}"
-                VerticalOptions="CenterAndExpand" />
-        </Grid>
+        <Label FontAttributes="Bold"
+            FontSize="Title"
+            HorizontalOptions="CenterAndExpand"
+            Margin="20"
+            Text="{Binding Label}"
+            TextColor="{DynamicResource Primary}"
+            VerticalOptions="CenterAndExpand" />
         <ScrollView x:Name="scrollView"
-            Grid.Column="0"
             Grid.Row="1"
             VerticalOptions="FillAndExpand">
             <StackLayout>
