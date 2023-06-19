@@ -27,7 +27,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<Services.IRestService, Services.RestService>();
         builder.Services.AddTransient<ViewModels.IAllRecipesViewModel, ViewModels.AllRecipesViewModel>();
         builder.Services.AddTransient<ViewModels.IFavoriteRecipeViewModel, ViewModels.FavoriteRecipeViewModel>();
-        builder.Services.AddTransient<ViewModels.IFavoriteRecipesViewModel, ViewModels.FavoriteRecipesViewModel>();
+        builder.Services.AddTransient<ViewModels.IAllFavoriteRecipesViewModel, ViewModels.AllFavoriteRecipesViewModel>();
         builder.Services.AddTransient<ViewModels.IHomeViewModel, ViewModels.HomeViewModel>();
         builder.Services.AddTransient<ViewModels.IIngredientsViewModel, ViewModels.IngredientsViewModel>();
         builder.Services.AddTransient<ViewModels.IRecipeViewModel, ViewModels.RecipeViewModel>();

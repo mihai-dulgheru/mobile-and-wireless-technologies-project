@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace Project.ViewModels
 {
-    internal interface IFavoriteRecipesViewModel
+    internal interface IAllFavoriteRecipesViewModel
     {
         bool IsBusy { get; set; }
         string Label { get; }

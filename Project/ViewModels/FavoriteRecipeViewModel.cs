@@ -8,14 +8,13 @@ namespace Project.ViewModels
 {
     internal class FavoriteRecipeViewModel : ObservableObject, IFavoriteRecipeViewModel
     {
-        private Recipe _recipe;
-        private readonly IRecipeDatabase _recipeDatabase;
+        private Recipe _recipe = new();
+        private readonly IRecipeDatabase _recipeDatabase = new RecipeDatabase();
         public ICommand RemoveRecipeCommand { get; }
 
         public FavoriteRecipeViewModel()
         {
             RemoveRecipeCommand = new AsyncRelayCommand(DeleteRecipeAsync);
-            _recipeDatabase = new RecipeDatabase();
         }
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)

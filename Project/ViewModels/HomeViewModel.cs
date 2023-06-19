@@ -5,13 +5,8 @@ namespace Project.ViewModels
 {
     internal class HomeViewModel : ObservableObject, IHomeViewModel
     {
-        private readonly IRestService _restService;
-        private string _randomFoodTrivia;
-
-        public HomeViewModel()
-        {
-            _restService = new RestService();
-        }
+        private readonly IRestService _restService = new RestService();
+        private string _randomFoodTrivia = string.Empty;
 
         public string RandomFoodTrivia
         {

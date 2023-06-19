@@ -10,18 +10,16 @@ namespace Project.ViewModels
 {
     internal class RecipeViewModel : ObservableObject, IRecipeViewModel
     {
-        private Recipe _recipe = null;
+        private Recipe _recipe = new();
         private bool _isBusy = true;
         private bool _recipeExists = false;
-        private readonly IRecipeDatabase _recipeDatabase;
-        private readonly IRestService _restService;
+        private readonly IRecipeDatabase _recipeDatabase = new RecipeDatabase();
+        private readonly IRestService _restService = new RestService();
         public ICommand AddRecipeCommand { get; }
 
         public RecipeViewModel()
         {
             AddRecipeCommand = new AsyncRelayCommand(AddRecipeAsync);
-            _recipeDatabase = new RecipeDatabase();
-            _restService = new RestService();
         }
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)

@@ -46,7 +46,7 @@
                                         Padding="16"
                                         StrokeShape="RoundRectangle 0,16,0,16"
                                         StrokeThickness="0">
-                                        <Grid RowDefinitions="*,*,Auto">
+                                        <Grid RowDefinitions="*,36,Auto">
                                             <Label FontAttributes="Bold"
                                                 FontSize="Small"
                                                 Grid.Column="0"

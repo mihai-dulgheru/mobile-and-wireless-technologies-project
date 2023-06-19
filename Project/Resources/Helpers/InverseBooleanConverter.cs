@@ -6,12 +6,12 @@ namespace Project.Resources.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !((bool)value); // Invert the boolean value
+            return !(bool)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !((bool)value); // Invert the boolean value
+            return !(bool)value;
         }
     }
 }

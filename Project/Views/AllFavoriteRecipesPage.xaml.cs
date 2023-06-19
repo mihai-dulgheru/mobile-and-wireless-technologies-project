@@ -4,12 +4,12 @@ namespace Project.Views;
 
 public partial class AllFavoriteRecipesPage : ContentPage
 {
-    private readonly IFavoriteRecipesViewModel _viewModel;
+    private readonly IAllFavoriteRecipesViewModel _viewModel;
 
     public AllFavoriteRecipesPage()
     {
         InitializeComponent();
-        _viewModel = new FavoriteRecipesViewModel();
+        _viewModel = new AllFavoriteRecipesViewModel();
         BindingContext = _viewModel;
     }
 

@@ -2,7 +2,7 @@
 {
     public static class Constants
     {
-        public static readonly string APIKey = "";
+        public static readonly string APIKey = "4e906b59d5804641ba03514ecc34055a";
         public static readonly string DatabaseFilename = "Database.db3";
         public static readonly SQLite.SQLiteOpenFlags Flags =
         // open the database in read/write mode
@@ -14,6 +14,6 @@
         public static readonly string DatabasePath = Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
         public static readonly string RestUrl = "https://moviesdatabase.p.rapidapi.com/{0}";
         public static readonly string BaseUrl = "https://api.spoonacular.com/{0}";
-        public static readonly int MillisecondsDelay = 1000;
+        public static readonly int MillisecondsDelay = 500;
     }
 }

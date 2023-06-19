@@ -7,19 +7,18 @@ using System.Windows.Input;
 
 namespace Project.ViewModels
 {
-    internal class FavoriteRecipesViewModel : ObservableObject, IFavoriteRecipesViewModel
+    internal class AllFavoriteRecipesViewModel : ObservableObject, IAllFavoriteRecipesViewModel
     {
-        private bool _isBusy = true;
         private List<Recipe> _recipes = new();
-        private readonly IRecipeDatabase _recipeDatabase;
+        private bool _isBusy = true;
+        private readonly IRecipeDatabase _recipeDatabase = new RecipeDatabase();
         public ICommand SelectRecipeCommand { get; }
         public string Label { get; } = "Your favorite recipes";
 
-        public FavoriteRecipesViewModel()
+        public AllFavoriteRecipesViewModel()
         {
-            _recipeDatabase = new RecipeDatabase();
             SelectRecipeCommand = new AsyncRelayCommand<Recipe>(SelectRecipeAsync);
-            Task.Run(async () => await OnAppearing());
+            _ = Task.Run(OnAppearing);
         }
 
         public IList<Recipe> Recipes

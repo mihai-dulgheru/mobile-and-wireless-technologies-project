@@ -5,7 +5,7 @@ namespace Project.ViewModels
 {
     internal interface IFavoriteRecipeViewModel : IQueryAttributable
     {
-        ICommand RemoveRecipeCommand { get; }
         Recipe Recipe { get; set; }
+        ICommand RemoveRecipeCommand { get; }
     }
 }

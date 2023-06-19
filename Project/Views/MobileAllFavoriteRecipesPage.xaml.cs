@@ -5,12 +5,12 @@ namespace Project.Views;
 
 public partial class MobileAllFavoriteRecipesPage : ContentPage
 {
-    private readonly IFavoriteRecipesViewModel _viewModel;
+    private readonly IAllFavoriteRecipesViewModel _viewModel;
 
     public MobileAllFavoriteRecipesPage()
     {
         InitializeComponent();
-        _viewModel = new FavoriteRecipesViewModel();
+        _viewModel = new AllFavoriteRecipesViewModel();
         BindingContext = _viewModel;
     }
 

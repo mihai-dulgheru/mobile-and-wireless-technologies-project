@@ -10,76 +10,25 @@ namespace Project.ViewModels
 {
     internal class IngredientsViewModel : ObservableObject, IIngredientsViewModel
     {
-        private IEnumerable<Ingredient> _cachedCollection;
-        private IEnumerable<Ingredient> _ingredients;
-        private bool _isSearchBarFocused;
-        private readonly IRestService _restService;
+        private IEnumerable<Ingredient> _ingredients = Enumerable.Empty<Ingredient>();
+        private List<Ingredient> _cachedCollection = new();
+        private bool _isSearchBarFocused = false;
+        private readonly Action<IEnumerable<Ingredient>> _debounceAction = delegate { };
+        private readonly IRestService _restService = new RestService();
         private string _searchText = string.Empty;
-        public ICommand GoToSearchRecipePageCommand { get; }
 
         public IngredientsViewModel()
         {
-            _restService = new RestService();
             GoToSearchRecipePageCommand = new AsyncRelayCommand(GoToSearchRecipePageAsync);
+            _debounceAction = ActionDebounce.Debounce<IEnumerable<Ingredient>>(UpdateIngredients);
         }
 
-        private async Task GoToSearchRecipePageAsync()
-        {
-            if (_cachedCollection != null && _cachedCollection.Any())
-            {
-                string ingredients = _cachedCollection?.Select(ingredient => ingredient.Name).Aggregate((i, j) => i + "," + j);
-                if (!string.IsNullOrWhiteSpace(ingredients))
-                {
-                    _cachedCollection = null;
-                    Ingredients = null;
-#if __MOBILE__
-                    await Shell.Current.GoToAsync($"{nameof(MobileAllRecipesPage)}?Ingredients={ingredients}");
-#else
-                    await Shell.Current.GoToAsync($"{nameof(AllRecipesPage)}?Ingredients={ingredients}");
-#endif
-                }
-            }
-        }
-
-        private async Task UpdateCollectionViewAsync()
-        {
-            if (IsSearchBarFocused && !string.IsNullOrWhiteSpace(SearchText) && SearchText.Length > 2)
-            {
-                await Task.Delay(Constants.MillisecondsDelay);
-                Ingredients = await _restService.AutocompleteIngredientSearchAsync(SearchText);
-            }
-            else
-            {
-                Ingredients = _cachedCollection;
-            }
-        }
-
-        public ICommand AddIngredientCommand => new Command<Ingredient>((Ingredient ingredient) =>
-        {
-            if (_cachedCollection == null)
-            {
-                _cachedCollection = new List<Ingredient> { ingredient };
-            }
-            else
-            {
-                IList<Ingredient> storedIngredientsList = _cachedCollection.Cast<Ingredient>().ToList();
-                storedIngredientsList.Add(ingredient);
-                _cachedCollection = storedIngredientsList;
-            }
-            IsSearchBarFocused = false;
-        });
+        public ICommand GoToSearchRecipePageCommand { get; }
 
         public IEnumerable<Ingredient> Ingredients
         {
             get => _ingredients;
-            set
-            {
-                if (_ingredients != value)
-                {
-                    _ingredients = value;
-                    OnPropertyChanged();
-                }
-            }
+            set => SetProperty(ref _ingredients, value);
         }
 
         public bool IsSearchBarFocused
@@ -87,10 +36,8 @@ namespace Project.ViewModels
             get => _isSearchBarFocused;
             set
             {
-                if (_isSearchBarFocused != value)
+                if (SetProperty(ref _isSearchBarFocused, value))
                 {
-                    _isSearchBarFocused = value;
-                    OnPropertyChanged();
                     _ = UpdateCollectionViewAsync();
                     if (!_isSearchBarFocused && !string.IsNullOrWhiteSpace(SearchText))
                     {
@@ -105,22 +52,30 @@ namespace Project.ViewModels
             get => _searchText;
             set
             {
-                if (_searchText != value)
+                if (SetProperty(ref _searchText, value))
                 {
-                    _searchText = value;
-                    OnPropertyChanged();
                     _ = UpdateCollectionViewAsync();
                 }
             }
         }
 
+        public ICommand AddIngredientCommand => new Command<Ingredient>((Ingredient ingredient) =>
+        {
+            _cachedCollection.Add(ingredient);
+            IsSearchBarFocused = false;
+        });
+
         public ICommand RemoveIngredientCommand => new Command<Ingredient>((Ingredient ingredient) =>
         {
-            IList<Ingredient> storedIngredientsList = _cachedCollection.Cast<Ingredient>().ToList();
+            List<Ingredient> storedIngredientsList = _cachedCollection.Cast<Ingredient>().ToList();
             _ = storedIngredientsList.Remove(ingredient);
             _cachedCollection = storedIngredientsList;
             Ingredients = _cachedCollection;
         });
+
+        public bool IsRemoveIngredientButtonVisible =>
+            (_cachedCollection.Any() && !IsSearchBarFocused) ||
+            (IsSearchBarFocused && (string.IsNullOrWhiteSpace(SearchText) || SearchText.Length <= 2));
 
         public bool IsImageVisible =>
 #if __MOBILE__
@@ -129,7 +84,38 @@ namespace Project.ViewModels
                 false;
 #endif
 
-        public bool IsRemoveIngredientButtonVisible =>
-            _cachedCollection != null && _cachedCollection.Any() && !IsSearchBarFocused && string.IsNullOrWhiteSpace(SearchText);
+        private async Task GoToSearchRecipePageAsync()
+        {
+            if (_cachedCollection.Any())
+            {
+                string ingredients = string.Join(",", _cachedCollection.Select(ingredient => ingredient.Name));
+                if (!string.IsNullOrWhiteSpace(ingredients))
+                {
+#if __MOBILE__
+                    await Shell.Current.GoToAsync($"{nameof(MobileAllRecipesPage)}?Ingredients={ingredients}");
+#else
+                    await Shell.Current.GoToAsync($"{nameof(AllRecipesPage)}?Ingredients={ingredients}");
+#endif
+                }
+            }
+        }
+
+        private void UpdateIngredients(IEnumerable<Ingredient> ingredients)
+        {
+            Ingredients = ingredients;
+        }
+
+        private async Task UpdateCollectionViewAsync()
+        {
+            if (IsSearchBarFocused && !string.IsNullOrWhiteSpace(SearchText) && SearchText.Length > 2)
+            {
+                IEnumerable<Ingredient> ingredients = await _restService.AutocompleteIngredientSearchAsync(SearchText);
+                _debounceAction.Invoke(ingredients);
+            }
+            else
+            {
+                Ingredients = _cachedCollection;
+            }
+        }
     }
 }
