@@ -21,6 +21,5 @@
                     }, TaskScheduler.Default);
             };
         }
-
     }
 }
